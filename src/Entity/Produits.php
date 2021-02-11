@@ -44,11 +44,6 @@ class Produits
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $marque;
 
     /**
@@ -60,11 +55,6 @@ class Produits
      * @ORM\Column(type="integer", nullable=true)
      */
     private $promotion;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $taille;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -106,6 +96,18 @@ class Produits
      * @ORM\JoinColumn(nullable=false)
      */
     private $Budget;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=type::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Taille::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Taille;
 
     public function __construct()
     {
@@ -151,17 +153,6 @@ class Produits
         return $this->imageFile;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function getMarque(): ?string
     {
@@ -195,18 +186,6 @@ class Produits
     public function setPromotion(?int $promotion): self
     {
         $this->promotion = $promotion;
-
-        return $this;
-    }
-
-    public function getTaille(): ?string
-    {
-        return $this->taille;
-    }
-
-    public function setTaille(string $taille): self
-    {
-        $this->taille = $taille;
 
         return $this;
     }
@@ -369,6 +348,30 @@ class Produits
     public function setBudget(?Budget $Budget): self
     {
         $this->Budget = $Budget;
+
+        return $this;
+    }
+
+    public function getType(): ?type
+    {
+        return $this->Type;
+    }
+
+    public function setType(?type $Type): self
+    {
+        $this->Type = $Type;
+
+        return $this;
+    }
+
+    public function getTaille(): ?Taille
+    {
+        return $this->Taille;
+    }
+
+    public function setTaille(?Taille $Taille): self
+    {
+        $this->Taille = $Taille;
 
         return $this;
     }
