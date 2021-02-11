@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+
+{% block stylesheets %}  {{ encore_entry_link_tags('app') }} {% endblock %}
+
+{% block body %}
+
+<div class="bg-cover bg-center  h-auto text-white py-24 px-10 object-fill" style="background-image: url(https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)">
+       <div class="md:w-1/2">
+        <p class="font-bold text-sm uppercase">Services</p>
+        <p class="text-3xl font-bold">Multimedia products</p>
+        <p class="text-2xl mb-10 leading-none">Atractive designs for your brand</p>
+        <a href="#" class="bg-cyan py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Contact us</a>
+        </div>  
+</div>
+
+<div class="container grid grid-cols-1 md:grid-cols-2 justify-items-center">
+{% block products%}
+
+{% endblock %}
+</div>
+
+<div class="flex border justify-center ">
+  <button class="flex w-8/12 xsm:w-6/12 sm:w-5/12 md:w-4/12 xl:w-3/12 m-4 focus:outline-none" >
+    <img class="w-1/12 h-4/6 mt-1 mx-4" src="{{ asset('build/img/setings.png') }}">
+    <a >FILTRER LES TENUES</a>
+    <img class="w-2/12 lg:w-1/12 h-3/6 mt-2 mx-2 px-2" src="{{ asset('build/img/dropdown.png') }}">  
+  </button>
+</div>
+
+
+<div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
+{% block articles%}
+
+{% endblock %}
+</div>
+
+{% endblock %}
+
+{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}

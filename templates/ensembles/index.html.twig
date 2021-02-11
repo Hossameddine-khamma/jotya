@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ensembles index{% endblock %}
+
+{% block body %}
+    <h1>Ensembles index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ensemble in ensembles %}
+            <tr>
+                <td>{{ ensemble.id }}</td>
+                <td>{{ ensemble.image }}</td>
+                <td>
+                    <a href="{{ path('ensembles_show', {'id': ensemble.id}) }}">show</a>
+                    <a href="{{ path('ensembles_edit', {'id': ensemble.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ensembles_new') }}">Create new</a>
+{% endblock %}

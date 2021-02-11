@@ -1,0 +1,8 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.bg-cyan {
+    --tw-bg-opacity: 1;
+    background-color: rgba(77, 200, 200, var(--tw-bg-opacity));
+  }

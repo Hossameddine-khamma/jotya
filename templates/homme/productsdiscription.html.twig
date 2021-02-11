@@ -1,0 +1,244 @@
+{% extends 'productsdiscriptionbase.html.twig' %}
+
+{% block title %}Hello HommeController!{% endblock %}
+
+{% block products%}
+ <div class="flex mx-4 my-4 w-10/12">
+    <div class=" w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
+      <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80')">
+      </div>
+      <div class="grid px-5 py-3 justify-items-center">
+        <h3 class="text-gray-700 uppercase">Old watch</h3>
+        <div class="flex justify-center">
+          <span class="text-gray-500 mx-2 mt-2"><del>95,99</del></span>
+          <span class="text-gray-700 mx-2 mt-2">94,00</span>
+          <span class="bg-red-500 p-1 mx-2 text-black text-xs mt-2">-95%</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		      <path d="M406,332c-29.636,0-55.969,14.402-72.378,36.571l-141.27-72.195C194.722,288.324,196,279.809,196,271
+			    c0-11.931-2.339-23.324-6.574-33.753l148.06-88.958C354.006,167.679,378.59,180,406,180c49.626,0,90-40.374,90-90
+			    c0-49.626-40.374-90-90-90c-49.626,0-90,40.374-90,90c0,11.47,2.161,22.443,6.09,32.54l-148.43,89.18
+			    C157.152,192.902,132.941,181,106,181c-49.626,0-90,40.374-90,90c0,49.626,40.374,90,90,90c30.122,0,56.832-14.876,73.177-37.666
+			    l140.86,71.985C317.414,403.753,316,412.714,316,422c0,49.626,40.374,90,90,90c49.626,0,90-40.374,90-90
+			    C496,372.374,455.626,332,406,332z M406,30c33.084,0,60,26.916,60,60s-26.916,60-60,60s-60-26.916-60-60S372.916,30,406,30z
+			     M106,331c-33.084,0-60-26.916-60-60s26.916-60,60-60s60,26.916,60,60S139.084,331,106,331z M406,482c-33.084,0-60-26.916-60-60
+          s26.916-60,60-60s60,26.916,60,60S439.084,482,406,482z"/>
+        </svg>
+      </button>
+
+      <button class="p-2 rounded-full bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" viewBox="0 0 74 74" width="512" height="512"><path d="M60,72a1,1,0,0,1-.571-.179L37,56.218l-22.429,15.6A1,1,0,0,1,13,71V7a5.006,5.006,0,0,1,5-5H56a5.006,5.006,0,0,1,5,5V71a1,1,0,0,1-1,1ZM37,54a1,1,0,0,1,.571.179L59,69.086V7a3,3,0,0,0-3-3H18a3,3,0,0,0-3,3V69.086L36.429,54.179A1,1,0,0,1,37,54Z"/><path d="M46.2,41.67a1,1,0,0,1-.588-.191L37,35.216l-8.612,6.262a1,1,0,0,1-1.539-1.117l3.287-10.129-8.613-6.263a1,1,0,0,1,.588-1.809H32.754l3.295-10.129a1,1,0,0,1,1.9,0L41.246,22.16H51.89a1,1,0,0,1,.588,1.809l-8.613,6.263,3.287,10.129A1,1,0,0,1,46.2,41.67ZM37,32.98a1,1,0,0,1,.588.191l6.711,4.88-2.561-7.893a1,1,0,0,1,.363-1.117l6.713-4.881H40.52a1,1,0,0,1-.951-.691L37,15.573l-2.568,7.9a1,1,0,0,1-.951.691H25.186L31.9,29.042a1,1,0,0,1,.363,1.117L29.7,38.051l6.711-4.88A1,1,0,0,1,37,32.98Z"/></svg>
+      </button>
+
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      </button>
+    </div>
+  </div>
+  <div class="m-4 md:m-20 w-10/12" >
+    <div class="top-96 py-4 px-4 row-start-2 row-end-2 bg-gray-300  rounded-b-md fd-cl group-hover:opacity-25">
+      <span class="block text-lg text-gray-800 font-bold tracking-wide">Book a flight</span>
+      <span  class="block text-gray-600 text-sm">Vivamus ac ligula sit amet erat luctus laoreet ac quis ligula. Donec bibendum faucibus purus eget cursus. Proin enim ante, scelerisque vel sem sit amet, ultrices mollis risus. Praesent justo felis, ullamcorper a cursus sed, condimentum at dui.</span>
+    </div>
+  </div>
+{% endblock %}
+
+{% block articles%}
+<div class="flex mx-4 my-4 w-10/12">
+    <div class=" w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
+      <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80')">
+      </div>
+      <div class=" grid px-5 py-3 justify-items-center">
+          <h3 class="text-gray-700 uppercase">Old watch</h3>
+          <div class="flex justify-center">
+            <span class="text-gray-500 mx-2 mt-2"><del>95,99</del></span>
+            <span class="text-gray-700 mx-2 mt-2">94,00</span>
+            <span class="bg-red-500 p-1 mx-2 text-black text-xs mt-2">-95%</span>
+          </div>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		      <path d="M406,332c-29.636,0-55.969,14.402-72.378,36.571l-141.27-72.195C194.722,288.324,196,279.809,196,271
+			    c0-11.931-2.339-23.324-6.574-33.753l148.06-88.958C354.006,167.679,378.59,180,406,180c49.626,0,90-40.374,90-90
+			    c0-49.626-40.374-90-90-90c-49.626,0-90,40.374-90,90c0,11.47,2.161,22.443,6.09,32.54l-148.43,89.18
+			    C157.152,192.902,132.941,181,106,181c-49.626,0-90,40.374-90,90c0,49.626,40.374,90,90,90c30.122,0,56.832-14.876,73.177-37.666
+			    l140.86,71.985C317.414,403.753,316,412.714,316,422c0,49.626,40.374,90,90,90c49.626,0,90-40.374,90-90
+			    C496,372.374,455.626,332,406,332z M406,30c33.084,0,60,26.916,60,60s-26.916,60-60,60s-60-26.916-60-60S372.916,30,406,30z
+			     M106,331c-33.084,0-60-26.916-60-60s26.916-60,60-60s60,26.916,60,60S139.084,331,106,331z M406,482c-33.084,0-60-26.916-60-60
+          s26.916-60,60-60s60,26.916,60,60S439.084,482,406,482z"/>
+        </svg>
+      </button>
+
+      <button class="p-2 rounded-full bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" viewBox="0 0 74 74" width="512" height="512"><path d="M60,72a1,1,0,0,1-.571-.179L37,56.218l-22.429,15.6A1,1,0,0,1,13,71V7a5.006,5.006,0,0,1,5-5H56a5.006,5.006,0,0,1,5,5V71a1,1,0,0,1-1,1ZM37,54a1,1,0,0,1,.571.179L59,69.086V7a3,3,0,0,0-3-3H18a3,3,0,0,0-3,3V69.086L36.429,54.179A1,1,0,0,1,37,54Z"/><path d="M46.2,41.67a1,1,0,0,1-.588-.191L37,35.216l-8.612,6.262a1,1,0,0,1-1.539-1.117l3.287-10.129-8.613-6.263a1,1,0,0,1,.588-1.809H32.754l3.295-10.129a1,1,0,0,1,1.9,0L41.246,22.16H51.89a1,1,0,0,1,.588,1.809l-8.613,6.263,3.287,10.129A1,1,0,0,1,46.2,41.67ZM37,32.98a1,1,0,0,1,.588.191l6.711,4.88-2.561-7.893a1,1,0,0,1,.363-1.117l6.713-4.881H40.52a1,1,0,0,1-.951-.691L37,15.573l-2.568,7.9a1,1,0,0,1-.951.691H25.186L31.9,29.042a1,1,0,0,1,.363,1.117L29.7,38.051l6.711-4.88A1,1,0,0,1,37,32.98Z"/></svg>
+      </button>
+
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      </button>
+    </div>
+</div>
+
+<div class="flex mx-4 my-4 w-10/12">
+    <div class=" w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
+      <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80')">
+      </div>
+      <div class=" grid px-5 py-3 justify-items-center">
+          <h3 class="text-gray-700 uppercase">Old watch</h3>
+          <div class="flex justify-center">
+            <span class="text-gray-500 mx-2 mt-2"><del>95,99</del></span>
+            <span class="text-gray-700 mx-2 mt-2">94,00</span>
+            <span class="bg-red-500 p-1 mx-2 text-black text-xs mt-2">-95%</span>
+          </div>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		      <path d="M406,332c-29.636,0-55.969,14.402-72.378,36.571l-141.27-72.195C194.722,288.324,196,279.809,196,271
+			    c0-11.931-2.339-23.324-6.574-33.753l148.06-88.958C354.006,167.679,378.59,180,406,180c49.626,0,90-40.374,90-90
+			    c0-49.626-40.374-90-90-90c-49.626,0-90,40.374-90,90c0,11.47,2.161,22.443,6.09,32.54l-148.43,89.18
+			    C157.152,192.902,132.941,181,106,181c-49.626,0-90,40.374-90,90c0,49.626,40.374,90,90,90c30.122,0,56.832-14.876,73.177-37.666
+			    l140.86,71.985C317.414,403.753,316,412.714,316,422c0,49.626,40.374,90,90,90c49.626,0,90-40.374,90-90
+			    C496,372.374,455.626,332,406,332z M406,30c33.084,0,60,26.916,60,60s-26.916,60-60,60s-60-26.916-60-60S372.916,30,406,30z
+			     M106,331c-33.084,0-60-26.916-60-60s26.916-60,60-60s60,26.916,60,60S139.084,331,106,331z M406,482c-33.084,0-60-26.916-60-60
+          s26.916-60,60-60s60,26.916,60,60S439.084,482,406,482z"/>
+        </svg>
+      </button>
+
+      <button class="p-2 rounded-full bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" viewBox="0 0 74 74" width="512" height="512"><path d="M60,72a1,1,0,0,1-.571-.179L37,56.218l-22.429,15.6A1,1,0,0,1,13,71V7a5.006,5.006,0,0,1,5-5H56a5.006,5.006,0,0,1,5,5V71a1,1,0,0,1-1,1ZM37,54a1,1,0,0,1,.571.179L59,69.086V7a3,3,0,0,0-3-3H18a3,3,0,0,0-3,3V69.086L36.429,54.179A1,1,0,0,1,37,54Z"/><path d="M46.2,41.67a1,1,0,0,1-.588-.191L37,35.216l-8.612,6.262a1,1,0,0,1-1.539-1.117l3.287-10.129-8.613-6.263a1,1,0,0,1,.588-1.809H32.754l3.295-10.129a1,1,0,0,1,1.9,0L41.246,22.16H51.89a1,1,0,0,1,.588,1.809l-8.613,6.263,3.287,10.129A1,1,0,0,1,46.2,41.67ZM37,32.98a1,1,0,0,1,.588.191l6.711,4.88-2.561-7.893a1,1,0,0,1,.363-1.117l6.713-4.881H40.52a1,1,0,0,1-.951-.691L37,15.573l-2.568,7.9a1,1,0,0,1-.951.691H25.186L31.9,29.042a1,1,0,0,1,.363,1.117L29.7,38.051l6.711-4.88A1,1,0,0,1,37,32.98Z"/></svg>
+      </button>
+
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      </button>
+    </div>
+</div>
+
+<div class="flex mx-4 my-4 w-10/12">
+    <div class=" w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
+      <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80')">
+      </div>
+      <div class=" grid px-5 py-3 justify-items-center">
+          <h3 class="text-gray-700 uppercase">Old watch</h3>
+          <div class="flex justify-center">
+            <span class="text-gray-500 mx-2 mt-2"><del>95,99</del></span>
+            <span class="text-gray-700 mx-2 mt-2">94,00</span>
+            <span class="bg-red-500 p-1 mx-2 text-black text-xs mt-2">-95%</span>
+          </div>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		      <path d="M406,332c-29.636,0-55.969,14.402-72.378,36.571l-141.27-72.195C194.722,288.324,196,279.809,196,271
+			    c0-11.931-2.339-23.324-6.574-33.753l148.06-88.958C354.006,167.679,378.59,180,406,180c49.626,0,90-40.374,90-90
+			    c0-49.626-40.374-90-90-90c-49.626,0-90,40.374-90,90c0,11.47,2.161,22.443,6.09,32.54l-148.43,89.18
+			    C157.152,192.902,132.941,181,106,181c-49.626,0-90,40.374-90,90c0,49.626,40.374,90,90,90c30.122,0,56.832-14.876,73.177-37.666
+			    l140.86,71.985C317.414,403.753,316,412.714,316,422c0,49.626,40.374,90,90,90c49.626,0,90-40.374,90-90
+			    C496,372.374,455.626,332,406,332z M406,30c33.084,0,60,26.916,60,60s-26.916,60-60,60s-60-26.916-60-60S372.916,30,406,30z
+			     M106,331c-33.084,0-60-26.916-60-60s26.916-60,60-60s60,26.916,60,60S139.084,331,106,331z M406,482c-33.084,0-60-26.916-60-60
+          s26.916-60,60-60s60,26.916,60,60S439.084,482,406,482z"/>
+        </svg>
+      </button>
+
+      <button class="p-2 rounded-full bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" viewBox="0 0 74 74" width="512" height="512"><path d="M60,72a1,1,0,0,1-.571-.179L37,56.218l-22.429,15.6A1,1,0,0,1,13,71V7a5.006,5.006,0,0,1,5-5H56a5.006,5.006,0,0,1,5,5V71a1,1,0,0,1-1,1ZM37,54a1,1,0,0,1,.571.179L59,69.086V7a3,3,0,0,0-3-3H18a3,3,0,0,0-3,3V69.086L36.429,54.179A1,1,0,0,1,37,54Z"/><path d="M46.2,41.67a1,1,0,0,1-.588-.191L37,35.216l-8.612,6.262a1,1,0,0,1-1.539-1.117l3.287-10.129-8.613-6.263a1,1,0,0,1,.588-1.809H32.754l3.295-10.129a1,1,0,0,1,1.9,0L41.246,22.16H51.89a1,1,0,0,1,.588,1.809l-8.613,6.263,3.287,10.129A1,1,0,0,1,46.2,41.67ZM37,32.98a1,1,0,0,1,.588.191l6.711,4.88-2.561-7.893a1,1,0,0,1,.363-1.117l6.713-4.881H40.52a1,1,0,0,1-.951-.691L37,15.573l-2.568,7.9a1,1,0,0,1-.951.691H25.186L31.9,29.042a1,1,0,0,1,.363,1.117L29.7,38.051l6.711-4.88A1,1,0,0,1,37,32.98Z"/></svg>
+      </button>
+
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      </button>
+    </div>
+</div>
+
+<div class="flex mx-4 my-4 w-10/12">
+    <div class=" w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
+      <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80')">
+      </div>
+      <div class=" grid px-5 py-3 justify-items-center">
+          <h3 class="text-gray-700 uppercase">Old watch</h3>
+          <div class="flex justify-center">
+            <span class="text-gray-500 mx-2 mt-2"><del>95,99</del></span>
+            <span class="text-gray-700 mx-2 mt-2">94,00</span>
+            <span class="bg-red-500 p-1 mx-2 text-black text-xs mt-2">-95%</span>
+          </div>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		      <path d="M406,332c-29.636,0-55.969,14.402-72.378,36.571l-141.27-72.195C194.722,288.324,196,279.809,196,271
+			    c0-11.931-2.339-23.324-6.574-33.753l148.06-88.958C354.006,167.679,378.59,180,406,180c49.626,0,90-40.374,90-90
+			    c0-49.626-40.374-90-90-90c-49.626,0-90,40.374-90,90c0,11.47,2.161,22.443,6.09,32.54l-148.43,89.18
+			    C157.152,192.902,132.941,181,106,181c-49.626,0-90,40.374-90,90c0,49.626,40.374,90,90,90c30.122,0,56.832-14.876,73.177-37.666
+			    l140.86,71.985C317.414,403.753,316,412.714,316,422c0,49.626,40.374,90,90,90c49.626,0,90-40.374,90-90
+			    C496,372.374,455.626,332,406,332z M406,30c33.084,0,60,26.916,60,60s-26.916,60-60,60s-60-26.916-60-60S372.916,30,406,30z
+			     M106,331c-33.084,0-60-26.916-60-60s26.916-60,60-60s60,26.916,60,60S139.084,331,106,331z M406,482c-33.084,0-60-26.916-60-60
+          s26.916-60,60-60s60,26.916,60,60S439.084,482,406,482z"/>
+        </svg>
+      </button>
+
+      <button class="p-2 rounded-full bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" viewBox="0 0 74 74" width="512" height="512"><path d="M60,72a1,1,0,0,1-.571-.179L37,56.218l-22.429,15.6A1,1,0,0,1,13,71V7a5.006,5.006,0,0,1,5-5H56a5.006,5.006,0,0,1,5,5V71a1,1,0,0,1-1,1ZM37,54a1,1,0,0,1,.571.179L59,69.086V7a3,3,0,0,0-3-3H18a3,3,0,0,0-3,3V69.086L36.429,54.179A1,1,0,0,1,37,54Z"/><path d="M46.2,41.67a1,1,0,0,1-.588-.191L37,35.216l-8.612,6.262a1,1,0,0,1-1.539-1.117l3.287-10.129-8.613-6.263a1,1,0,0,1,.588-1.809H32.754l3.295-10.129a1,1,0,0,1,1.9,0L41.246,22.16H51.89a1,1,0,0,1,.588,1.809l-8.613,6.263,3.287,10.129A1,1,0,0,1,46.2,41.67ZM37,32.98a1,1,0,0,1,.588.191l6.711,4.88-2.561-7.893a1,1,0,0,1,.363-1.117l6.713-4.881H40.52a1,1,0,0,1-.951-.691L37,15.573l-2.568,7.9a1,1,0,0,1-.951.691H25.186L31.9,29.042a1,1,0,0,1,.363,1.117L29.7,38.051l6.711-4.88A1,1,0,0,1,37,32.98Z"/></svg>
+      </button>
+
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      </button>
+    </div>
+</div>
+
+<div class="flex mx-4 my-4 w-10/12">
+    <div class=" w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
+      <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80')">
+      </div>
+      <div class=" grid px-5 py-3 justify-items-center">
+          <h3 class="text-gray-700 uppercase">Old watch</h3>
+          <div class="flex justify-center">
+            <span class="text-gray-500 mx-2 mt-2"><del>95,99</del></span>
+            <span class="text-gray-700 mx-2 mt-2">94,00</span>
+            <span class="bg-red-500 p-1 mx-2 text-black text-xs mt-2">-95%</span>
+          </div>
+      </div>
+    </div>
+    <div class="flex flex-col">
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		      <path d="M406,332c-29.636,0-55.969,14.402-72.378,36.571l-141.27-72.195C194.722,288.324,196,279.809,196,271
+			    c0-11.931-2.339-23.324-6.574-33.753l148.06-88.958C354.006,167.679,378.59,180,406,180c49.626,0,90-40.374,90-90
+			    c0-49.626-40.374-90-90-90c-49.626,0-90,40.374-90,90c0,11.47,2.161,22.443,6.09,32.54l-148.43,89.18
+			    C157.152,192.902,132.941,181,106,181c-49.626,0-90,40.374-90,90c0,49.626,40.374,90,90,90c30.122,0,56.832-14.876,73.177-37.666
+			    l140.86,71.985C317.414,403.753,316,412.714,316,422c0,49.626,40.374,90,90,90c49.626,0,90-40.374,90-90
+			    C496,372.374,455.626,332,406,332z M406,30c33.084,0,60,26.916,60,60s-26.916,60-60,60s-60-26.916-60-60S372.916,30,406,30z
+			     M106,331c-33.084,0-60-26.916-60-60s26.916-60,60-60s60,26.916,60,60S139.084,331,106,331z M406,482c-33.084,0-60-26.916-60-60
+          s26.916-60,60-60s60,26.916,60,60S439.084,482,406,482z"/>
+        </svg>
+      </button>
+
+      <button class="p-2 rounded-full bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" viewBox="0 0 74 74" width="512" height="512"><path d="M60,72a1,1,0,0,1-.571-.179L37,56.218l-22.429,15.6A1,1,0,0,1,13,71V7a5.006,5.006,0,0,1,5-5H56a5.006,5.006,0,0,1,5,5V71a1,1,0,0,1-1,1ZM37,54a1,1,0,0,1,.571.179L59,69.086V7a3,3,0,0,0-3-3H18a3,3,0,0,0-3,3V69.086L36.429,54.179A1,1,0,0,1,37,54Z"/><path d="M46.2,41.67a1,1,0,0,1-.588-.191L37,35.216l-8.612,6.262a1,1,0,0,1-1.539-1.117l3.287-10.129-8.613-6.263a1,1,0,0,1,.588-1.809H32.754l3.295-10.129a1,1,0,0,1,1.9,0L41.246,22.16H51.89a1,1,0,0,1,.588,1.809l-8.613,6.263,3.287,10.129A1,1,0,0,1,46.2,41.67ZM37,32.98a1,1,0,0,1,.588.191l6.711,4.88-2.561-7.893a1,1,0,0,1,.363-1.117l6.713-4.881H40.52a1,1,0,0,1-.951-.691L37,15.573l-2.568,7.9a1,1,0,0,1-.951.691H25.186L31.9,29.042a1,1,0,0,1,.363,1.117L29.7,38.051l6.711-4.88A1,1,0,0,1,37,32.98Z"/></svg>
+      </button>
+
+      <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
+        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+      </button>
+    </div>
+</div>
+
+
+
+{% endblock %}

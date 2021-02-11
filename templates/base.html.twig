@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        {{ encore_entry_link_tags('menu') }}
+
+        {% block stylesheets %}{% endblock %}
+
+    </head>
+    <body>
+    <nav class="navBar">
+<!--dropdowns desktop -->
+        <div id="dropdownsDesktop" class="desktop">
+          <div>
+            <!-- component -->
+            <div class="dropdownContainer">
+              <button
+                class="btnDropdown"
+              >
+                <span class="spanBtnDropdown">Homme</span>
+                <span>
+                  <svg
+                    class="svgBtnDropdown group-hover:-rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <ul
+                class="UlDropdown group-hover:scale-100"
+              >
+                <li class="liDropdown"><a href="{{path('homme')}}">Home Homme</a></li>
+                <li class="liExtendDropdown">
+                  <button
+                    class="btnExtendDropdown"
+                  >
+                    <span class="spanBtnExtendDropdown">Styles</span>
+                    <span>
+                      <svg
+                        class="svgBtnExtendDropdown"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <ul
+                    class="ulExtendDropdown "
+                  >
+                    <li class="liDropdown">Elegant</li>
+                    <li class="liDropdown">Tendance</li>
+                    <li class="liDropdown">Urban</li>
+                    <li class="liDropdown">Sport</li>
+                  </ul>
+                </li>
+                <li class="liExtendDropdown">
+                  <button
+                    class="btnExtendDropdown"
+                  >
+                    <span class="spanBtnExtendDropdown">Produits</span>
+                    <span>
+                      <svg
+                        class="svgBtnExtendDropdown"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <ul
+                    class="ulExtendDropdown"
+                  >
+                    <li class="liDropdown px-3">Chaussures</li>
+                    <li class="liDropdown px-3">Chemisiers</li>
+                    <li class="liDropdown px-3">Pulls</li>
+                    <li class="liDropdown px-3">Jeans</li>
+                    <li class="liDropdown px-3">T-shirt</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <!-- component -->
+            <div class="dropdownContainer">
+              <button
+                class="btnDropdown"
+              >
+                <span class="spanBtnDropdown">Femme</span>
+                <span>
+                  <svg
+                    class="svgBtnDropdown group-hover:-rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <ul
+                class="UlDropdown group-hover:scale-100"
+              >
+                <li class="liDropdown"><a href="{{path('femme')}}">Home femme</a></li>
+                <li class="liExtendDropdown">
+                  <button
+                    class="btnExtendDropdown"
+                  >
+                    <span class="spanBtnExtendDropdown">Styles</span>
+                    <span>
+                      <svg
+                        class="svgBtnExtendDropdown"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <ul
+                    class="ulExtendDropdown"
+                  >
+                    <li class="liDropdown">Elegant</li>
+                    <li class="liDropdown">Tendance</li>
+                    <li class="liDropdown">Urban</li>
+                    <li class="liDropdown">Sport</li>
+                  </ul>
+                </li>
+                <li class="liExtendDropdown">
+                  <button
+                    class="btnExtendDropdown"
+                  >
+                    <span class="spanBtnExtendDropdown">Produits</span>
+                    <span>
+                      <svg
+                        class="svgBtnExtendDropdown"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <ul
+                    class="ulExtendDropdown"
+                  >
+                    <li class="liDropdown">Chaussures</li>
+                    <li class="liDropdown">Chemisiers</li>
+                    <li class="liDropdown">Pulls</li>
+                    <li class="liDropdown">Jeans</li>
+                    <li class="liDropdown">T-shirt</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <!-- component -->
+            <div class="dropdownContainer">
+              <button
+                class="btnDropdown"
+              >
+                <span class="spanBtnDropdown">Enfants</span>
+                <span>
+                  <svg
+                    class="svgBtnDropdown group-hover:-rotate-180"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <ul
+                class="UlDropdown group-hover:scale-100"
+              >
+                <li class="liDropdown"><a href="{{path('enfants')}}">Home Enfants</a></li>
+                <li class="liExtendDropdown">
+                  <button
+                    class="btnExtendDropdown"
+                  >
+                    <span class="spanBtnExtendDropdown">Styles</span>
+                    <span>
+                      <svg
+                        class="svgBtnExtendDropdown"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <ul
+                    class="ulExtendDropdown"
+                  >
+                    <li class="liDropdown">Elegant</li>
+                    <li class="liDropdown">Tendance</li>
+                    <li class="liDropdown">Urban</li>
+                    <li class="liDropdown">Sport</li>
+                  </ul>
+                </li>
+                <li class="liExtendDropdown">
+                  <button
+                    class="btnExtendDropdown"
+                  >
+                    <span class="spanBtnExtendDropdown">Produits</span>
+                    <span>
+                      <svg
+                        class="svgBtnExtendDropdown"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <ul
+                    class="ulExtendDropdown"
+                  >
+                    <li class="liDropdown">Chaussures</li>
+                    <li class="liDropdown">Chemisiers</li>
+                    <li class="liDropdown">Pulls</li>
+                    <li class="liDropdown">Jeans</li>
+                    <li class="liDropdown">T-shirt</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+<!-- dropdowns phone -->
+        <div id="phone" class="phone">
+          <button type="button" id="btnHomme" class="btnTextCayan">
+            <a class="txtCayanbtn" href="#">Homme</a>
+            <svg
+            id="svgHomme"
+                class="svgCayanbtn"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+          </button>
+          <button type="button" id="btnFemme" class="btnTextCayanSpan2">
+            <a class="txtCayanbtn" href="#">Femme</a>
+            <svg
+            id="svgFemme"
+                class="svgCayanbtn"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+          </button>
+          <button type="button" id="btnEnfants" class="btnTextCayanEnfants">
+            <a class="txtCayanbtn px-0 py-2 text-cyan focus:outline-none " href="#">Enfants</a>
+            <svg
+            id="svgEnfants"
+                class="svgCayanbtn"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+          </button>
+        </div> 
+
+<!-- Homme dropdowns phone options -->
+        <div id="hommePhoneOptions" class="hommePhoneOptions ">
+          <div class="containerBtnHome">
+            <button type="button" class="btnTextBlack">
+              <a class="textBlackbt" href="{{path('homme')}}">Home Homme</a>
+            </button>
+          </div>
+          <div class="containerDropdown">
+            <button type="button" id="btnHommePhoneStylesOptions" class="btnPhoneStylesOptions">
+              <a class="textBtnDropdownPhone" href="#">Styles</a>
+              <svg
+              id="svgHommeStyles"
+                class="svgBtnDropdownPhone"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </button>
+          </div>
+<!-- dropdowns stylesOptions -->
+          <div id="hommePhoneStylesOptions" class="containerDropdownOptions">
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Elégant</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Tendance</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Urban</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Sport</a>
+              </button>
+            </div>
+          </div>
+
+          <div class="containerDropdown">
+            <button type="button" id="btnHommePhoneProduitsOptions" class="btnPhoneProduitsOptions">
+              <a class="textBtnDropdownPhone" href="#">Produits</a>
+              <svg
+              id="svgHommeProduits"
+                class="svgBtnDropdownPhone"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </button>
+          </div>
+
+<!-- dropdowns produitsOptions -->
+          <div id="hommePhoneProduitsOptions" class="containerDropdownOptions">
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Chaussures</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Chemisiers</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Pulls</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Jeans</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">T-shirt</a>
+              </button>
+            </div>
+          </div>
+        </div>
+
+<!-- Femme dropdowns phone options -->
+        <div id="femmePhoneOptions" class="femmePhoneOptions">
+          <div class="containerBtnHome">
+            <button type="button" class="btnTextBlack">
+              <a class="textBlackbt" href="{{path('femme')}}">Home Femme</a>
+            </button>
+          </div>
+          <div class="containerDropdown">
+            <button type="button" id="btnFemmePhoneStylesOptions" class="btnPhoneStylesOptions">
+              <a class="textBtnDropdownPhone" href="#">Styles</a>
+              <svg
+              id="svgFemmeStyles"
+                class="svgBtnDropdownPhone"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </button>
+          </div>
+<!-- dropdowns stylesOptions -->
+          <div id="femmePhoneStylesOptions" class="containerDropdownOptions">
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Elégant</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Tendance</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Urban</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Sport</a>
+              </button>
+            </div>
+          </div>
+
+          <div class="containerDropdown">
+            <button type="button" id="btnFemmePhoneProduitsOptions" class="btnPhoneProduitsOptions">
+              <a class="textBtnDropdownPhone" href="#">Produits</a>
+              <svg
+              id="svgFemmeProduits"
+                class="svgBtnDropdownPhone"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </button>
+          </div>
+
+<!-- dropdowns produitsOptions -->
+          <div id="femmePhoneProduitsOptions" class="containerDropdownOptions">
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Chaussures</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Chemisiers</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Pulls</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Jeans</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">T-shirt</a>
+              </button>
+            </div>
+          </div>
+        </div>
+
+<!-- Enfants dropdowns phone options -->
+        <div id="enfantsPhoneOptions" class="enfantsPhoneOptions">
+          <div class="containerBtnHome">
+            <button type="button" class="btnTextBlack">
+              <a class="textBlackbt" href="{{path('enfants')}}">Home Enfants</a>
+            </button>
+          </div>
+          <div class="containerDropdown">
+            <button type="button" id="btnEnfantsPhoneStylesOptions" class="btnPhoneStylesOptions">
+              <a class="textBtnDropdownPhone" href="#">Styles</a>
+              <svg
+              id="svgEnfantsStyles"
+                class="svgBtnDropdownPhone"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </button>
+          </div>
+<!-- dropdowns stylesOptions -->
+          <div id="enfantsPhoneStylesOptions" class="containerDropdownOptions">
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Elégant</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Tendance</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Urban</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Sport</a>
+              </button>
+            </div>
+          </div>
+
+
+          <div class="containerDropdown">
+            <button type="button" id="btnEnfantsPhoneProduitsOptions" class="btnPhoneProduitsOptions">
+              <a class="textBtnDropdownPhone" href="#">Produits</a>
+              <svg
+              id="svgEnfantsProduits"
+                class="svgBtnDropdownPhone"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </button>
+          </div>
+
+<!-- dropdowns produitsOptions -->
+          <div id="enfantsPhoneProduitsOptions" class="containerDropdownOptions">
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="">Chaussures</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Chemisiers</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions">Pulls</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">Jeans</a>
+              </button>
+            </div>
+            <div class="containerBtnDropdownOptions">
+              <button type="button" class="btnDropdownOptions">
+                <a class="textBtnDropdownOptions" href="#">T-shirt</a>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!--logo-->
+        <div class="containerLogo">
+          <div class="containerBtnlogo">
+            <button type="button" class="Btnlogo" href="{{path('home')}}">
+             <a href="{{path('home')}}"><img src="{{ asset('build/img/logo.png') }}" alt=""></a>
+            </button>
+          </div>
+        </div>
+
+<!--searchDesktop-->
+        <div id="searchDestop" class="containerSearchDesktop">
+        <span class="spanSearch">
+          <input type="search" name="serch" placeholder="Search"
+            class="inputSearchDesktop">
+          <svg  class="svgSearch"
+             version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
+            <path d="M51.704,51.273L36.845,35.82c3.79-3.801,6.138-9.041,6.138-14.82c0-11.58-9.42-21-21-21s-21,9.42-21,21s9.42,21,21,21
+            c5.083,0,9.748-1.817,13.384-4.832l14.895,15.491c0.196,0.205,0.458,0.307,0.721,0.307c0.25,0,0.499-0.093,0.693-0.279
+            C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s8.523-19,19-19s19,8.523,19,19
+           S32.459,40,21.983,40z"/>
+          </svg>
+        </span>
+        <svg id="svgCloseSearchDesktop" class="svgCloseSearch"
+        version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971;" xml:space="preserve">
+          <g>
+            <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88
+              c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242
+              C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879
+              s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/>
+          </g>
+        </svg>
+        </div>
+
+<!--Nous contacter-->
+        <div id="planContactNouveau" class="containerPlanContactNouveau">
+          <button type="button" class="btnPlan">
+
+             <a href="{{path('bonPlans')}} "><img class="pngBtnPlan" src="{{ asset('build/img/ampoule.png') }}" alt="">Bon Plan</a>
+          </button>
+          <button type="button" class="btnContact">
+
+             <a href="#"><img class="pngBtnContact" src="{{ asset('build/img/lettre.png') }}" alt="">Nous Contacter</a>
+          </button>
+          <button type="button" class="btnNouveau">
+
+             <a  href="{{path('nouveau')}}"><img class="pngBtnNouveau" src="{{ asset('build/img/heure.png') }}" alt="">Nouveau</a>
+         </button>
+        </div>
+
+
+
+<!--searchComptePanier-->
+        <div id="searchComptePanier" class="containersearchComptePanier">
+             <div class="containerBtnsSearchComptePanier">
+             <button id="btnSearch" type="button" class="BtnSearch">
+             <img src="{{ asset('build/img/search.png') }}" alt="">
+             </button>
+             <button type="button" class="BtnCompte">
+                <img src="{{ asset('build/img/compte.png') }}" alt="">
+             </button>
+             <button type="button" class="BtnPanier">
+                <img src="{{ asset('build/img/panier.png') }}" alt="">
+             </button>
+             </div>
+        </div>
+
+<!--searchPhone-->
+        <div id="searchPhone" class="containerSearchPhone">
+        <span class="spanSearchPhone">
+          <input type="search" name="serch" placeholder="Search"
+            class="inputSearchPhone">
+          <svg class="svgSearch w-1/12 h-1/12 px-1 py-1"
+             version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 52.966 52.966" style="enable-background:new 0 0 52.966 52.966;" xml:space="preserve">
+            <path d="M51.704,51.273L36.845,35.82c3.79-3.801,6.138-9.041,6.138-14.82c0-11.58-9.42-21-21-21s-21,9.42-21,21s9.42,21,21,21
+            c5.083,0,9.748-1.817,13.384-4.832l14.895,15.491c0.196,0.205,0.458,0.307,0.721,0.307c0.25,0,0.499-0.093,0.693-0.279
+            C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s8.523-19,19-19s19,8.523,19,19
+           S32.459,40,21.983,40z"/>
+          </svg>
+        </span>
+        <svg id="svgCloseSearch" class="svgCloseSearchPhone"
+        version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 47.971 47.971" style="enable-background:new 0 0 47.971 47.971;" xml:space="preserve">
+          <g>
+            <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88
+              c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242
+              C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879
+              s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/>
+          </g>
+        </svg>
+        </div>
+
+<!--toggler-->
+        <div class="containerToggler">
+          <div class="containerBtnToggler">
+             <button type="button" id="btnToggler" class="btnToggler">
+                <img src="{{ asset('build/img/toggler.png') }}" alt="">
+              </button>
+          </div>
+        </div>
+        </nav>
+        <div id="bodyContainer" class="bodyContainer">
+        {% block body %}{% endblock %}
+        </div>
+        {{ encore_entry_script_tags('menu') }}
+        {% block javascripts %}{% endblock %}
+      </body>
+</html>
