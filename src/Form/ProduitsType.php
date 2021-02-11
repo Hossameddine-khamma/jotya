@@ -63,6 +63,9 @@ class ProduitsType extends AbstractType
                 'choice_label' => function ($styles) {
                     return $styles->getnom();
                 },
+                'choice_attr'  => function () {
+                    return ['class' =>'mx-2'  ];
+                },
 
                 'multiple' =>true,
                 'expanded'=>true
@@ -74,6 +77,9 @@ class ProduitsType extends AbstractType
                 // uses the Saisons.nom property as the visible option string
                 'choice_label' => function ($saisons) {
                     return $saisons->getnom();
+                },
+                'choice_attr'  => function () {
+                    return ['class' =>'mx-2'  ];
                 },
 
                 'multiple' =>true,

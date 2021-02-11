@@ -29,12 +29,23 @@ class AdminController extends AbstractController
      */
     public function addProduct(Request $request): Response
     {
-        $Manager = $this->getDoctrine()->getManager();
+        
         $produit = new Produits();
         $form= $this->createForm(ProduitsType::class,$produit);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($produit);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin');
+        }
 
         return $this->render('admin/newProduct.html.twig',[
-            'formProduits' => $form->createView()
+            'produit'=>$produit,
+            'formProduits' => $form->createView(),
+            'button_label'=>'Ajouter'
         ]);
     }
 }
