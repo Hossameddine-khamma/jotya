@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+    <h1>Create new produits</h1>
+
+    {{ form_start(formProduits) }}
+    {{ form_widget(formProduits) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(formProduits) }}
+
+
+    <a href="{{ path('admin') }}">back to list</a>
+{% endblock %}
+
