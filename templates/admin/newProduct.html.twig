@@ -10,95 +10,75 @@
 {{ form_start(formProduits) }}
     <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
   <div class="-mx-3 md:flex mb-6">
-    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" >
-        {{ form_label(formProduits.imageFile) }}
-      </label>
+    <div class="w-full px-3 mb-6 md:mb-0">
+      {{ form_label(formProduits.imageFile) }}
       {{ form_widget(formProduits.imageFile) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.imageFile) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.imageFile) }}</p>
+      {{ form_errors(formProduits.imageFile) }}
+      {{ form_help(formProduits.imageFile) }}
     </div>
   </div>
   <div class="-mx-3 md:flex mb-6">
     <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-       {{ form_label(formProduits.type) }}
-      </label>
-      {{ form_widget(formProduits.type,{'attr':{'class':' block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 focus:outline-none'}}) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.type) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.type) }}</p>
+      {{ form_label(formProduits.type) }}
+      {{ form_widget(formProduits.type)}}
+      {{ form_errors(formProduits.type) }}
+      {{ form_help(formProduits.type) }}
     </div>
     <div class="md:w-1/2 px-3">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-        {{ form_label(formProduits.taille) }}
-      </label>
-      {{ form_widget(formProduits.taille,{'attr':{'class':' block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 focus:outline-none'}}) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.taille) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.taille) }}</p>
+      {{ form_label(formProduits.taille) }}
+      {{ form_widget(formProduits.taille) }}
+      {{ form_errors(formProduits.taille) }}
+      {{ form_help(formProduits.taille) }}
     </div>
     <div class="md:w-1/2 px-3">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-        {{ form_label(formProduits.Budget) }}
-      </label>
-      {{ form_widget(formProduits.Budget,{'attr':{'class':' block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 focus:outline-none'}}) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.Budget) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.Budget) }}</p>
+      {{ form_label(formProduits.Budget) }}
+      {{ form_widget(formProduits.Budget) }}
+      {{ form_errors(formProduits.Budget) }}
+      {{ form_help(formProduits.Budget) }}
     </div>
   </div>
   <div class="-mx-3 md:flex mb-6">
     <div class="md:w-1/2 px-3 mb-6 md:mb-0">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-       {{ form_label(formProduits.marque) }}
-      </label>
-      {{ form_widget(formProduits.marque,{'attr':{'class':' block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 focus:outline-none'}}) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.marque) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.marque) }}</p>
+      {{ form_label(formProduits.marque) }}
+      {{ form_widget(formProduits.marque) }}
+      {{ form_errors(formProduits.marque) }}
+      {{ form_help(formProduits.marque) }}
     </div>
     <div class="md:w-1/2 px-3">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-        {{ form_label(formProduits.prix) }}
-      </label>
-      {{ form_widget(formProduits.prix,{'attr':{'class':' block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 focus:outline-none'}}) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.prix) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.prix) }}</p>
+      {{ form_label(formProduits.prix) }}
+      {{ form_widget(formProduits.prix) }}
+      {{ form_errors(formProduits.prix) }}
+      {{ form_help(formProduits.prix) }}
     </div>
     <div class="md:w-1/2 px-3">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-        {{ form_label(formProduits.promotion) }}
-      </label>
-      {{ form_widget(formProduits.promotion,{'attr':{'class':' block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 focus:outline-none'}}) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.promotion) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.promotion) }}</p>
+      {{ form_label(formProduits.promotion) }}
+      {{ form_widget(formProduits.promotion) }}
+      {{ form_errors(formProduits.promotion) }}
+      {{ form_help(formProduits.promotion) }}
     </div>
   </div>
   <div class="-mx-3 md:flex mb-6">
     <div class="md:w-full px-3">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-        {{ form_label(formProduits.etat) }}
-      </label>
-          {{ form_widget(formProduits.etat,{'attr':{'class':' block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 focus:outline-none'}}) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.etat) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.etat) }}</p>
+      {{ form_label(formProduits.etat) }}
+      {{ form_widget(formProduits.etat) }}
+      {{ form_errors(formProduits.etat) }}
+      {{ form_help(formProduits.etat) }}
     </div>
   </div>
   <div class="-mx-3 md:flex mb-6">
     <div class="md:w-full px-3">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-        {{ form_label(formProduits.styles) }}
-      </label>
-          {{ form_widget(formProduits.styles) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.styles) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.styles) }}</p>
+      {{ form_label(formProduits.styles) }}
+      {{ form_widget(formProduits.styles) }}
+      {{ form_errors(formProduits.styles) }}
+      {{ form_help(formProduits.styles) }}
     </div>
   </div>
   <div class="-mx-3 md:flex mb-6">
     <div class="md:w-full px-3">
-      <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
-        {{ form_label(formProduits.saisons) }}
-      </label>
-          {{ form_widget(formProduits.saisons) }}
-      <p class="text-red text-xs italic">{{ form_errors(formProduits.saisons) }}</p>
-      <p class="text-red text-xs italic">{{ form_help(formProduits.saisons) }}</p>
+      {{ form_label(formProduits.saisons) }}
+      {{ form_widget(formProduits.saisons) }}
+      {{ form_errors(formProduits.saisons) }}
+      {{ form_help(formProduits.saisons) }}
     </div>
   </div>
   <button class="bg-cyan text-black rounded-md px-4 py-2 m-2">{{ button_label|default('Save') }}</button>
