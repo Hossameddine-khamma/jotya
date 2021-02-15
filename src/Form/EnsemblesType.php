@@ -17,6 +17,9 @@ class EnsemblesType extends AbstractType
         $builder
             ->add('image')
             ->add('produits',CollectionType::class,[
+                'entry_options'=>[
+                    'label'=>false
+                ],
                 'entry_type'=>ProduitsType::class,
                 'allow_add'=>true,
                 'allow_delete'=>true

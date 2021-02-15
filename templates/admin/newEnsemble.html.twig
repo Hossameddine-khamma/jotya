@@ -5,14 +5,25 @@
 {% block body %}
     <h1>Create new produits</h1>
   {{ form_start(formEnsemble) }}
-  {{form_row(formEnsemble.image)}}
-  {{form_row(formEnsemble.Budget)}}
-   <div class="w-full" id="productsList" data-prototype="{{form_widget(formEnsemble.children.produits.vars.prototype)|e('html_attr')}}">
+  <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 justify-center">
+  <div class="md:flex mb-4">
+    <div class="w-1/2 px-3 mb-6 md:mb-0">
+    {{form_row(formEnsemble.image)}}
+    </div>
+    <div class="w-1/2 px-3 mb-6 md:mb-0">
+    {{form_row(formEnsemble.Budget)}}
+    </div>
+  </div>
+  <h1 class="w-full bg-grey-lighter border-t uppercase tracking-wide text-grey-darker text-sm font-bold pl-8 pt-2 mb-6 " > {{ formEnsemble.children.produits.vars.name }} </h1>
+  <div>
+   <div class="w-10/12 bg-grey-lighter text-grey-darker border rounded ml-auto mr-8 py-3 px-4 mb-3" id="productsList" data-prototype="{{form_widget(formEnsemble.children.produits.vars.prototype)|e('html_attr')}}">
     {% for row in formEnsemble.children.produits %}
       {{form_row(row)}}
     {% endfor %}
    </div>
+   </div>
   <button class="bg-cyan text-black rounded-md px-4 py-2 m-2">{{ button_label|default('Save') }}</button>
+  </div>
 
 {{ form_end(formEnsemble) }}
 {% endblock %}
