@@ -41,13 +41,14 @@ class Ensembles
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Produits::class, mappedBy="ensembles")
+     * @ORM\ManyToMany(targetEntity=Produits::class, inversedBy="ensembles" ,cascade={"persist"})
      */
     private $produits;
 
     /**
      * @ORM\ManyToOne(targetEntity=Budget::class, inversedBy="ensembles")
      * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $Budget;
 

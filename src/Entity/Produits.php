@@ -77,7 +77,7 @@ class Produits
     private $saisons;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Ensembles::class, inversedBy="produits")
+     * @ORM\ManyToMany(targetEntity=Ensembles::class, mappedBy="produits")
      */
     private $ensembles;
 
@@ -98,7 +98,7 @@ class Produits
     private $Budget;
 
     /**
-     * @ORM\ManyToOne(targetEntity=type::class, inversedBy="produits")
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="produits")
      * @ORM\JoinColumn(nullable=false)
      */
     private $Type;

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Budget;
 use App\Entity\Ensembles;
+use App\Entity\Produits;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -17,13 +18,16 @@ class EnsemblesType extends AbstractType
     {
         $builder
             ->add('imageFile', VichImageType::class)
-            ->add('produits',CollectionType::class,[
-                'entry_options'=>[
-                    'label'=>false
+            ->add('produits', CollectionType::class, [
+                'entry_type' => ProduitsType::class,
+                'entry_options' => [
+                    'label' => false
                 ],
-                'entry_type'=>ProduitsType::class,
-                'allow_add'=>true,
-                'allow_delete'=>true
+                'by_reference' => false,
+                // this allows the creation of new forms and the prototype too
+                'allow_add' => true,
+                // self explanatory, this one allows the form to be removed
+                'allow_delete' => true
             ])
             ->add('Budget',EntityType::class, [
                 // looks for choices from this entity
