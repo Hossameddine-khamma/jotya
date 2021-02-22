@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Budget;
+use App\Entity\Genre;
 use App\Entity\Produits;
 use App\Entity\Saisons;
 use App\Entity\Styles;
@@ -105,7 +106,22 @@ class ProduitsType extends AbstractType
                 'expanded'=>true
             
             ])
+            ->add('genre', EntityType::class, [
+                // looks for choices from this entity
+                'class' => Genre::class,
             
+                // uses the Saisons.nom property as the visible option string
+                'choice_label' => function ($genre) {
+                    return $genre->getdescription();
+                },
+                'choice_attr'  => function () {
+                    return ['class' =>'mx-2'  ];
+                },
+
+                'multiple' =>true,
+                'expanded'=>true
+            
+            ])
         ;
     }
 

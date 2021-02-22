@@ -4,7 +4,10 @@ namespace App\Form;
 
 use App\Entity\Budget;
 use App\Entity\Ensembles;
+use App\Entity\Genre;
 use App\Entity\Produits;
+use App\Entity\Saisons;
+use App\Entity\Styles;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -40,6 +43,53 @@ class EnsemblesType extends AbstractType
                 'choice_label' => function ($Budget) {
                     return $Budget->getnom();
                 },
+            
+            ])
+            ->add('styles',EntityType::class, [
+                // looks for choices from this entity
+                'class' => Styles::class,
+            
+                // uses the Styles.nom property as the visible option string
+                'choice_label' => function ($styles) {
+                    return $styles->getnom();
+                },
+                'choice_attr'  => function () {
+                    return ['class' =>'mx-2'  ];
+                },
+
+                'multiple' =>true,
+                'expanded'=>true
+            ])
+            ->add('saisons', EntityType::class, [
+                // looks for choices from this entity
+                'class' => Saisons::class,
+            
+                // uses the Saisons.nom property as the visible option string
+                'choice_label' => function ($saisons) {
+                    return $saisons->getnom();
+                },
+                'choice_attr'  => function () {
+                    return ['class' =>'mx-2'  ];
+                },
+
+                'multiple' =>true,
+                'expanded'=>true
+            
+            ])
+            ->add('genre', EntityType::class, [
+                // looks for choices from this entity
+                'class' => Genre::class,
+            
+                // uses the Saisons.nom property as the visible option string
+                'choice_label' => function ($genre) {
+                    return $genre->getdescription();
+                },
+                'choice_attr'  => function () {
+                    return ['class' =>'mx-2'  ];
+                },
+
+                'multiple' =>true,
+                'expanded'=>true
             
             ])
         ;
