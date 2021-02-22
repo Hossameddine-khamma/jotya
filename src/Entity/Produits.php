@@ -110,6 +110,12 @@ class Produits
      */
     private $Taille;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Genre;
+
     public function __construct()
     {
         $this->date = new \Datetime();
@@ -373,6 +379,18 @@ class Produits
     public function setTaille(?Taille $Taille): self
     {
         $this->Taille = $Taille;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->Genre;
+    }
+
+    public function setGenre(?Genre $Genre): self
+    {
+        $this->Genre = $Genre;
 
         return $this;
     }

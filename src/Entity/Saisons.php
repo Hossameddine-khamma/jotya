@@ -29,9 +29,15 @@ class Saisons
      */
     private $produits;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Ensembles::class, mappedBy="Saisons")
+     */
+    private $ensembles;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+        $this->ensembles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,6 +79,33 @@ class Saisons
     {
         if ($this->produits->removeElement($produit)) {
             $produit->removeSaison($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ensembles[]
+     */
+    public function getEnsembles(): Collection
+    {
+        return $this->ensembles;
+    }
+
+    public function addEnsemble(Ensembles $ensemble): self
+    {
+        if (!$this->ensembles->contains($ensemble)) {
+            $this->ensembles[] = $ensemble;
+            $ensemble->addSaison($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnsemble(Ensembles $ensemble): self
+    {
+        if ($this->ensembles->removeElement($ensemble)) {
+            $ensemble->removeSaison($this);
         }
 
         return $this;

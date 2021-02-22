@@ -52,9 +52,27 @@ class Ensembles
      */
     private $Budget;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Saisons::class, inversedBy="ensembles")
+     */
+    private $Saisons;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Styles::class, inversedBy="ensembles")
+     */
+    private $Styles;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="ensembles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Genre;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+        $this->Saisons = new ArrayCollection();
+        $this->Styles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,6 +145,66 @@ class Ensembles
     public function setBudget(?Budget $Budget): self
     {
         $this->Budget = $Budget;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Saisons[]
+     */
+    public function getSaisons(): Collection
+    {
+        return $this->Saisons;
+    }
+
+    public function addSaison(Saisons $saison): self
+    {
+        if (!$this->Saisons->contains($saison)) {
+            $this->Saisons[] = $saison;
+        }
+
+        return $this;
+    }
+
+    public function removeSaison(Saisons $saison): self
+    {
+        $this->Saisons->removeElement($saison);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Styles[]
+     */
+    public function getStyles(): Collection
+    {
+        return $this->Styles;
+    }
+
+    public function addStyle(Styles $style): self
+    {
+        if (!$this->Styles->contains($style)) {
+            $this->Styles[] = $style;
+        }
+
+        return $this;
+    }
+
+    public function removeStyle(Styles $style): self
+    {
+        $this->Styles->removeElement($style);
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->Genre;
+    }
+
+    public function setGenre(?Genre $Genre): self
+    {
+        $this->Genre = $Genre;
 
         return $this;
     }

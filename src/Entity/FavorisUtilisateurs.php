@@ -43,6 +43,11 @@ class FavorisUtilisateurs
      */
     private $chaussures;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="Utilisateurs")
+     */
+    private $Genre;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -117,4 +122,17 @@ class FavorisUtilisateurs
 
         return $this;
     }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->Genre;
+    }
+
+    public function setGenre(?Genre $Genre): self
+    {
+        $this->Genre = $Genre;
+
+        return $this;
+    }
+
 }
