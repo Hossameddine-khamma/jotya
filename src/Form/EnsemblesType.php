@@ -17,7 +17,10 @@ class EnsemblesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, [
+                'required' => true,
+                'allow_delete' => false,
+            ])
             ->add('produits', CollectionType::class, [
                 'entry_type' => ProduitsType::class,
                 'entry_options' => [

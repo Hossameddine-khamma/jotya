@@ -10,8 +10,12 @@ use App\Entity\Taille;
 use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Type as t;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ProduitsType extends AbstractType
@@ -19,7 +23,9 @@ class ProduitsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, [
+                'allow_delete' => false,
+            ])
             ->add('type',EntityType::class, [
                 // looks for choices from this entity
                 'class' => Type::class,
@@ -50,11 +56,24 @@ class ProduitsType extends AbstractType
                 },
             
             ])
-            ->add('marque')
-            ->add('prix')
-            ->add('promotion')
+            ->add('marque',TextType::class,[
+                'constraints' => [
+                    new t('alpha',"La marque doit être sous forme de text"),
+                ],
+            ])
+            ->add('prix',NumberType::class,[
+                'grouping'=>true,
+                'invalid_message' => 'le prix doit être sous la forme suivante "00.00"',
+            ])
+            ->add('promotion',IntegerType::class,[
+                'required' => false,
+                ])
             
-            ->add('etat')
+            ->add('etat',TextType::class,[
+                'constraints' => [
+                    new t('alpha',"L'etat doit être sous forme de text"),
+                ],
+            ])
             ->add('styles',EntityType::class, [
                 // looks for choices from this entity
                 'class' => Styles::class,

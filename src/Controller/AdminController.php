@@ -59,6 +59,10 @@ class AdminController extends AbstractController
     {
         $entityManager = $this->getDoctrine()->getManager();
         $ensemble = new Ensembles();
+
+        $produit=new Produits();
+
+        $ensemble->addProduit($produit);
         
         $orignalProduits = new ArrayCollection();
 

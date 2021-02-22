@@ -27,7 +27,7 @@
            name={{ full_name }}
            class="{{ block('input_class') }}"
            {% if value is not empty %}value="{{ value }}" {% endif %}
-           {% if required is defined %}required {% endif %}/>
+           {% if required %}required ="required" {% endif %}/>
 {%- endblock form_widget_simple -%}
 
 
