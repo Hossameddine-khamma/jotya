@@ -18,21 +18,6 @@ class FavorisUtilisateurs
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $tailleHaut;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $tailleBas;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $chaussures;
-
-    /**
      * @ORM\OneToOne(targetEntity=Utilisateurs::class, mappedBy="favorisUtilisateurs", cascade={"persist", "remove"})
      */
     private $utilisateurs;
@@ -43,45 +28,29 @@ class FavorisUtilisateurs
      */
     private $Budget;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Taille::class, inversedBy="tailleHautFavorisUtilisateurs")
+     */
+    private $tailleHaut;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Taille::class, inversedBy="tailleBasFavorisUtilisateurs")
+     */
+    private $tailleBas;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Taille::class, inversedBy="chassuresFavorisUtilisateurs")
+     */
+    private $chaussures;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="Utilisateurs")
+     */
+    private $Genre;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTailleHaut(): ?string
-    {
-        return $this->tailleHaut;
-    }
-
-    public function setTailleHaut(?string $tailleHaut): self
-    {
-        $this->tailleHaut = $tailleHaut;
-
-        return $this;
-    }
-
-    public function getTailleBas(): ?string
-    {
-        return $this->tailleBas;
-    }
-
-    public function setTailleBas(?string $tailleBas): self
-    {
-        $this->tailleBas = $tailleBas;
-
-        return $this;
-    }
-
-    public function getChaussures(): ?string
-    {
-        return $this->chaussures;
-    }
-
-    public function setChaussures(?string $chaussures): self
-    {
-        $this->chaussures = $chaussures;
-
-        return $this;
     }
 
     public function getUtilisateurs(): ?Utilisateurs
@@ -117,4 +86,53 @@ class FavorisUtilisateurs
 
         return $this;
     }
+
+    public function getTailleHaut(): ?Taille
+    {
+        return $this->tailleHaut;
+    }
+
+    public function setTailleHaut(?Taille $tailleHaut): self
+    {
+        $this->tailleHaut = $tailleHaut;
+
+        return $this;
+    }
+
+    public function getTailleBas(): ?Taille
+    {
+        return $this->tailleBas;
+    }
+
+    public function setTailleBas(?Taille $tailleBas): self
+    {
+        $this->tailleBas = $tailleBas;
+
+        return $this;
+    }
+
+    public function getChaussures(): ?Taille
+    {
+        return $this->chaussures;
+    }
+
+    public function setChaussures(?Taille $chaussures): self
+    {
+        $this->chaussures = $chaussures;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->Genre;
+    }
+
+    public function setGenre(?Genre $Genre): self
+    {
+        $this->Genre = $Genre;
+
+        return $this;
+    }
+
 }

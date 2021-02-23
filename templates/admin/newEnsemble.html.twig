@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+  {{ form_start(formEnsemble) }}
+  <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2 justify-center">
+  <div class="md:flex mb-4">
+    <div class="w-1/2 px-3 mb-6 md:mb-0">
+    {{form_row(formEnsemble.imageFile)}}
+    </div>
+    <div class="w-1/2 px-3 mb-6 md:mb-0">
+    {{form_row(formEnsemble.Budget)}}
+    </div>
+  </div>
+  <div class="px-2 md:flex mb-6">
+    <div class="md:w-full px-3">
+      {{ form_row(formEnsemble.styles) }}
+    </div>
+  </div>
+  <div class="px-2 md:flex mb-6">
+    <div class="md:w-full px-3">
+      {{ form_row(formEnsemble.saisons) }}
+    </div>
+  </div>
+  <div class="px-2 md:flex mb-6">
+    <div class="md:w-full px-3">
+      {{ form_row(formEnsemble.genre) }}
+    </div>
+  </div>
+  <h1 class="w-full bg-grey-lighter border-t uppercase tracking-wide text-grey-darker text-sm font-bold pl-8 pt-2 mb-6 " >{{ formEnsemble.produits.vars.name }}</h1>
+    <div clss="mb-8" id="productList" data-prototype="{{ form_widget(formEnsemble.produits.vars.prototype)|e('html_attr') }}">
+            {% for row in formEnsemble.produits %}
+                <div class="panel block w-10/12 bg-grey-lighter text-grey-darker border border-red rounded ml-auto mr-8 mb-8">
+                    <div class="panel-heading bg-gray-200 p-2 uppercase tracking-wide text-xs font-bold text-black border">
+                    {% if row.vars.value.type==null %}
+                    nouveau
+                    {% endif %}
+                    {{ row.vars.value.type }}
+                    </div>
+                    <div class="panel-body">
+                        {{ form_row(row) }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    <div class="submit flex justify-end">
+      <button id="submit" class="bg-cyan text-black text-sm rounded-md px-3 py-1 mr-10">{{ button_label|default('Save') }}</button>
+    </div>
+
+{{ form_end(formEnsemble) }}
+{% endblock %}
+
+
+{% block javascripts %}{{ encore_entry_script_tags('ensembles') }}{% endblock %}

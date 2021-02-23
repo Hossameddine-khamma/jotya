@@ -1,0 +1,175 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block form_row -%}
+    {%- set widget_attr = {} -%}
+    <div class="mb-6">
+        <div class="md:w-full px-3 mb-6 md:mb-0">
+            {{- form_label(form) -}}
+            {{- form_widget(form, widget_attr) -}}
+            {{- form_help(form) -}}
+            {{ form_errors(form)  }}
+        </div>
+    </div>
+{%- endblock form_row %}
+
+{% block form_label -%}
+    {%- if label is same as(false) -%}
+        <div class="{{ block('form_label_class') }}"></div>
+    {%- else -%}
+        {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' ' ~ block('form_label_class'))|trim}) -%}
+            {{- parent() -}}
+    {%- endif -%}
+{%- endblock form_label %}
+
+{%- block form_widget_simple -%}
+    <input type="{{ type }}"
+           id="{{ id}}"
+           name={{ full_name }}
+           class="{{ block('input_class') }}"
+           {% if value is not empty %}value="{{ value }}" {% endif %}
+           {% if required %}required ="required" {% endif %}/>
+{%- endblock form_widget_simple -%}
+
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+                    {%- for error in errors -%}
+                    <p class="text-red-600 text-xs italic">
+                        {{ error.message }}
+                    </p>
+                    {%- endfor -%}
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{% block form_help -%}
+    {%- if help is not empty -%}
+        {%- set help_attr = help_attr|merge({class: (help_attr.class|default('') ~ ' help-text')|trim}) -%}
+        <p id="{{ id }}_help"{% with { attr: help_attr } %}{{ block('help_class') }}{% endwith %}>
+            {%- if translation_domain is same as(false) -%}
+                {%- if help_html is same as(false) -%}
+                    {{- help -}}
+                {%- else -%}
+                    {{- help|raw -}}
+                {%- endif -%}
+            {%- else -%}
+                {%- if help_html is same as(false) -%}
+                    {{- help|trans(help_translation_parameters, translation_domain) -}}
+                {%- else -%}
+                    {{- help|trans(help_translation_parameters, translation_domain)|raw -}}
+                {%- endif -%}
+            {%- endif -%}
+        </p>
+    {%- endif -%}
+{%- endblock form_help %}
+
+
+
+{% block text_widget %}
+    {%- set type = type|default('text') -%}
+    {{ block('form_widget_simple') }}
+{% endblock %}
+
+
+
+{% block button_widget -%}
+    {%- if attr.forgotten is same as(true) -%}
+        <div class="flex items-center justify-between">
+            {%- set attr = attr|merge({class: (attr.class|default('bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'))|trim}) -%}
+            {{- parent() -}}
+            <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="">
+                Forgot Password?
+            </a>
+        </div>
+    {%- else -%}
+        <div class="mt-10 flex justify-center">
+            {%- set attr = attr|merge({class: (attr.class|default('bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'))|trim}) -%}
+            {{- parent() -}}
+        </div>
+    {%- endif -%}
+
+{%- endblock button_widget %}
+
+
+
+
+
+
+
+
+
+{% block form_label_class -%}
+     uppercase tracking-wide text-grey-darker text-xs font-bold mb-2
+{% endblock form_label_class -%}
+
+{% block input_class -%}
+    {% if form.vars.errors|length %}border-red-600 border-1{% endif %} block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3 focus:outline-none
+{% endblock input_class -%}
+
+
+{% block custom_button_class -%}
+    bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline
+{% endblock custom_button_class -%}
+
+{% block help_class -%}
+    text-red text-xs italic
+{% endblock help_class -%}
+
+
+
+
+
+
+
+
+
+{%- block choice_widget -%}
+    {% if expanded %}
+        {{- block('choice_widget_expanded') -}}
+    {% else %}
+        {{- block('choice_widget_collapsed') -}}
+    {% endif %}
+{%- endblock choice_widget -%}
+
+{%- block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+    {%- for child in form %}
+        {{- form_widget(child) -}}
+        {{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}
+    {% endfor -%}
+    </div>
+{%- endblock choice_widget_expanded -%}
+
+{%- block choice_widget_collapsed -%}
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+        {% set required = false %}
+    {%- endif -%}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %} class="{{ block('input_class') }}">
+        {%- if placeholder is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {%- endif -%}
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {% set render_preferred_choices = true %}
+            {{- block('choice_widget_options') -}}
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+        {%- set options = choices -%}
+        {%- set render_preferred_choices = false -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+{%- endblock choice_widget_collapsed -%}
+
+{%- block choice_widget_options -%}
+    {% for group_label, choice in options %}
+        {%- if choice is iterable -%}
+            <optgroup label="{{ choice_translation_domain is same as(false) ? group_label : group_label|trans({}, choice_translation_domain) }}">
+                {% set options = choice %}
+                {{- block('choice_widget_options') -}}
+            </optgroup>
+        {%- else -%}
+            <option value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans(choice.labelTranslationParameters, choice_translation_domain) }}</option>
+        {%- endif -%}
+    {% endfor %}
+{%- endblock choice_widget_options -%}
