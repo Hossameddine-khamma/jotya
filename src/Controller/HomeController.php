@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Ensembles;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,8 +14,11 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $rep = $em->getRepository(Ensembles::class);
+        $ensembles = $rep->findAll();
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'ensembles' => $ensembles,
         ]);
     }
     /**
