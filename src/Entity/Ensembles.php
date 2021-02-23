@@ -68,6 +68,11 @@ class Ensembles
      */
     private $Genre;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $Prix;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
@@ -205,6 +210,18 @@ class Ensembles
     public function setGenre(?Genre $Genre): self
     {
         $this->Genre = $Genre;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->Prix;
+    }
+
+    public function setPrix(float $Prix): self
+    {
+        $this->Prix = $Prix;
 
         return $this;
     }

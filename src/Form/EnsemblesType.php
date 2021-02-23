@@ -11,6 +11,7 @@ use App\Entity\Styles;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Count;
@@ -49,6 +50,15 @@ class EnsemblesType extends AbstractType
                     return $Budget->getnom();
                 },
             
+            ])
+
+            ->add('prix',NumberType::class,[
+                'required'=>false,
+                'constraints' => [
+                    new NotBlank(['message'=>'veuillez saisir une valeur']),
+                ],
+                'grouping'=>true,
+                'invalid_message' => 'le prix doit être sous la forme suivante "00.00"',
             ])
             ->add('styles',EntityType::class, [
                 'constraints' => [
