@@ -13,6 +13,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class EnsemblesType extends AbstractType
@@ -21,7 +23,10 @@ class EnsemblesType extends AbstractType
     {
         $builder
             ->add('imageFile', VichImageType::class, [
-                'required' => true,
+                'required'=>false,
+                'constraints' => [
+                    new NotBlank(['message'=>'veuillez choisir une image']),
+                ],
                 'allow_delete' => false,
             ])
             ->add('produits', CollectionType::class, [
@@ -46,6 +51,22 @@ class EnsemblesType extends AbstractType
             
             ])
             ->add('styles',EntityType::class, [
+                'constraints' => [
+                    new NotBlank(['message'=>'Veuillez choisir une valeur']),
+                    new Count(
+                        $exactly=null,
+                        $min=1,
+                        $max=2,
+                        $divisibleBy = null,
+                        $exactMessage = null,
+                        $minMessage='Veuillez choisir au moins 1 valeur',
+                        $maxMessage='Vous pouvez pas choisir plus que 2 valeurs',
+                        $divisibleByMessage = null,
+                        $groups = null,
+                        $payload = null
+                    )
+                    
+                ],
                 // looks for choices from this entity
                 'class' => Styles::class,
             
@@ -61,6 +82,22 @@ class EnsemblesType extends AbstractType
                 'expanded'=>true
             ])
             ->add('saisons', EntityType::class, [
+                'constraints' => [
+                    new NotBlank(['message'=>'Veuillez choisir une valeur']),
+                    new Count(
+                        $exactly=null,
+                        $min=1,
+                        $max=2,
+                        $divisibleBy = null,
+                        $exactMessage = null,
+                        $minMessage='Veuillez choisir au moins 1 valeur',
+                        $maxMessage='Vous pouvez pas choisir plus que 2 valeurs',
+                        $divisibleByMessage = null,
+                        $groups = null,
+                        $payload = null
+                    )
+                    
+                ],
                 // looks for choices from this entity
                 'class' => Saisons::class,
             
@@ -77,6 +114,10 @@ class EnsemblesType extends AbstractType
             
             ])
             ->add('genre', EntityType::class, [
+                'required'=>false,
+                'constraints' => [
+                    new NotBlank(['message'=>'veuillez choisir une valeur']),
+                ],
                 // looks for choices from this entity
                 'class' => Genre::class,
             
@@ -88,7 +129,7 @@ class EnsemblesType extends AbstractType
                     return ['class' =>'mx-2'  ];
                 },
 
-                'multiple' =>true,
+                'multiple' =>false,
                 'expanded'=>true
             
             ])

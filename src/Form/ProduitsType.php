@@ -16,6 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Count;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type as t;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -25,6 +27,10 @@ class ProduitsType extends AbstractType
     {
         $builder
             ->add('imageFile', VichImageType::class, [
+                'required'=>false,
+                'constraints' => [
+                    new NotBlank(['message'=>'veuillez choisir une image']),
+                ],
                 'allow_delete' => false,
             ])
             ->add('type',EntityType::class, [
@@ -58,11 +64,17 @@ class ProduitsType extends AbstractType
             
             ])
             ->add('marque',TextType::class,[
+                'required'=>false,
                 'constraints' => [
+                    new NotBlank(['message'=>'veuillez saisir une valeur']),
                     new t('alpha',"La marque doit être sous forme de text"),
                 ],
             ])
             ->add('prix',NumberType::class,[
+                'required'=>false,
+                'constraints' => [
+                    new NotBlank(['message'=>'veuillez saisir une valeur']),
+                ],
                 'grouping'=>true,
                 'invalid_message' => 'le prix doit être sous la forme suivante "00.00"',
             ])
@@ -71,11 +83,29 @@ class ProduitsType extends AbstractType
                 ])
             
             ->add('etat',TextType::class,[
+                'required' => false,
                 'constraints' => [
+                    new NotBlank(['message'=>'veuillez saisir une valeur']),
                     new t('alpha',"L'etat doit être sous forme de text"),
                 ],
             ])
             ->add('styles',EntityType::class, [
+                'constraints' => [
+                    new NotBlank(['message'=>'Veuillez choisir une valeur']),
+                    new Count(
+                        $exactly=null,
+                        $min=1,
+                        $max=2,
+                        $divisibleBy = null,
+                        $exactMessage = null,
+                        $minMessage='Veuillez choisir au moins 1 valeur',
+                        $maxMessage='Vous pouvez pas choisir plus que 2 valeurs',
+                        $divisibleByMessage = null,
+                        $groups = null,
+                        $payload = null
+                    )
+                    
+                ],
                 // looks for choices from this entity
                 'class' => Styles::class,
             
@@ -85,12 +115,29 @@ class ProduitsType extends AbstractType
                 },
                 'choice_attr'  => function () {
                     return ['class' =>'mx-2'  ];
+                    
                 },
 
                 'multiple' =>true,
                 'expanded'=>true
             ])
             ->add('saisons', EntityType::class, [
+                'constraints' => [
+                    new NotBlank(['message'=>'Veuillez choisir une valeur']),
+                    new Count(
+                        $exactly=null,
+                        $min=1,
+                        $max=2,
+                        $divisibleBy = null,
+                        $exactMessage = null,
+                        $minMessage='Veuillez choisir au moins 1 valeur',
+                        $maxMessage='Vous pouvez pas choisir plus que 2 valeurs',
+                        $divisibleByMessage = null,
+                        $groups = null,
+                        $payload = null
+                    )
+                    
+                ],
                 // looks for choices from this entity
                 'class' => Saisons::class,
             
@@ -107,6 +154,10 @@ class ProduitsType extends AbstractType
             
             ])
             ->add('genre', EntityType::class, [
+                'required'=>false,
+                'constraints' => [
+                    new NotBlank(['message'=>'veuillez choisir une valeur']),
+                ],
                 // looks for choices from this entity
                 'class' => Genre::class,
             
@@ -118,7 +169,7 @@ class ProduitsType extends AbstractType
                     return ['class' =>'mx-2'  ];
                 },
 
-                'multiple' =>true,
+                'multiple' =>false,
                 'expanded'=>true
             
             ])
