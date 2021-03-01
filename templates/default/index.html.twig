@@ -1,6 +1,6 @@
 {% extends 'indexbase.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 
 {% block articles%}
@@ -17,7 +17,7 @@
           </p>
           <div class="flex items-center justify-between px-4 py-2 bg-cyan">
             <h1 class="text-black font-bold text-xl">{{ensemble.Prix}}£</h1>
-            <button class="px-4 py-1 bg-black text-sm text-white font-semibold  rounded-full"><a href="{{path('hommeStyles')}}"> En savoir plus</a></button>
+            <button class="px-4 py-1 bg-black text-sm text-white font-semibold  rounded-full"><a href="{{path(route,{id : ensemble.Id})}}"> En savoir plus</a></button>
           </div>
       </div>
     </div>

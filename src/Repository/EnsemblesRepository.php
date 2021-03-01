@@ -19,6 +19,33 @@ class EnsemblesRepository extends ServiceEntityRepository
         parent::__construct($registry, Ensembles::class);
     }
 
+    /**
+    * @return Ensembles[] Returns an array of Ensembles objects
+    */
+    public function findSimilarTo($ensemble)
+    {
+       $ensemblesSameBudget= $this->createQueryBuilder('e')
+        ->Where('e.Budget = :ensembleBudget')
+        ->setParameter(
+                'ensembleBudget' , $ensemble->getBudget()->getId()
+        )
+        ->getQuery()
+        ->getResult();
+        $ensemblesSameStyles=Array();
+        foreach($ensemblesSameBudget as $ensembleSameBudget){
+           if($ensembleSameBudget->getStyles()[0]->getId()== $ensemble->getStyles()[0]->getId()&& $ensembleSameBudget->getId()!=$ensemble->getId() ){
+               $ensemblesSameStyles[]=$ensembleSameBudget;
+           }
+        }
+        $ensemblesSameGenre=Array();
+        foreach($ensemblesSameStyles as $ensembleSameStyles){
+            if($ensembleSameStyles->getGenre()->getId()== $ensemble->getGenre()->getId()){
+                $ensemblesSameGenre[]=$ensembleSameStyles;
+            }
+         }
+        return $ensemblesSameGenre
+        ;
+    }
     // /**
     //  * @return Ensembles[] Returns an array of Ensembles objects
     //  */
