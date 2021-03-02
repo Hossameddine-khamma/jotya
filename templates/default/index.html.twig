@@ -12,9 +12,7 @@
           <div class="px-4 py-2 flex justify-center">
             <h1 class="text-gray-900 font-bold text-sm uppercase">#{{ensemble.styles[0].Nom}}</h1>
           </div>
-          <p>
-          <img class=" w-96 h-80"src="{{ vich_uploader_asset(ensemble,'imageFile')}}" alt="NIKE AIR">
-          </p>
+          <img src="{{ vich_uploader_asset(ensemble,'imageFile')|imagine_filter('ensembles')}}" alt="NIKE AIR">
           <div class="flex items-center justify-between px-4 py-2 bg-cyan">
             <h1 class="text-black font-bold text-xl">{{ensemble.Prix}}£</h1>
             <button class="px-4 py-1 bg-black text-sm text-white font-semibold  rounded-full"><a href="{{path(route,{id : ensemble.Id})}}"> En savoir plus</a></button>

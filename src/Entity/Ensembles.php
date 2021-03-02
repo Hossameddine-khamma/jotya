@@ -29,7 +29,7 @@ class Ensembles
     private $image;
 
      /**
-     * @Vich\UploadableField(mapping="products", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="ensembles", fileNameProperty="image")
      * @var File
      */
     private $imageFile;

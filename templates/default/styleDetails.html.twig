@@ -8,7 +8,7 @@
     <div class="flex ">
       <div class=" w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
       <div class="flex">
-      <img  class=" w-96 h-60" src="{{ vich_uploader_asset(produit,'imageFile')}}" alt="NIKE AIR">
+      <img  class=" w-96 h-60" src="{{ vich_uploader_asset(produit,'imageFile')|imagine_filter('produits')}}" alt="NIKE AIR">
       </div>
       <div class="grid px-5 py-3 justify-items-center">
         <h3 class="text-gray-700 uppercase">{{produit.marque}}</h3>
