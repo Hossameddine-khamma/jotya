@@ -173,3 +173,21 @@
         {%- endif -%}
     {% endfor %}
 {%- endblock choice_widget_options -%}
+
+
+{% block vich_image_widget %}
+    <div class="vich-image">
+        {{form_widget(form.file) }}
+        {% if form.delete is defined %}
+        {{ form_row(form.delete) }}
+        {% endif %}
+        <div class=" overflow-hidden grid w-60 h-72 bg-grey-lighter text-grey-darker border border-red rounded mb-3 focus:outline-none">
+        {% if download_uri is defined and download_uri %}
+         <a  href="{{ download_uri }}"><img class="w-60 h-64" src="{{ download_uri }}" alt="" /></a>
+        {% endif %}
+        {% if show_download_link and download_uri is defined and download_uri%}
+        <a class="bg-cyan text-black text-sm px-24 py-1 w-60 h-10 " href="{{ download_uri }}">{{ 'Download'|trans({}, 'VichUploaderBundle') }}</a>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}
