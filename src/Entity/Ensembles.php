@@ -219,6 +219,11 @@ class Ensembles
         return $this->Prix;
     }
 
+    public function getStringPrix(): ?string
+    {
+        return $this->Prix."£";
+    }
+
     public function setPrix(float $Prix): self
     {
         $this->Prix = $Prix;

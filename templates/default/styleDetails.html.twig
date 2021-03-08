@@ -13,9 +13,14 @@
       <div class="grid px-5 py-3 justify-items-center">
         <h3 class="text-gray-700 uppercase">{{produit.marque}}</h3>
         <div class="flex justify-center">
-          <span class="text-gray-500 mx-2 mt-2"><del>94,00</del></span>
-          <span class="text-gray-700 mx-2 mt-2">{{produit.prix}}</span>
-          <span class="bg-red-500 p-1 mx-2 text-black text-xs mt-2">-95%</span>
+          {% if produit.promotion %}
+            <span class="text-gray-500 mx-2 mt-2"><del>{{produit.StringPrix}}</del></span>
+            <span class="text-gray-700 mx-2 mt-2">{{produit.StringPrixPromotion}}</span>
+            <span class="bg-red-500 p-1 mx-2 text-black text-xs mt-2">{{produit.StringPromotion}}</span>
+          {% else %}
+            <span class="text-gray-700 mx-2 mt-2">{{produit.StringPrix}}</span>
+          {% endif %}
+          
         </div>
       </div>
       </div>
