@@ -6,14 +6,11 @@ liip_imagine:
     filter_sets: 
         ensembles:
             filters:
-               fixed:
-                    width: 320
-                    height: 292
-
+                scale:
+                    dim: [320,290]
         produits:
             filters:
-                fixed:
-                    width: 380
-                    height: 450
+                scale:
+                    dim: [190,270]
 
 #bin/console liip:imagine:cache:remove

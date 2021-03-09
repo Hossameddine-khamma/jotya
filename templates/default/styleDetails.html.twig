@@ -6,13 +6,13 @@
 {% for produit in produits %}
   <div class="grid mx-4 my-4  w-10/12" >
     <div class="flex ">
-      <div class=" w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
-      <div class="flex">
-      <img  class=" w-96 h-60" src="{{ vich_uploader_asset(produit,'imageFile')|imagine_filter('produits')}}" alt="NIKE AIR">
-      </div>
-      <div class="grid px-5 py-3 justify-items-center">
-        <h3 class="text-gray-700 uppercase">{{produit.marque}}</h3>
-        <div class="flex justify-center">
+      <div class="p-2 w-11/12 lg:w-8/12 rounded-md shadow-md overflow-hidden">
+        <div class="flex justify-center h-3/4 ">
+        <img class="" src="{{ vich_uploader_asset(produit,'imageFile')|imagine_filter('produits')}}" alt="NIKE AIR">
+        </div>
+        <div class="grid px-5 py-2 justify-items-center h-1/4">
+          <h3 class="text-gray-700 uppercase">{{produit.marque}}</h3>
+          <div class="flex justify-center ">
           {% if produit.promotion %}
             <span class="text-gray-500 mx-2 mt-2"><del>{{produit.StringPrix}}</del></span>
             <span class="text-gray-700 mx-2 mt-2">{{produit.StringPrixPromotion}}</span>
@@ -21,8 +21,8 @@
             <span class="text-gray-700 mx-2 mt-2">{{produit.StringPrix}}</span>
           {% endif %}
           
+          </div>
         </div>
-      </div>
       </div>
     
       <div class="flex flex-col">
