@@ -59,10 +59,9 @@
                   <ul
                     class="ulExtendDropdown "
                   >
-                    <li class="liDropdown">Elegant</li>
-                    <li class="liDropdown">Tendance</li>
-                    <li class="liDropdown">Urban</li>
-                    <li class="liDropdown">Sport</li>
+                  {% for style in styles.init %}
+                    <a href="{{path('hommeStyle',{id : style.Id})}}"><li class="liDropdown">{{style.nom}}</li></a>
+                  {% endfor %}
                   </ul>
                 </li>
                 <li class="liExtendDropdown">
@@ -136,10 +135,9 @@
                   <ul
                     class="ulExtendDropdown"
                   >
-                    <li class="liDropdown">Elegant</li>
-                    <li class="liDropdown">Tendance</li>
-                    <li class="liDropdown">Urban</li>
-                    <li class="liDropdown">Sport</li>
+                    {% for style in styles.init %}
+                      <a href="{{path('femmeStyle',{id : style.Id})}}"><li class="liDropdown">{{style.nom}}</li></a>
+                    {% endfor %}
                   </ul>
                 </li>
                 <li class="liExtendDropdown">
@@ -213,10 +211,9 @@
                   <ul
                     class="ulExtendDropdown"
                   >
-                    <li class="liDropdown">Elegant</li>
-                    <li class="liDropdown">Tendance</li>
-                    <li class="liDropdown">Urban</li>
-                    <li class="liDropdown">Sport</li>
+                    {% for style in styles.init %}
+                      <a href="{{path('enfantsStyle',{id : style.Id})}}"><li class="liDropdown">{{style.nom}}</li></a>
+                    {% endfor %}
                   </ul>
                 </li>
                 <li class="liExtendDropdown">
@@ -656,6 +653,10 @@
           </div>
         </div>
         </nav>
+        <!--
+        <pre>
+          {#{ dump(styles.init) }#}
+        </pre>-->
         <div id="bodyContainer" class="bodyContainer">
         {% block body %}{% endblock %}
         </div>

@@ -19,6 +19,39 @@ class ProduitsRepository extends ServiceEntityRepository
         parent::__construct($registry, Produits::class);
     }
 
+    public function findSimilarTo($produit)
+    {
+       $produitsSameBudget= $this->createQueryBuilder('e')
+        ->Where('e.Budget = :produitBudget')
+        ->setParameter(
+                'produitBudget' , $produit->getBudget()->getId()
+        )
+        ->getQuery()
+        ->getResult();
+        $produitsSameStyles=Array();
+        foreach($produitsSameBudget as $produitSameBudget){
+           if($produitSameBudget->getStyles()[0]->getId()== $produit->getStyles()[0]->getId()&& $produitSameBudget->getId()!=$produit->getId() ){
+               $produitsSameStyles[]=$produitSameBudget;
+           }
+        }
+        $produitsSameGenre=Array();
+        foreach($produitsSameStyles as $produitSameStyles){
+            if($produitSameStyles->getGenre()->getId()== $produit->getGenre()->getId()){
+                $produitsSameGenre[]=$produitSameStyles;
+            }
+         }
+         dump($produitsSameGenre);
+        $produitsSameType=Array();
+        foreach($produitsSameGenre as $produitSameType){
+            if($produitSameType->getType()->getId()== $produit->getType()->getId()){
+                $produitsSameType[]=$produitSameType;
+            }
+         }
+         dump($produitsSameType);
+        return $produitsSameType
+        ;
+    }
+
     // /**
     //  * @return Produits[] Returns an array of Produits objects
     //  */

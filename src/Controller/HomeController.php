@@ -6,10 +6,14 @@ use App\Entity\Ensembles;
 use App\Entity\Produits;
 use App\Entity\Styles;
 use App\Repository\EnsemblesRepository;
+use App\Repository\GenreRepository;
+use App\Repository\ProduitsRepository;
+use App\Repository\StylesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Loader\LoaderInterface;
 
 class HomeController extends AbstractController
 {
@@ -22,17 +26,32 @@ class HomeController extends AbstractController
      * @var EntityManagerInterface
      */
     private $entityManager;
+
+    /**
+     * @var ProduitsRepository
+     */
+    private $produitsRepository;
     
-    public function __construct(EnsemblesRepository $ensemblesRepository,EntityManagerInterface $entityManager)
+    public function __construct(EnsemblesRepository $ensemblesRepository,EntityManagerInterface $entityManager
+    ,ProduitsRepository $produitsRepository)
     {
         $this->ensemblesRepository = $ensemblesRepository;
         $this->entityManager = $entityManager;
+        $this->produitsRepository = $produitsRepository;
+    }
+    public function init()
+    {
+        $stylesRepository =$this->getDoctrine()->getManager()->getRepository(Styles::class);
+        $styles=$stylesRepository->findAll();
+        
+        return $styles;
     }
     /**
      * @Route("/", name="home")
      */
     public function index(): Response
     {
+        $this->init();
         $ensembles = $this->ensemblesRepository->findAll();
         return $this->render('default/index.html.twig', [
             'title' => 'Accueil',
@@ -52,7 +71,7 @@ class HomeController extends AbstractController
        
 
         return $this->render('default/styleDetails.html.twig', [
-            'title' => 'Homme style',
+            'title' => 'style',
             'produits'=>$produits,
             'route'=>'productDiscription',
             'ensembles'=>$ensembles
@@ -64,9 +83,11 @@ class HomeController extends AbstractController
      */
     public function products(Produits $produit)
     {
-        dump($produit);
+        $produits =$this->produitsRepository->findSimilarTo($produit);
         return $this->render('default/productdiscription.html.twig', [
             'title' => 'Homme produit',
+            'produit'=> $produit,
+            'produits'=> $produits
         ]);
     }
     /**
@@ -90,48 +111,79 @@ class HomeController extends AbstractController
     /**
      * @Route("/homme", name="homme")
      */
-    public function indexHomme()
+    public function indexHomme(GenreRepository $genreRepository)
     {
+        $ensembles = $this->ensemblesRepository->getGender("HOMME",$genreRepository);
         return $this->render('default/index.html.twig', [
             'title' => 'Homme',
+            'ensembles' => $ensembles,
+            'route'=>'styleDetails',
         ]);
     }
      /**
-     * @Route("/homme/style/{id}", name="hommeStyleDetails")
+     * @Route("/homme/{id}", name="hommeStyle")
      */
-    public function hommeStyles()
+    public function hommeStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository)
     {
-        return $this->render('default/styleDetails.html.twig', [
-            'title' => 'Homme style',
-        ]);
-    }
-    /**
-     * @Route("/homme/style/product/{id}", name="hommeProductDiscription")
-     */
-    public function hommeproducts()
-    {
-        return $this->render('default/productdiscription.html.twig', [
-            'title' => 'Homme produit',
+        $styleId = $style->getId();
+        $ensembles = $this->ensemblesRepository->getStyleGender('homme',$styleId,$genreRepository,$stylesRepository);
+        return $this->render('default/index.html.twig', [
+            'title' => 'Homme'.' '.$style->getNom(),
+            'ensembles' => $ensembles,
+            'route'=>'styleDetails',
         ]);
     }
      /**
      * @Route("/femme", name="femme")
      */
-    public function indexFemme()
+    public function indexFemme(GenreRepository $genreRepository)
     {
-        return $this->render('femme/index.html.twig', [
-            'controller_name' => 'Femme',
+        $ensembles = $this->ensemblesRepository->getGender("Femme",$genreRepository);
+        
+        return $this->render('default/index.html.twig', [
+            'title' => 'Femme',
+            'ensembles' => $ensembles,
+            'route'=>'styleDetails',
+        ]);
+    }
+    /**
+     * @Route("/femme/{id}", name="femmeStyle")
+     */
+    public function femmeStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository)
+    {
+        $styleId = $style->getId();
+        $ensembles = $this->ensemblesRepository->getStyleGender('femme',$styleId,$genreRepository,$stylesRepository);
+        return $this->render('default/index.html.twig', [
+            'title' => 'Femme'.' '.$style->getNom(),
+            'ensembles' => $ensembles,
+            'route'=>'styleDetails',
         ]);
     }
     /**
      * @Route("/enfants", name="enfants")
      */
-    public function indexEnfants()
+    public function indexEnfants(GenreRepository $genreRepository)
     {
-        return $this->render('enfants/index.html.twig', [
-            'controller_name' => 'Enfants',
+        $ensembles = $this->ensemblesRepository->getGender("enfants",$genreRepository);
+        
+        return $this->render('default/index.html.twig', [
+            'title' => 'Enfants',
+            'ensembles' => $ensembles,
+            'route'=>'styleDetails',
         ]);
     }
-   
+   /**
+     * @Route("/enfants/{id}", name="enfantsStyle")
+     */
+    public function enfantsStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository)
+    {
+        $styleId = $style->getId();
+        $ensembles = $this->ensemblesRepository->getStyleGender('enfants',$styleId,$genreRepository,$stylesRepository);
+        return $this->render('default/index.html.twig', [
+            'title' => 'Enfants'.' '.$style->getNom(),
+            'ensembles' => $ensembles,
+            'route'=>'styleDetails',
+        ]);
+    }
 
 }

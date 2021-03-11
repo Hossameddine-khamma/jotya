@@ -46,6 +46,42 @@ class EnsemblesRepository extends ServiceEntityRepository
         return $ensemblesSameGenre
         ;
     }
+
+    public function getGender($gender, $genreRepository)
+    {
+       $ensembles= $this->createQueryBuilder('e')
+        ->Where('e.Genre = :gender')
+        ->setParameter(
+            'gender' ,  $genreRepository->findOneBy(['description'=>$gender])
+            
+        )
+        ->getQuery()
+        ->getResult();
+        
+        return $ensembles
+        ;
+    }
+
+    public function getStyleGender($gender, $style, $genreRepository, $stylesRepository)
+    {
+       $ensembles= $this->createQueryBuilder('e')
+        ->Where('e.Genre = :gender')
+        ->setParameter(
+            'gender' , $genreRepository->findOneBy(['description'=>$gender])
+            )
+        ->getQuery()
+        ->getResult();
+
+        $ensemblesStyles=Array();
+        foreach($ensembles as $ensemble){
+            if($ensemble->getStyles()[0]->getId()== $style ){
+                $ensemblesStyles[]=$ensemble;
+            }
+         }
+        
+        return $ensemblesStyles
+        ;
+    }
     // /**
     //  * @return Ensembles[] Returns an array of Ensembles objects
     //  */
