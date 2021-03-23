@@ -6,7 +6,10 @@ use App\Entity\Ensembles;
 use App\Entity\Produits;
 use App\Form\EnsemblesType;
 use App\Form\ProduitsType;
+use App\Repository\ProduitsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,6 +54,21 @@ class AdminController extends AbstractController
             'button_label'=>'Ajouter'
         ]);
     }
+
+    /**
+     * @Route("/produits/del/{id}", name="del")
+     */
+    public function del($id, ProduitsRepository $produitsRepo, EntityManagerInterface $entityManager) 
+    {
+        $product=$produitsRepo->findOneBy(['id'=>$id]);
+
+        $entityManager->remove($product);
+        $entityManager->flush($product);
+
+        return $this->redirectToRoute('admin');
+
+    }
+
 
     /**
      * @Route("/ensembles/new", name="add_new_ensemble")

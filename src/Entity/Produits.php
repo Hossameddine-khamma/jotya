@@ -78,7 +78,7 @@ class Produits
     private $saisons;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Ensembles::class, mappedBy="produits")
+     * @ORM\ManyToMany(targetEntity=Ensembles::class, mappedBy="produits", orphanRemoval=true)
      */
     private $ensembles;
 

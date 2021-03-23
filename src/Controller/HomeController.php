@@ -53,9 +53,12 @@ class HomeController extends AbstractController
     {
         $this->init();
         $ensembles = $this->ensemblesRepository->findAll();
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
+
         return $this->render('default/index.html.twig', [
             'title' => 'Accueil',
-            'ensembles' => $ensembles,
+            'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
     }
@@ -69,12 +72,12 @@ class HomeController extends AbstractController
 
         $ensembles= $this->ensemblesRepository->findSimilarTo($ensemble);
        
-
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
         return $this->render('default/styleDetails.html.twig', [
             'title' => 'style',
             'produits'=>$produits,
             'route'=>'productDiscription',
-            'ensembles'=>$ensembles
+            'ensembles'=>$chekedEnsembles
         ]);
     }
 
@@ -114,9 +117,11 @@ class HomeController extends AbstractController
     public function indexHomme(GenreRepository $genreRepository)
     {
         $ensembles = $this->ensemblesRepository->getGender("HOMME",$genreRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
         return $this->render('default/index.html.twig', [
             'title' => 'Homme',
-            'ensembles' => $ensembles,
+            'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
     }
@@ -127,9 +132,11 @@ class HomeController extends AbstractController
     {
         $styleId = $style->getId();
         $ensembles = $this->ensemblesRepository->getStyleGender('homme',$styleId,$genreRepository,$stylesRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
         return $this->render('default/index.html.twig', [
             'title' => 'Homme'.' '.$style->getNom(),
-            'ensembles' => $ensembles,
+            'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
     }
@@ -139,10 +146,12 @@ class HomeController extends AbstractController
     public function indexFemme(GenreRepository $genreRepository)
     {
         $ensembles = $this->ensemblesRepository->getGender("Femme",$genreRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
         
         return $this->render('default/index.html.twig', [
             'title' => 'Femme',
-            'ensembles' => $ensembles,
+            'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
     }
@@ -153,9 +162,11 @@ class HomeController extends AbstractController
     {
         $styleId = $style->getId();
         $ensembles = $this->ensemblesRepository->getStyleGender('femme',$styleId,$genreRepository,$stylesRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
         return $this->render('default/index.html.twig', [
             'title' => 'Femme'.' '.$style->getNom(),
-            'ensembles' => $ensembles,
+            'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
     }
@@ -165,10 +176,12 @@ class HomeController extends AbstractController
     public function indexEnfants(GenreRepository $genreRepository)
     {
         $ensembles = $this->ensemblesRepository->getGender("enfants",$genreRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
         
         return $this->render('default/index.html.twig', [
             'title' => 'Enfants',
-            'ensembles' => $ensembles,
+            'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
     }
@@ -179,11 +192,23 @@ class HomeController extends AbstractController
     {
         $styleId = $style->getId();
         $ensembles = $this->ensemblesRepository->getStyleGender('enfants',$styleId,$genreRepository,$stylesRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
         return $this->render('default/index.html.twig', [
             'title' => 'Enfants'.' '.$style->getNom(),
-            'ensembles' => $ensembles,
+            'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
+    }
+
+    private function checkEnsemble($ensembles){
+        foreach($ensembles as $ensemble){
+            if(count($ensemble->getProduits())<1){
+                $this->entityManager->remove($ensemble);
+                $this->entityManager->flush($ensemble);
+            }
+        }
+        return $ensembles;
     }
 
 }

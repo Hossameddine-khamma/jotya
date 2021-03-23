@@ -41,7 +41,7 @@ class Ensembles
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Produits::class, inversedBy="ensembles" ,cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity=Produits::class, inversedBy="ensembles" ,cascade={"persist"}, orphanRemoval=true)
      */
     private $produits;
 
