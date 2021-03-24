@@ -73,6 +73,11 @@ class Ensembles
      */
     private $Prix;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $promotion;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
@@ -227,6 +232,33 @@ class Ensembles
     public function setPrix(float $Prix): self
     {
         $this->Prix = $Prix;
+
+        return $this;
+    }
+
+    public function getPromotion(): ?int
+    {
+        return $this->promotion;
+    }
+
+    public function getStringPromotion(): ?string
+    {
+        return $this->promotion."%";
+    }
+
+    public function getPrixPromotion(): ?float
+    {
+        return $this->Prix-($this->Prix*($this->promotion/100));
+    }
+
+    public function getStringPrixPromotion(): ?String
+    {
+        return $this->getPrixPromotion()."£";
+    }
+
+    public function setPromotion(?int $promotion): self
+    {
+        $this->promotion = $promotion;
 
         return $this;
     }
