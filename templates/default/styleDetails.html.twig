@@ -69,7 +69,15 @@
           <img class=" w-96 h-80"src="{{ vich_uploader_asset(ensemble,'imageFile')}}" alt="NIKE AIR">
           </p>
           <div class="flex items-center justify-between px-4 py-2 bg-cyan">
-            <h1 class="text-black font-bold text-xl">{{ensemble.Prix}}£</h1>
+            <div class="flex justify-center ">
+            {% if ensemble.promotion %}
+              <span class="text-gray-500 text-xl mx-2 mt-2"><del>{{ensemble.StringPrix}}</del></span>
+              <span class="text-black  text-xl mx-2 mt-2">{{ensemble.StringPrixPromotion}}</span>
+              <span class="text-xl px-1 text-red-600 m-2">{{ensemble.StringPromotion}}</span>
+            {% else %}
+              <span class="text-black  text-xl m-2 mt-2">{{ensemble.StringPrix}}</span>
+            {% endif %}
+            </div>
             <button class="px-4 py-1 bg-black text-sm text-white font-semibold  rounded-full"><a href="{{path('styleDetails',{id : ensemble.Id})}}"> En savoir plus</a></button>
           </div>
       </div>
