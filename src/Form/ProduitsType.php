@@ -3,22 +3,25 @@
 namespace App\Form;
 
 use App\Entity\Budget;
-use App\Entity\Ensembles;
 use App\Entity\Genre;
 use App\Entity\Produits;
 use App\Entity\Saisons;
 use App\Entity\Styles;
+use App\Entity\Taille;
+use App\Entity\Type;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Count;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type as t;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class EnsemblesType extends AbstractType
+class ProduitsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -30,16 +33,25 @@ class EnsemblesType extends AbstractType
                 ],
                 'allow_delete' => false,
             ])
-            ->add('produits', CollectionType::class, [
-                'entry_type' => ProduitsType::class,
-                'entry_options' => [
-                    'label' => false
-                ],
-                'by_reference' => false,
-                // this allows the creation of new forms and the prototype too
-                'allow_add' => true,
-                // self explanatory, this one allows the form to be removed
-                'allow_delete' => true
+            ->add('type',EntityType::class, [
+                // looks for choices from this entity
+                'class' => Type::class,
+            
+                // uses the Saisons.nom property as the visible option string
+                'choice_label' => function ($type) {
+                    return $type->getDescription();
+                },
+            
+            ])
+            ->add('taille',EntityType::class, [
+                // looks for choices from this entity
+                'class' => Taille::class,
+            
+                // uses the Saisons.nom property as the visible option string
+                'choice_label' => function ($taille) {
+                    return $taille->getValeur();
+                },
+            
             ])
             ->add('Budget',EntityType::class, [
                 // looks for choices from this entity
@@ -51,7 +63,13 @@ class EnsemblesType extends AbstractType
                 },
             
             ])
-
+            ->add('marque',TextType::class,[
+                'required'=>false,
+                'constraints' => [
+                    new NotBlank(['message'=>'veuillez saisir une valeur']),
+                    new t('alpha',"La marque doit être sous forme de text"),
+                ],
+            ])
             ->add('prix',NumberType::class,[
                 'required'=>false,
                 'constraints' => [
@@ -59,6 +77,17 @@ class EnsemblesType extends AbstractType
                 ],
                 'grouping'=>true,
                 'invalid_message' => 'le prix doit être sous la forme suivante "00.00"',
+            ])
+            ->add('promotion',IntegerType::class,[
+                'required' => false,
+                ])
+            
+            ->add('etat',TextType::class,[
+                'required' => false,
+                'constraints' => [
+                    new NotBlank(['message'=>'veuillez saisir une valeur']),
+                    new t('alpha',"L'etat doit être sous forme de text"),
+                ],
             ])
             ->add('styles',EntityType::class, [
                 'constraints' => [
@@ -86,6 +115,7 @@ class EnsemblesType extends AbstractType
                 },
                 'choice_attr'  => function () {
                     return ['class' =>'mx-2'  ];
+                    
                 },
 
                 'multiple' =>true,
@@ -149,7 +179,7 @@ class EnsemblesType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Ensembles::class,
+            'data_class' => Produits::class,
         ]);
     }
 }

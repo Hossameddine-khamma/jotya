@@ -29,9 +29,15 @@ class Styles
      */
     private $produits;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Ensembles::class, mappedBy="Styles")
+     */
+    private $ensembles;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+        $this->ensembles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,6 +79,33 @@ class Styles
     {
         if ($this->produits->removeElement($produit)) {
             $produit->removeStyle($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ensembles[]
+     */
+    public function getEnsembles(): Collection
+    {
+        return $this->ensembles;
+    }
+
+    public function addEnsemble(Ensembles $ensemble): self
+    {
+        if (!$this->ensembles->contains($ensemble)) {
+            $this->ensembles[] = $ensemble;
+            $ensemble->addStyle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnsemble(Ensembles $ensemble): self
+    {
+        if ($this->ensembles->removeElement($ensemble)) {
+            $ensemble->removeStyle($this);
         }
 
         return $this;

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+{{ form_start(formProduits) }}
+    <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
+  <div class="-mx-3 md:flex mb-6">
+    <div class="w-full px-3 mb-6 md:mb-0">
+      {{ form_row(formProduits.imageFile) }}
+    </div>
+  </div>
+  <div class="-mx-3 md:flex mb-6">
+    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+      {{ form_row(formProduits.type) }}
+    </div>
+    <div class="md:w-1/2 px-3">
+      {{ form_row(formProduits.taille) }}
+    </div>
+    <div class="md:w-1/2 px-3">
+      {{ form_row(formProduits.Budget) }}
+    </div>
+  </div>
+  <div class="-mx-3 md:flex mb-6">
+    <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+      {{ form_row(formProduits.marque) }}
+    </div>
+    <div class="md:w-1/2 px-3">
+      {{ form_row(formProduits.prix) }}
+    </div>
+    <div class="md:w-1/2 px-3">
+      {{ form_row(formProduits.promotion) }}
+    </div>
+  </div>
+  <div class="-mx-3 md:flex mb-6">
+    <div class="md:w-full px-3">
+      {{ form_row(formProduits.etat) }}
+    </div>
+  </div>
+  <div class="-mx-3 md:flex mb-6">
+    <div class="md:w-full px-3">
+      {{ form_row(formProduits.styles) }}
+      <p class="text-red-600 mx-8 text-xs italic" id="stylesError"></p>
+    </div>
+  </div>
+  <div class="-mx-3 md:flex mb-6">
+    <div class="md:w-full px-3">
+      {{ form_row(formProduits.saisons) }}
+      <p class="text-red-600 mx-8 text-xs italic" id="saisonsError"></p>
+    </div>
+  </div>
+  <div class="-mx-3 md:flex mb-6">
+    <div class="md:w-full px-3">
+      {{ form_row(formProduits.genre) }}
+    </div>
+  </div>
+  <button id="submit" class="bg-cyan text-black rounded-md px-4 py-2 m-2">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(formProduits) }}
+{% endblock %}

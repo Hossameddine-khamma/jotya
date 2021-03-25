@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -44,11 +45,6 @@ class Produits
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $type;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $marque;
 
     /**
@@ -60,11 +56,6 @@ class Produits
      * @ORM\Column(type="integer", nullable=true)
      */
     private $promotion;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $taille;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -87,7 +78,7 @@ class Produits
     private $saisons;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Ensembles::class, inversedBy="produits")
+     * @ORM\ManyToMany(targetEntity=Ensembles::class, mappedBy="produits", orphanRemoval=true)
      */
     private $ensembles;
 
@@ -106,6 +97,24 @@ class Produits
      * @ORM\JoinColumn(nullable=false)
      */
     private $Budget;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Taille::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Taille;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Genre;
 
     public function __construct()
     {
@@ -151,17 +160,6 @@ class Produits
         return $this->imageFile;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function getMarque(): ?string
     {
@@ -180,6 +178,11 @@ class Produits
         return $this->prix;
     }
 
+    public function getStringPrix(): ?string
+    {
+        return $this->prix."£";
+    }
+
     public function setPrix(float $prix): self
     {
         $this->prix = $prix;
@@ -192,21 +195,24 @@ class Produits
         return $this->promotion;
     }
 
+    public function getStringPromotion(): ?string
+    {
+        return $this->promotion."%";
+    }
+
+    public function getPrixPromotion(): ?float
+    {
+        return $this->prix-($this->prix*($this->promotion/100));
+    }
+
+    public function getStringPrixPromotion(): ?String
+    {
+        return $this->getPrixPromotion()."£";
+    }
+
     public function setPromotion(?int $promotion): self
     {
         $this->promotion = $promotion;
-
-        return $this;
-    }
-
-    public function getTaille(): ?string
-    {
-        return $this->taille;
-    }
-
-    public function setTaille(string $taille): self
-    {
-        $this->taille = $taille;
 
         return $this;
     }
@@ -369,6 +375,42 @@ class Produits
     public function setBudget(?Budget $Budget): self
     {
         $this->Budget = $Budget;
+
+        return $this;
+    }
+
+    public function getType(): ?type
+    {
+        return $this->Type;
+    }
+
+    public function setType(?type $Type): self
+    {
+        $this->Type = $Type;
+
+        return $this;
+    }
+
+    public function getTaille(): ?Taille
+    {
+        return $this->Taille;
+    }
+
+    public function setTaille(?Taille $Taille): self
+    {
+        $this->Taille = $Taille;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->Genre;
+    }
+
+    public function setGenre(?Genre $Genre): self
+    {
+        $this->Genre = $Genre;
 
         return $this;
     }

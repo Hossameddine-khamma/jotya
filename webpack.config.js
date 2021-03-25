@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('menu', './assets/menu.js')
+    .addEntry('ensembles', './assets/ensembles.js')
 
     .enablePostCssLoader()
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
