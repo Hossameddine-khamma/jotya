@@ -69,23 +69,25 @@
     {{ block('form_widget_simple') }}
 {% endblock %}
 
-
-
 {% block button_widget -%}
-    {%- if attr.forgotten is same as(true) -%}
-        <div class="flex items-center justify-between">
-            {%- set attr = attr|merge({class: (attr.class|default('bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'))|trim}) -%}
+     {%- if attr.forgotten is not defined  -%}
+        <div class="submit flex justify-end">
+            {%- set attr = attr|merge({class: (attr.class|default('mt-3 text-lg font-semibold 
+                            bg-cyan text-white rounded-lg
+                            px-6 py-3 block shadow-xl mr-3'))|trim}) -%}
             {{- parent() -}}
-            <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="">
+        </div>
+    {%- elseif attr.forgotten is same as(true) -%}
+        <div class="submit flex justify-end">
+            {%- set attr = attr|merge({class: (attr.class|default('mt-3 text-lg font-semibold 
+                            bg-cyan text-white rounded-lg
+                            px-6 py-3 block shadow-xl mr-3'))|trim}) -%}
+            {{- parent() -}}
+            <a class="text-black" href="">
                 Forgot Password?
             </a>
         </div>
-    {%- else -%}
-        <div class="mt-10 flex justify-center">
-            {%- set attr = attr|merge({class: (attr.class|default('bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'))|trim}) -%}
-            {{- parent() -}}
-        </div>
-    {%- endif -%}
+   {%- endif -%}
 
 {%- endblock button_widget %}
 
