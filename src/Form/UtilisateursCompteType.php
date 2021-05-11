@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Utilisateurs;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,7 +17,9 @@ class UtilisateursCompteType extends AbstractType
             ->add('email')
             ->add('nom')
             ->add('prenom')
-            ->add('dateDeNaissance')
+            ->add('dateDeNaissance',DateType::class,[
+                'widget' => 'single_text',
+            ])
             ->add('Enregistrer',SubmitType::class)
             
         ;
