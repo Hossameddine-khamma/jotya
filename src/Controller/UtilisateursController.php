@@ -103,5 +103,17 @@ class UtilisateursController extends AbstractController
         ]);
     }
 
+    
+
+    /**
+     * @Route("/panier/", name="panier")
+     */
+    public function panier(Request $request,Security $security, MessagesRepository $messagesRepo)
+    {
+
+        return $this->render('utilisateurs/panier.html.twig',[
+            
+        ]);
+    }
 
 }
