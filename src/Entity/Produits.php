@@ -180,7 +180,7 @@ class Produits
 
     public function getStringPrix(): ?string
     {
-        return $this->prix."£";
+        return $this->prix."€";
     }
 
     public function setPrix(float $prix): self
@@ -207,7 +207,7 @@ class Produits
 
     public function getStringPrixPromotion(): ?String
     {
-        return $this->getPrixPromotion()."£";
+        return $this->getPrixPromotion()."€";
     }
 
     public function setPromotion(?int $promotion): self

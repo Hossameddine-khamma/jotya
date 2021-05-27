@@ -10,105 +10,51 @@
         <thead>
           <tr class="h-12 uppercase">
             <th class="hidden md:table-cell"></th>
-            <th class="text-left">Product</th>
+            <th class="text-left">Produit</th>
             <th class="lg:pl-0" colspan="2">
               <span class="inline ">Action</span>
             </th>
             
-            <th class="text-right">Total price</th>
+            <th class="text-right">Prix</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="pb-4">
-              <a href="#">
-                <img src="https://limg.app/i/Calm-Cormorant-Catholic-Pinball-Blaster-yM4oub.jpeg" class="w-20 rounded" alt="Thumbnail">
-              </a>
-            </td>
-            <td class="hidden md:table-cell">
-              <a href="#">
-                <p class="mb-2 md:ml-4">Earphone</p>
-                
-              </a>
-            </td>
-            <td >
+        {% if commande|length > 0 %}
+          {% for lingne in commande %}
+            <tr>
+              <td class="pb-4">
+                <a href="#">
+                  <img src="{{ vich_uploader_asset(lingne,'imageFile')|imagine_filter('produits')}}" class="w-20 rounded" alt="Thumbnail">
+                </a>
+              </td>
+              <td class="hidden md:table-cell">
+                <a href="#">
+                  <p class="mb-2 md:ml-4">{{ lingne.type }} {{ lingne.Marque  }}</p>
+
+                </a>
+              </td>
+              <td >
+                  <a href="{{ path('SupprimerPanier',{'id': lingne.ID}) }}">
+                    <button type="submit" class="text-gray-700 md:ml-4">
+                      <small>(Remove item)</small>
+                    </button>
+                  </a>
+              </td>
+              <td >
                 <form action="" method="POST">
-                  <button type="submit" class="text-gray-700 md:ml-4">
-                    <small>(Remove item)</small>
-                  </button>
+                  <a href="{{ path('favoris' , {id : lingne.ID , returnId :  lingne.ID, type : 'PNF'   }) }}">
+                    <small>(Favoris)</small>
+                  </a>
                 </form>
-            </td>
-            <td >
-              <form action="" method="POST">
-                <button type="submit" class="text-gray-700 md:ml-4">
-                  <small>(Favoris)</small>
-                </button>
-              </form>
-            </td>
-            <td class="text-right">
-              <span class="text-sm lg:text-base font-medium">
-                20.00€
-              </span>
-            </td>
-          </tr> 
-          <tr>
-            <td class="pb-4">
-              <a href="#">
-                <img src="https://limg.app/i/Cute-Constrictor-Super-Sexy-Military-Enforcer-W7mvBp.png" class="w-20 rounded" alt="Thumbnail">
-              </a>
-            </td>
-            <td class="hidden md:table-cell">
-              <p class="mb-2 md:ml-4">Tesla Model 3</p>
-            </td>
-            <td>
-              <form action="" method="POST">
-                <button type="submit" class="text-gray-700 md:ml-4">
-                  <small>(Remove item)</small>
-                </button>
-              </form>
-          </td>
-          <td >
-            <form action="" method="POST">
-              <button type="submit" class="text-gray-700 md:ml-4">
-                <small>(Favoris)</small>
-              </button>
-            </form>
-          </td>
-            <td class="text-right">
-              <span class="text-sm lg:text-base font-medium">
-                148,800.03€
-              </span>
-            </td>
-          </tr> 
-          <tr>
-            <td class="pb-4">
-              <a href="#">
-                <img src="https://limg.app/i/Successful-Spider-Biblical-Mutant---Total-War-lKoE7D.jpeg" class="w-20 rounded" alt="Thumbnail">
-              </a>
-            </td>
-            <td class="hidden md:table-cell">
-              <p class="mb-2 md:ml-4">Bic 4 colour pen</p>
-            </td>
-            <td >
-              <form action="" method="POST">
-                <button type="submit" class="text-gray-700 md:ml-4">
-                  <small>(Remove item)</small>
-                </button>
-              </form>
-          </td>
-          <td >
-            <form action="" method="POST">
-              <button type="submit" class="text-gray-700 md:ml-4">
-                <small>(Favoris)</small>
-              </button>
-            </form>
-          </td>
-            <td class="text-right">
-              <span class="text-sm lg:text-base font-medium">
-                7.50€
-              </span>
-            </td>
-          </tr> 
+              </td>
+              <td class="text-right">
+                <span class="text-sm lg:text-base font-medium">
+                  {{ lingne.getStringPrix }}
+                </span>
+              </td>
+            </tr> 
+          {% endfor %}
+        {% endif %}
         </tbody>
       </table>
       <hr class=" mt-6">
@@ -118,7 +64,7 @@
             Total
           </div>
           <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
-            17,859.3€
+            {{ prixTotal|format_currency('EUR', locale='de') }}
           </div>
         </div>
       </div>

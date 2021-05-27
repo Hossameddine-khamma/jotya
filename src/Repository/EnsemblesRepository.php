@@ -82,6 +82,51 @@ class EnsemblesRepository extends ServiceEntityRepository
         return $ensemblesStyles
         ;
     }
+
+    public function getproduitsGender($gender, $Type, $genreRepository)
+    {
+       $ensembles= $this->createQueryBuilder('e')
+        ->Where('e.Genre = :gender')
+        ->setParameter(
+            'gender' , $genreRepository->findOneBy(['description'=>$gender])
+            )
+        ->getQuery()
+        ->getResult();
+
+        $ensemblesType=Array();
+        foreach($ensembles as $ensemble){
+            $produits=$ensemble->getProduits();
+            $Types=Array();
+            foreach($produits as $produit){
+                array_push($Types,$produit->gettype()->getId());
+            }
+            if( in_array($Type,$Types) ){
+                $ensemblesType[]=$ensemble;
+            }
+         }
+        
+        return $ensemblesType
+        ;
+    }
+
+    public function getBonPlan(){
+        return $this->createQueryBuilder('e')
+        ->andWhere('e.promotion is not null')
+        ->getQuery()
+        ->getResult()
+    ;
+
+    }
+
+    public function getNouveau(){
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.updatedAt', 'DESC')
+            ->setMaxResults(80)
+            ->getQuery()
+            ->getResult()
+        ;
+
+    }
     // /**
     //  * @return Ensembles[] Returns an array of Ensembles objects
     //  */

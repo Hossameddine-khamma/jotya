@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Ensembles;
 use App\Entity\Produits;
 use App\Entity\Styles;
+use App\Entity\Type;
 use App\Repository\EnsemblesRepository;
 use App\Repository\GenreRepository;
 use App\Repository\ProduitsRepository;
@@ -39,19 +40,30 @@ class HomeController extends AbstractController
         $this->entityManager = $entityManager;
         $this->produitsRepository = $produitsRepository;
     }
-    public function init()
+    public function initStyles()
     {
         $stylesRepository =$this->getDoctrine()->getManager()->getRepository(Styles::class);
         $styles=$stylesRepository->findAll();
         
         return $styles;
     }
+
+    public function initTypes()
+    {
+        $TypeRepository =$this->getDoctrine()->getManager()->getRepository(Type::class);
+        $Types=$TypeRepository->findAll();
+
+        
+        return $Types;
+    }
     /**
      * @Route("/", name="home")
      */
     public function index(): Response
     {
-        $this->init();
+        $this->initStyles();
+        $this->initTypes();
+
         $ensembles = $this->ensemblesRepository->findAll();
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
@@ -70,6 +82,8 @@ class HomeController extends AbstractController
 
         $produits= $ensemble->getProduits();
 
+        $ensembleId=$ensemble->getId();
+
         $ensembles= $this->ensemblesRepository->findSimilarTo($ensemble);
        
         $chekedEnsembles= $this->checkEnsemble($ensembles);
@@ -77,7 +91,8 @@ class HomeController extends AbstractController
             'title' => 'style',
             'produits'=>$produits,
             'route'=>'productDiscription',
-            'ensembles'=>$chekedEnsembles
+            'ensembles'=>$chekedEnsembles,
+            'ensembleId'=> $ensembleId
         ]);
     }
 
@@ -98,8 +113,14 @@ class HomeController extends AbstractController
      */
     public function plans()
     {
+        $ensembles = $this->ensemblesRepository->getBonPlan();
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
+
         return $this->render('default/index.html.twig', [
-            'title' => 'Bon plans',
+            'title' => 'Accueil',
+            'ensembles' => $chekedEnsembles,
+            'route'=>'styleDetails',
         ]);
     }
     /**
@@ -107,8 +128,14 @@ class HomeController extends AbstractController
      */
     public function nouveau()
     {
+        $ensembles = $this->ensemblesRepository->getNouveau();
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
+
         return $this->render('default/index.html.twig', [
-            'title' => 'Nouveau',
+            'title' => 'Accueil',
+            'ensembles' => $chekedEnsembles,
+            'route'=>'styleDetails',
         ]);
     }
     /**
@@ -140,6 +167,25 @@ class HomeController extends AbstractController
             'route'=>'styleDetails',
         ]);
     }
+    
+     /**
+     * @Route("/homme/produits/{id}", name="hommeProduits")
+     */
+    public function hommeProduits(Type $Type,GenreRepository $genreRepository)
+    {
+        $TypeId = $Type->getId();
+        $ensembles = $this->ensemblesRepository->getproduitsGender('homme',$TypeId,$genreRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        return $this->render('default/index.html.twig', [
+            'title' => 'Homme'.' '. $Type->getDescription(),
+            'ensembles' => $chekedEnsembles,
+            'route'=>'styleDetails',
+        ]);
+    }
+
+
      /**
      * @Route("/femme", name="femme")
      */
@@ -170,6 +216,23 @@ class HomeController extends AbstractController
             'route'=>'styleDetails',
         ]);
     }
+
+    /**
+     * @Route("/femme/produits/{id}", name="femmeProduits")
+     */
+    public function femmeProduits(Type $Type,GenreRepository $genreRepository)
+    {
+        $TypeId = $Type->getId();
+        $ensembles = $this->ensemblesRepository->getproduitsGender('femme',$TypeId,$genreRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        return $this->render('default/index.html.twig', [
+            'title' => 'Homme'.' '. $Type->getDescription(),
+            'ensembles' => $chekedEnsembles,
+            'route'=>'styleDetails',
+        ]);
+    }
     /**
      * @Route("/enfants", name="enfants")
      */
@@ -196,6 +259,23 @@ class HomeController extends AbstractController
         $chekedEnsembles= $this->checkEnsemble($ensembles);
         return $this->render('default/index.html.twig', [
             'title' => 'Enfants'.' '.$style->getNom(),
+            'ensembles' => $chekedEnsembles,
+            'route'=>'styleDetails',
+        ]);
+    }
+
+    /**
+     * @Route("/enfants/produits/{id}", name="enfantsProduits")
+     */
+    public function enfantsProduits(Type $Type,GenreRepository $genreRepository)
+    {
+        $TypeId = $Type->getId();
+        $ensembles = $this->ensemblesRepository->getproduitsGender('enfants',$TypeId,$genreRepository);
+
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        return $this->render('default/index.html.twig', [
+            'title' => 'Homme'.' '. $Type->getDescription(),
             'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);

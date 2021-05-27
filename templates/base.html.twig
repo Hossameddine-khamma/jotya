@@ -59,7 +59,7 @@
                   <ul
                     class="ulExtendDropdown "
                   >
-                  {% for style in styles.init %}
+                  {% for style in init.initStyles %}
                     <a href="{{path('hommeStyle',{id : style.Id})}}"><li class="liDropdown">{{style.nom}}</li></a>
                   {% endfor %}
                   </ul>
@@ -84,11 +84,9 @@
                   <ul
                     class="ulExtendDropdown"
                   >
-                    <li class="liDropdown px-3">Chaussures</li>
-                    <li class="liDropdown px-3">Chemisiers</li>
-                    <li class="liDropdown px-3">Pulls</li>
-                    <li class="liDropdown px-3">Jeans</li>
-                    <li class="liDropdown px-3">T-shirt</li>
+                    {% for type in init.initTypes %}
+                      <a href="{{path('hommeProduits',{id : type.Id})}}"><li class="liDropdown">{{ type.description }}</li></a>
+                    {% endfor %}
                   </ul>
                 </li>
               </ul>
@@ -135,7 +133,7 @@
                   <ul
                     class="ulExtendDropdown"
                   >
-                    {% for style in styles.init %}
+                    {% for style in init.initStyles %}
                       <a href="{{path('femmeStyle',{id : style.Id})}}"><li class="liDropdown">{{style.nom}}</li></a>
                     {% endfor %}
                   </ul>
@@ -160,11 +158,9 @@
                   <ul
                     class="ulExtendDropdown"
                   >
-                    <li class="liDropdown">Chaussures</li>
-                    <li class="liDropdown">Chemisiers</li>
-                    <li class="liDropdown">Pulls</li>
-                    <li class="liDropdown">Jeans</li>
-                    <li class="liDropdown">T-shirt</li>
+                    {% for type in init.initTypes %}
+                      <a href="{{path('femmeProduits',{id : type.Id})}}"><li class="liDropdown">{{ type.description }}</li></a>
+                    {% endfor %}
                   </ul>
                 </li>
               </ul>
@@ -211,7 +207,7 @@
                   <ul
                     class="ulExtendDropdown"
                   >
-                    {% for style in styles.init %}
+                    {% for style in init.initStyles %}
                       <a href="{{path('enfantsStyle',{id : style.Id})}}"><li class="liDropdown">{{style.nom}}</li></a>
                     {% endfor %}
                   </ul>
@@ -236,11 +232,9 @@
                   <ul
                     class="ulExtendDropdown"
                   >
-                    <li class="liDropdown">Chaussures</li>
-                    <li class="liDropdown">Chemisiers</li>
-                    <li class="liDropdown">Pulls</li>
-                    <li class="liDropdown">Jeans</li>
-                    <li class="liDropdown">T-shirt</li>
+                    {% for type in init.initTypes %}
+                      <a href="{{path('enfantsProduits',{id : type.Id})}}"><li class="liDropdown">{{ type.description }}</li></a>
+                    {% endfor %}
                   </ul>
                 </li>
               </ul>
@@ -307,26 +301,13 @@
           </div>
 <!-- dropdowns stylesOptions -->
           <div id="hommePhoneStylesOptions" class="containerDropdownOptions">
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Elégant</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Tendance</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Urban</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Sport</a>
-              </button>
-            </div>
+            {% for style in init.initStyles %}
+              <div class="containerBtnDropdownOptions">
+                <button type="button" class="btnDropdownOptions">
+                  <a class="textBtnDropdownOptions" href="{{path('hommeStyle',{id : style.Id})}}">{{style.nom}}</a>
+                </button>
+              </div>
+            {% endfor %}
           </div>
 
           <div class="containerDropdown">
@@ -345,31 +326,13 @@
 
 <!-- dropdowns produitsOptions -->
           <div id="hommePhoneProduitsOptions" class="containerDropdownOptions">
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Chaussures</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Chemisiers</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Pulls</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Jeans</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">T-shirt</a>
-              </button>
-            </div>
+            {% for type in init.initTypes %}
+              <div class="containerBtnDropdownOptions">
+                <button type="button" class="btnDropdownOptions">
+                  <a class="textBtnDropdownOptions" href="{{path('hommeProduits',{id : type.Id})}}">{{ type.description }}</a>
+                </button>
+              </div>
+            {% endfor %}
           </div>
         </div>
 
@@ -395,26 +358,13 @@
           </div>
 <!-- dropdowns stylesOptions -->
           <div id="femmePhoneStylesOptions" class="containerDropdownOptions">
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Elégant</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Tendance</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Urban</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Sport</a>
-              </button>
-            </div>
+            {% for style in init.initStyles %}
+              <div class="containerBtnDropdownOptions">
+                <button type="button" class="btnDropdownOptions">
+                  <a class="textBtnDropdownOptions" href="{{path('femmeStyle',{id : style.Id})}}">{{style.nom}}</a>
+                </button>
+              </div>
+            {% endfor %}
           </div>
 
           <div class="containerDropdown">
@@ -433,31 +383,13 @@
 
 <!-- dropdowns produitsOptions -->
           <div id="femmePhoneProduitsOptions" class="containerDropdownOptions">
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Chaussures</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Chemisiers</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Pulls</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Jeans</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">T-shirt</a>
-              </button>
-            </div>
+            {% for type in init.initTypes %}
+              <div class="containerBtnDropdownOptions">
+                <button type="button" class="btnDropdownOptions">
+                  <a class="textBtnDropdownOptions" href="{{path('femmeProduits',{id : type.Id})}}">{{ type.description }}</a>
+                </button>
+              </div>
+            {% endfor %}
           </div>
         </div>
 
@@ -483,26 +415,13 @@
           </div>
 <!-- dropdowns stylesOptions -->
           <div id="enfantsPhoneStylesOptions" class="containerDropdownOptions">
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Elégant</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Tendance</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Urban</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Sport</a>
-              </button>
-            </div>
+            {% for style in init.initStyles %}
+              <div class="containerBtnDropdownOptions">
+                <button type="button" class="btnDropdownOptions">
+                  <a class="textBtnDropdownOptions" href="{{path('enfantsStyle',{id : style.Id})}}">{{style.nom}}</a>
+                </button>
+              </div>
+            {% endfor %}
           </div>
 
 
@@ -522,31 +441,13 @@
 
 <!-- dropdowns produitsOptions -->
           <div id="enfantsPhoneProduitsOptions" class="containerDropdownOptions">
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="">Chaussures</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Chemisiers</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions">Pulls</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">Jeans</a>
-              </button>
-            </div>
-            <div class="containerBtnDropdownOptions">
-              <button type="button" class="btnDropdownOptions">
-                <a class="textBtnDropdownOptions" href="#">T-shirt</a>
-              </button>
-            </div>
+            {% for type in init.initTypes %}
+              <div class="containerBtnDropdownOptions">
+                <button type="button" class="btnDropdownOptions">
+                  <a class="textBtnDropdownOptions" href="{{path('enfantsProduits',{id : type.Id})}}">{{ type.description }}</a>
+                </button>
+              </div>
+            {% endfor %}
           </div>
         </div>
 

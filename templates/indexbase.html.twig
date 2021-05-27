@@ -16,11 +16,97 @@
         </div>  
 </div>
 <div class="flex border justify-center ">
-  <button class="flex w-8/12 xsm:w-6/12 sm:w-5/12 md:w-4/12 xl:w-3/12 m-4 focus:outline-none" >
+  <button id="btnFilter" class="flex w-8/12 xsm:w-6/12 sm:w-5/12 md:w-4/12 xl:w-3/12 m-4 focus:outline-none" >
     <img class="w-1/12 h-4/6 mt-1 mx-4" src="{{ asset('build/img/setings.png') }}">
     <a >FILTRER LES TENUES</a>
-    <img class="w-2/12 lg:w-1/12 h-3/6 mt-2 mx-2 px-2" src="{{ asset('build/img/dropdown.png') }}">  
+    <img id="SvgFiltre" class="w-2/12 lg:w-1/12 h-3/6 mt-2 mx-2 px-2" src="{{ asset('build/img/dropdown.png') }}">  
   </button>
+</div>
+<div id="filter" class="w-full hidden">
+  <div class="border flex-row flex-nowrap overscroll-none">
+    <div >
+      <h1 class="m-2 text-xs text-cyan font-bold">BUDGET</h1>
+    </div>
+    <form>
+    <div class="flex overflow-x-auto w-screen">
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">Tenues populaires</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">Tenues Pour Moi</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">TOUTES LES TENUES</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4  borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">STYLES SUIVIS</label>
+      </div>
+    </div>
+    </form>
+    <div class="flex overflow-x-auto w-screen">
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="x" name="x" value="x">
+        <label for="x">sdfsdfsdfsd f</label>
+      </div>
+     
+    </div>
+  </div>
 </div>
 {% block articles%}
 

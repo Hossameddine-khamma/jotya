@@ -7,3 +7,30 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+
+$(document).ready(function(){
+    $("#btnFilter").click(function(){
+        if( $("#filter").css("display")==="none"){
+            $("#filter").css("display","grid")
+            $("#articles").css("display","none")
+            rotateOptions("#SvgFiltre")
+           
+        }
+        else if($("#filter").css("display")==="grid"){
+            $("#filter").css("display","none")
+            $("#articles").css("display","grid")
+            rotateOptions("#SvgFiltre")
+        }
+    })
+})
+
+function rotateOptions(options){
+    if($(options).css('webkitTransform')==='none'){
+        
+        $(options).css('webkitTransform','rotate(-90deg)');
+    }
+   else{
+    $(options).css('webkitTransform','none');
+    
+    }
+}

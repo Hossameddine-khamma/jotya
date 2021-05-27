@@ -41,11 +41,15 @@
       </button>
 
       <button class="p-2 rounded-full bg-cyan mx-2 focus:outline-none">
-        <svg class="h-5 w-5" viewBox="0 0 74 74" width="512" height="512"><path d="M60,72a1,1,0,0,1-.571-.179L37,56.218l-22.429,15.6A1,1,0,0,1,13,71V7a5.006,5.006,0,0,1,5-5H56a5.006,5.006,0,0,1,5,5V71a1,1,0,0,1-1,1ZM37,54a1,1,0,0,1,.571.179L59,69.086V7a3,3,0,0,0-3-3H18a3,3,0,0,0-3,3V69.086L36.429,54.179A1,1,0,0,1,37,54Z"/><path d="M46.2,41.67a1,1,0,0,1-.588-.191L37,35.216l-8.612,6.262a1,1,0,0,1-1.539-1.117l3.287-10.129-8.613-6.263a1,1,0,0,1,.588-1.809H32.754l3.295-10.129a1,1,0,0,1,1.9,0L41.246,22.16H51.89a1,1,0,0,1,.588,1.809l-8.613,6.263,3.287,10.129A1,1,0,0,1,46.2,41.67ZM37,32.98a1,1,0,0,1,.588.191l6.711,4.88-2.561-7.893a1,1,0,0,1,.363-1.117l6.713-4.881H40.52a1,1,0,0,1-.951-.691L37,15.573l-2.568,7.9a1,1,0,0,1-.951.691H25.186L31.9,29.042a1,1,0,0,1,.363,1.117L29.7,38.051l6.711-4.88A1,1,0,0,1,37,32.98Z"/></svg>
+        <a href="{{ path('favoris' , {id : produit.Id ,  returnId :  ensembleId, type : 'E' }) }}">
+          <svg class="h-5 w-5" viewBox="0 0 74 74" width="512" height="512"><path d="M60,72a1,1,0,0,1-.571-.179L37,56.218l-22.429,15.6A1,1,0,0,1,13,71V7a5.006,5.006,0,0,1,5-5H56a5.006,5.006,0,0,1,5,5V71a1,1,0,0,1-1,1ZM37,54a1,1,0,0,1,.571.179L59,69.086V7a3,3,0,0,0-3-3H18a3,3,0,0,0-3,3V69.086L36.429,54.179A1,1,0,0,1,37,54Z"/><path d="M46.2,41.67a1,1,0,0,1-.588-.191L37,35.216l-8.612,6.262a1,1,0,0,1-1.539-1.117l3.287-10.129-8.613-6.263a1,1,0,0,1,.588-1.809H32.754l3.295-10.129a1,1,0,0,1,1.9,0L41.246,22.16H51.89a1,1,0,0,1,.588,1.809l-8.613,6.263,3.287,10.129A1,1,0,0,1,46.2,41.67ZM37,32.98a1,1,0,0,1,.588.191l6.711,4.88-2.561-7.893a1,1,0,0,1,.363-1.117l6.713-4.881H40.52a1,1,0,0,1-.951-.691L37,15.573l-2.568,7.9a1,1,0,0,1-.951.691H25.186L31.9,29.042a1,1,0,0,1,.363,1.117L29.7,38.051l6.711-4.88A1,1,0,0,1,37,32.98Z"/></svg>
+        <a>
       </button>
 
       <button class="p-2 rounded-full my-5 bg-cyan mx-2 focus:outline-none">
-        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        <a href="{{ path('ajouterPanier' , {id : produit.Id}) }}">
+          <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </a>
       </button>
 
       </div>
@@ -66,7 +70,7 @@
             <h1 class="text-gray-900 font-bold text-sm uppercase">#{{ensemble.styles[0].Nom}}</h1>
           </div>
           <p>
-          <img class=" w-96 h-80"src="{{ vich_uploader_asset(ensemble,'imageFile')}}" alt="NIKE AIR">
+          <img class=" w-96 h-80"src="{{ vich_uploader_asset(ensemble,'imageFile')|imagine_filter('ensembles')}}" alt="NIKE AIR">
           </p>
           <div class="flex items-center justify-between px-4 py-2 bg-cyan">
             <div class="flex justify-center ">
