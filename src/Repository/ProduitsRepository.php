@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Produits;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Expr\Cast\Array_;
 
 /**
  * @method Produits|null find($id, $lockMode = null, $lockVersion = null)
@@ -50,6 +51,18 @@ class ProduitsRepository extends ServiceEntityRepository
          dump($produitsSameType);
         return $produitsSameType
         ;
+    }
+
+    public function getMostLiked(){
+        $allProducts=$this->findAll();
+        $productLover= Array();
+        $tabproduct=Array();
+        foreach($allProducts as $product){
+            $lover=count( $product->getProductLovers());
+            $productLover[$product->getId()]=$lover;
+        }
+        arsort($productLover);
+        return $productLover;
     }
 
     // /**

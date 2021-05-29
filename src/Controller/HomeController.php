@@ -12,6 +12,7 @@ use App\Repository\ProduitsRepository;
 use App\Repository\StylesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Loader\LoaderInterface;
@@ -59,7 +60,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
         $this->initStyles();
         $this->initTypes();
@@ -68,12 +69,73 @@ class HomeController extends AbstractController
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
 
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            //tenues populaires
+            $this->filtreMontrer($form->get("montrer"),$chekedEnsembles);
+            //tenues pour moi
+
+            //toutes les tenues
+
+            //styles suivis
+
+            //budget
+
+            //taille 
+
+            //pointure
+
+            //saison
+
+
+
+        }
+
         return $this->render('default/index.html.twig', [
             'title' => 'Accueil',
             'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
     }
+
+    private function filtreMontrer(string $critére, array $ensembles){
+        if($critére === "TENUES POPULAIRES"){
+            //pour chaque produit il faut compter c'est lover et les classé par order desc
+            $mostLikedProductIds=array_keys ($this->produitsRepository->getMostLiked()); 
+            //chercher les ensembles qui contient c'est produits
+            
+            $ensembleWithPopulaireProduct= array();
+            
+            foreach($ensembles as $ensemble){
+                $idProducts= array();
+                $ensembleProuducts=$ensemble->getProduits();
+                foreach($ensembleProuducts as $ensembleProuduct){
+                    array_push($idProducts,$ensembleProuduct->getId());
+                }
+                $i = 0;
+                foreach($mostLikedProductIds as $LikedProductId){
+                    if(in_array($LikedProductId,$idProducts)){
+                        $i= $i+array_search ($LikedProductId, $mostLikedProductIds);
+                    }
+                }
+                    array_push($ensembleWithPopulaireProduct,[$i=>$ensemble]);
+            }
+            //il faut trouver une solution
+            asort($ensembleWithPopulaireProduct);
+            dd($mostLikedProductIds,$ensembleWithPopulaireProduct);
+        }
+        if($critére === "TENUES POUR MOI"){
+            
+        }
+        if($critére === "TOUTES LES TENUES"){
+            
+        }
+        if($critére === "STYLES SUIVIS"){
+            
+        }
+
+    }
+
     /**
      * @Route("/style/{id}", name="styleDetails")
      */
@@ -290,5 +352,7 @@ class HomeController extends AbstractController
         }
         return $ensembles;
     }
+
+    
 
 }
