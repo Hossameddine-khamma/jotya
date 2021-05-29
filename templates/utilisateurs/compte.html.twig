@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UtilisateursController!{% endblock %}
+
+{% block body %}
+<div class=" w-full">
+  <ul class="list-reset flex border-b-2 justify-center">
+    
+    <li class="mr-1">
+      <a class="bg-white inline-block py-2 px-4 cursor-pointer" ><img class="w-6"src="{{ asset('build/img/localisationVert.png')}}" alt=""></a>
+    </li>
+    <li class="mr-1">
+      <a id="user" class="pt-3 bg-white inline-block py-2 px-4  border-l-2 border-r-2  cursor-pointer"><img class="w-6"src="{{ asset('build/img/userVert.png')}}" alt=""></a>
+    </li>
+    <li class="mr-1">
+      <a id="taille" class="bg-white inline-block py-2 px-4 cursor-pointer" s><img class="w-6"src="{{ asset('build/img/sizeVert.png')}}" alt=""></a>
+    </li>
+    <li class="mr-1">
+      <a id="favoris" class="bg-white inline-block py-2 px-4 cursor-pointer" ><img class="w-6"src="{{ asset('build/img/favorisVert.png')}}" alt=""></a>
+    </li>
+  </ul>
+</div>
+<div id="userData">
+{{form(utilisateursCompteForm)}}
+</div>
+<div id="tailleData">
+{{form(favorisUtilisateursForm)}}
+</div>
+
+<div id="favorisData">
+   <div class="flex justify-center my-6">
+      <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+         <div class="flex-1">
+           <table class="w-full text-sm lg:text-base" cellspacing="0">
+             <thead>
+               <tr class="h-12 uppercase">
+                 <th class="hidden md:table-cell"></th>
+                 <th class="text-left">Produit</th>
+                 <th class="text-left" >
+                   <span>Action</span>
+                 </th>
+
+                 <th class="text-right">Prix</th>
+               </tr>
+             </thead>
+             <tbody>
+               {% for lingne in commande %}
+                 <tr>
+                   <td class="pb-4">
+                     <a href="#">
+                       <img src="{{ vich_uploader_asset(lingne,'imageFile')|imagine_filter('produits')}}" class="w-20 rounded" alt="Thumbnail">
+                     </a>
+                   </td>
+                   <td class="hidden md:table-cell">
+                     <a href="#">
+                       <p class="mb-2 md:ml-4">{{ lingne.type }} {{ lingne.Marque  }}</p>
+
+                     </a>
+                   </td>
+                   <td >
+                       <a href="{{ path('favorisRemove', { 'id':lingne.id }) }}">
+                         <button type="submit" class="text-gray-700 md:ml-4">
+                           <small>(Remove item)</small>
+                         </button>
+                       </a>
+                   </td>
+                   <td class="text-right">
+                     <span class="text-sm lg:text-base font-medium">
+                       {{ lingne.getStringPrix }}
+                     </span>
+                   </td>
+                 </tr> 
+               {% endfor %}
+             </tbody>
+           </table>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+{% block javascripts %}{{ encore_entry_script_tags('compte') }}{% endblock %}

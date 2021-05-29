@@ -16,12 +16,119 @@
         </div>  
 </div>
 <div class="flex border justify-center ">
-  <button class="flex w-8/12 xsm:w-6/12 sm:w-5/12 md:w-4/12 xl:w-3/12 m-4 focus:outline-none" >
+  <button id="btnFilter" class="flex w-8/12 xsm:w-6/12 sm:w-5/12 md:w-4/12 xl:w-3/12 m-4 focus:outline-none" >
     <img class="w-1/12 h-4/6 mt-1 mx-4" src="{{ asset('build/img/setings.png') }}">
     <a >FILTRER LES TENUES</a>
-    <img class="w-2/12 lg:w-1/12 h-3/6 mt-2 mx-2 px-2" src="{{ asset('build/img/dropdown.png') }}">  
+    <img id="SvgFiltre" class="w-2/12 lg:w-1/12 h-3/6 mt-2 mx-2 px-2" src="{{ asset('build/img/dropdown.png') }}">  
   </button>
 </div>
+
+<div id="filter" class="w-full hidden">
+  <form method="post">
+  <div class="border flex-row flex-nowrap overscroll-none ">
+    <div >
+      <h1 class="m-2 text-xs text-black font-bold">MONTRER</h1>
+    </div>
+    <div class="flex overflow-x-auto w-11/12 md:justify-center">
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden firstligne" type="checkbox" id="TENUES POPULAIRES" name="montrer" value="TENUES POPULAIRES">
+        <label class="cursor-pointer" for="TENUES POPULAIRES">TENUES POPULAIRES</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden firstligne" type="checkbox" id="TENUES POUR MOI" name="montrer" value="TENUES POUR MOI">
+        <label class="cursor-pointer" for="TENUES POUR MOI">TENUES POUR MOI</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden firstligne" type="checkbox" id="TOUTES LES TENUES" name="montrer" value="TOUTES LES TENUES">
+        <label class="cursor-pointer" for="TOUTES LES TENUES">TOUTES LES TENUES</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4  borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden firstligne" type="checkbox" id="STYLES SUIVIS" name="montrer" value="STYLES SUIVIS">
+        <label class="cursor-pointer" for="STYLES SUIVIS">STYLES SUIVIS</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="border flex-row flex-nowrap overscroll-none ">
+    <div >
+      <h1 class="m-2 text-xs text-black font-bold">BUDGET</h1>
+    </div>
+    <div class="flex overflow-x-auto w-11/12 md:justify-center">
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden secondligne" type="checkbox" id="CHERE" name="budget" value="CHERE">
+        <label class="cursor-pointer" for="CHERE">CHERE</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden secondligne" type="checkbox" id="PAS CHERE" name="budget" value="PAS CHERE">
+        <label class="cursor-pointer" for="PAS CHERE">PAS CHERE</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="border flex-row flex-nowrap overscroll-none">
+    <div >
+      <h1 class="m-2 text-xs text-black font-bold">Taille</h1>
+    </div>
+    <div class="flex overflow-x-auto w-11/12 md:justify-center">
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center checked:bg-blue-600" href="">
+        <input class="hidden" type="checkbox" id="XS/S" name="XS/S" value="XS/S">
+        <label class="cursor-pointer" for="XS/S">XS/S</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="M/L" name="M/L" value="M/L">
+        <label class="cursor-pointer" for="M/L">M/L</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="XL/XXL" name="XL/XXL" value="XL/XXL">
+        <label class="cursor-pointer" for="XL/XXL">XL/XXL</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4  borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="XXL et plus" name="XXL et plus" value="XXL et plus">
+        <label class="cursor-pointer" for="XXL et plus">XXL et plus</label>
+      </div>
+    </div>
+    <div class="flex overflow-x-auto w-11/12">
+      <div class="flex flex-row flex-nowrap w-full">
+        <div class="mx-6 mb-8 mt-8 w-full flex md:justify-center">
+          <div>
+          <p class="text-sm text-cyan font-normal text-center">Pointure  : <span id="sliderValue"></span></p>
+          </div>
+          <div class="w-6/12 mx-6">
+          <input id="slider" type="range" min="16" max="48" name="pointure">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border flex-row flex-nowrap overscroll-none ">
+    <div >
+      <h1 class="m-2 text-xs text-black font-bold">SAISON</h1>
+    </div>
+    <div class="flex overflow-x-auto w-11/12 md:justify-center">
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="Saison chaude" name="Saison chaude" value="Saison chaude">
+        <label class="cursor-pointer" for="Saison chaude">Saison chaude</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="Mi-saison" name="Mi-saison" value="Mi-saison">
+        <label class="cursor-pointer" for="Mi-saison">Mi-saison</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden" type="checkbox" id="Saison froide" name="Saison froide" value="Saison froide">
+        <label class="cursor-pointer" for="Saison froide">Saison froide</label>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-center bg-gray-200 sm:bg-white">
+    <button type="submit" class="my-6 text-lg font-semibold bg-cyan text-white rounded-lg px-6 py-3 block shadow-xl mr-3">
+      Appliquer les filters    
+    </button>
+  </div>
+  </form>
+</div>
+
+
 {% block articles%}
 
 {% endblock %}

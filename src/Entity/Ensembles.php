@@ -226,7 +226,7 @@ class Ensembles
 
     public function getStringPrix(): ?string
     {
-        return $this->Prix."£";
+        return $this->Prix."€";
     }
 
     public function setPrix(float $Prix): self
@@ -253,7 +253,7 @@ class Ensembles
 
     public function getStringPrixPromotion(): ?String
     {
-        return $this->getPrixPromotion()."£";
+        return $this->getPrixPromotion()."€";
     }
 
     public function setPromotion(?int $promotion): self

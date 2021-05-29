@@ -37,6 +37,11 @@ class Messages
      */
     private $destinataire;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $Date;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Messages
     public function setDestinataire(?utilisateurs $destinataire): self
     {
         $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->Date;
+    }
+
+    public function setDate(\DateTimeInterface $Date): self
+    {
+        $this->Date = $Date;
 
         return $this;
     }
