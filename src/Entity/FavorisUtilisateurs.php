@@ -18,13 +18,12 @@ class FavorisUtilisateurs
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Utilisateurs::class, mappedBy="favorisUtilisateurs", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Utilisateurs::class, inversedBy="favorisUtilisateurs", cascade={"persist", "remove"})
      */
     private $utilisateurs;
 
     /**
      * @ORM\ManyToOne(targetEntity=Budget::class, inversedBy="favorisUtilisateurs")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $Budget;
 
@@ -47,6 +46,11 @@ class FavorisUtilisateurs
      * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="Utilisateurs")
      */
     private $Genre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Styles::class, inversedBy="favorisUtilisateurs")
+     */
+    private $Style;
 
     public function getId(): ?int
     {
@@ -131,6 +135,18 @@ class FavorisUtilisateurs
     public function setGenre(?Genre $Genre): self
     {
         $this->Genre = $Genre;
+
+        return $this;
+    }
+
+    public function getStyle(): ?Styles
+    {
+        return $this->Style;
+    }
+
+    public function setStyle(?Styles $Style): self
+    {
+        $this->Style = $Style;
 
         return $this;
     }

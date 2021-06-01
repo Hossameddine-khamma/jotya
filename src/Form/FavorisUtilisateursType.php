@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Budget;
 use App\Entity\FavorisUtilisateurs;
 use App\Entity\Genre;
+use App\Entity\Styles;
 use Proxies\__CG__\App\Entity\Taille;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,6 +18,18 @@ class FavorisUtilisateursType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+        ->add('style',EntityType::class, [
+            // looks for choices from this entity
+            'class' => Styles::class,
+        
+            // uses the Styles.nom property as the visible option string
+            'choice_label' => function ($styles) {
+                return $styles->getnom();
+            },
+            'choice_attr'  => function () {
+                return ['class' =>'mx-2'  ];
+            },
+        ])
             ->add('Budget',EntityType::class, [
                 // looks for choices from this entity
                 'class' => Budget::class,

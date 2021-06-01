@@ -56,10 +56,11 @@ class ProduitsRepository extends ServiceEntityRepository
     public function getMostLiked(){
         $allProducts=$this->findAll();
         $productLover= Array();
-        $tabproduct=Array();
         foreach($allProducts as $product){
             $lover=count( $product->getProductLovers());
-            $productLover[$product->getId()]=$lover;
+            if($lover>0){
+                $productLover[$product->getId()]=$lover;
+            }
         }
         arsort($productLover);
         return $productLover;

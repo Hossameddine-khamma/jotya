@@ -48,7 +48,7 @@ $(document).ready(function(){
     }
     })
 
-    var lignes = new Array(".firstligne",".secondligne");
+    var lignes = new Array(".firstligne",".secondligne",".thirdligne",".fourthligne");
     for(let i=0; i<=lignes.length; i++){
         $(lignes[i]).on("change", function (e) {
             e.preventDefault();

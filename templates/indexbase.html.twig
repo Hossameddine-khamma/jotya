@@ -54,14 +54,12 @@
       <h1 class="m-2 text-xs text-black font-bold">BUDGET</h1>
     </div>
     <div class="flex overflow-x-auto w-11/12 md:justify-center">
-      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
-        <input class="hidden secondligne" type="checkbox" id="CHERE" name="budget" value="CHERE">
-        <label class="cursor-pointer" for="CHERE">CHERE</label>
-      </div>
-      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
-        <input class="hidden secondligne" type="checkbox" id="PAS CHERE" name="budget" value="PAS CHERE">
-        <label class="cursor-pointer" for="PAS CHERE">PAS CHERE</label>
-      </div>
+      {% for budget in init.initBudgets %}
+        <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+          <input class="hidden secondligne" type="checkbox" id="{{budget.nom}}" name="budget" value="{{budget.id}}">
+          <label class="cursor-pointer" for="{{budget.nom}}">{{budget.nom}}</label>
+        </div>
+      {% endfor %}
     </div>
   </div>
 
@@ -71,20 +69,20 @@
     </div>
     <div class="flex overflow-x-auto w-11/12 md:justify-center">
       <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center checked:bg-blue-600" href="">
-        <input class="hidden" type="checkbox" id="XS/S" name="XS/S" value="XS/S">
+        <input class="hidden thirdligne" type="checkbox" id="XS/S" name="taille" value="XS/S">
         <label class="cursor-pointer" for="XS/S">XS/S</label>
       </div>
       <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
-        <input class="hidden" type="checkbox" id="M/L" name="M/L" value="M/L">
+        <input class="hidden thirdligne" type="checkbox" id="M/L" name="taille" value="M/L">
         <label class="cursor-pointer" for="M/L">M/L</label>
       </div>
       <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
-        <input class="hidden" type="checkbox" id="XL/XXL" name="XL/XXL" value="XL/XXL">
+        <input class="hidden thirdligne" type="checkbox" id="XL/XXL" name="taille" value="XL/XXL">
         <label class="cursor-pointer" for="XL/XXL">XL/XXL</label>
       </div>
       <div class="mt-2 mb-4 mx-4  borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
-        <input class="hidden" type="checkbox" id="XXL et plus" name="XXL et plus" value="XXL et plus">
-        <label class="cursor-pointer" for="XXL et plus">XXL et plus</label>
+        <input class="hidden thirdligne" type="checkbox" id="XXL/XXXL" name="taille" value="XXL/XXXL">
+        <label class="cursor-pointer" for="XXL/XXXL">XXL/XXXL</label>
       </div>
     </div>
     <div class="flex overflow-x-auto w-11/12">
@@ -106,18 +104,12 @@
       <h1 class="m-2 text-xs text-black font-bold">SAISON</h1>
     </div>
     <div class="flex overflow-x-auto w-11/12 md:justify-center">
-      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
-        <input class="hidden" type="checkbox" id="Saison chaude" name="Saison chaude" value="Saison chaude">
-        <label class="cursor-pointer" for="Saison chaude">Saison chaude</label>
-      </div>
-      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
-        <input class="hidden" type="checkbox" id="Mi-saison" name="Mi-saison" value="Mi-saison">
-        <label class="cursor-pointer" for="Mi-saison">Mi-saison</label>
-      </div>
-      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
-        <input class="hidden" type="checkbox" id="Saison froide" name="Saison froide" value="Saison froide">
-        <label class="cursor-pointer" for="Saison froide">Saison froide</label>
-      </div>
+      {% for saison in init.initSaisons %}
+        <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+          <input class="hidden fourthligne" type="checkbox" id="{{saison.nom}}" name="Saison" value="{{saison.id}}">
+          <label class="cursor-pointer" for="{{saison.nom}}">{{saison.Nom}}</label>
+        </div>
+      {% endfor %}
     </div>
   </div>
   <div class="flex justify-center bg-gray-200 sm:bg-white">

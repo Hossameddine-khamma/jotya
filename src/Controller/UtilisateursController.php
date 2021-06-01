@@ -60,15 +60,31 @@ class UtilisateursController extends AbstractController
     /**
      * @Route("/compte", name="compte")
      */
-    public function compte(Request $request, Security $security,CommandesRepository $commandesRepo,UtilisateursRepository $utilisateursRepo)
+    public function compte(Request $request, Security $security,EntityManagerInterface $em,CommandesRepository $commandesRepo,UtilisateursRepository $utilisateursRepo)
     {
         $user=$security->getUser();
+        $utilisateur= $utilisateursRepo->findOneBy(['email'=> ($user->getUsername())]);
+        if(!$utilisateur->getFavorisUtilisateurs()){
+            $favorisUtilisateurs= new FavorisUtilisateurs();
+        }
+        if($utilisateur->getFavorisUtilisateurs()){
+            $favorisUtilisateurs= $utilisateur->getFavorisUtilisateurs();
+        }
+        
+        
 
-        $favorisUtilisateurs=new FavorisUtilisateurs();
-        $favorisUtilisateurs->setUtilisateurs($user);
 
         $formCompte=$this->createForm(UtilisateursCompteType::class,$user);
         $formTaille=$this->createForm(FavorisUtilisateursType::class,$favorisUtilisateurs);
+
+        $formTaille->handleRequest($request);
+
+        if($formTaille->isSubmitted() && $formTaille->isValid()){
+            
+            $utilisateur->setFavorisUtilisateurs($favorisUtilisateurs);
+            $em->persist($utilisateur);
+            $em->flush();
+        }
 
         $commande= $utilisateursRepo->findOneBy(['email'=> ($user->getUsername())])->getFavorisProduits();
         

@@ -34,10 +34,16 @@ class Styles
      */
     private $ensembles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=FavorisUtilisateurs::class, mappedBy="Style")
+     */
+    private $favorisUtilisateurs;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
         $this->ensembles = new ArrayCollection();
+        $this->favorisUtilisateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,6 +112,36 @@ class Styles
     {
         if ($this->ensembles->removeElement($ensemble)) {
             $ensemble->removeStyle($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FavorisUtilisateurs[]
+     */
+    public function getFavorisUtilisateurs(): Collection
+    {
+        return $this->favorisUtilisateurs;
+    }
+
+    public function addFavorisUtilisateur(FavorisUtilisateurs $favorisUtilisateur): self
+    {
+        if (!$this->favorisUtilisateurs->contains($favorisUtilisateur)) {
+            $this->favorisUtilisateurs[] = $favorisUtilisateur;
+            $favorisUtilisateur->setStyle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorisUtilisateur(FavorisUtilisateurs $favorisUtilisateur): self
+    {
+        if ($this->favorisUtilisateurs->removeElement($favorisUtilisateur)) {
+            // set the owning side to null (unless already changed)
+            if ($favorisUtilisateur->getStyle() === $this) {
+                $favorisUtilisateur->setStyle(null);
+            }
         }
 
         return $this;

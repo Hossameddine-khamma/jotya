@@ -60,7 +60,7 @@ class Utilisateurs implements UserInterface
     private $prenom;
 
     /**
-     * @ORM\OneToOne(targetEntity=FavorisUtilisateurs::class, inversedBy="utilisateurs", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=FavorisUtilisateurs::class, mappedBy="utilisateurs", cascade={"persist", "remove"})
      */
     private $favorisUtilisateurs;
 
