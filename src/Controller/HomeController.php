@@ -119,7 +119,14 @@ class HomeController extends AbstractController
 
         if($request->isMethod('POST')){
             $form=$request->request;
-            $this->filtrer($form,$chekedEnsembles,'default/index.html.twig');
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Accueil',
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
         }   
 
         return $this->render('default/index.html.twig', [
@@ -132,7 +139,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/style/{id}", name="styleDetails")
      */
-    public function Styles(Ensembles $ensemble)
+    public function Styles(Ensembles $ensemble,Request $request)
     {
 
         $produits= $ensemble->getProduits();
@@ -142,6 +149,20 @@ class HomeController extends AbstractController
         $ensembles= $this->ensemblesRepository->findSimilarTo($ensemble);
        
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/styleDetails.html.twig', [
+                'title' => 'style',
+                'produits'=>$produits,
+                'route'=>'productDiscription',
+                'ensembles'=>$newEnsembles,
+                'ensembleId'=> $ensembleId
+            ]);
+        }  
         return $this->render('default/styleDetails.html.twig', [
             'title' => 'style',
             'produits'=>$produits,
@@ -154,11 +175,24 @@ class HomeController extends AbstractController
     /**
      * @Route("/style/product/{id}", name="productDiscription")
      */
-    public function products(Produits $produit)
+    public function products(Produits $produit,Request $request)
     {
         $produits =$this->produitsRepository->findSimilarTo($produit);
+        $newProduits =$produits;
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newProduits=$this->filtrerProduits($form,$produits);
+            
+
+            return $this->render('default/productdiscription.html.twig', [
+                'title' => 'produit',
+                'produit'=> $produit,
+                'produits'=> $newProduits
+            ]);
+        }
         return $this->render('default/productdiscription.html.twig', [
-            'title' => 'Homme produit',
+            'title' => 'produit',
             'produit'=> $produit,
             'produits'=> $produits
         ]);
@@ -166,11 +200,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/plans", name="bonPlans")
      */
-    public function plans()
+    public function plans(Request $request)
     {
         $ensembles = $this->ensemblesRepository->getBonPlan();
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Accueil',
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
 
         return $this->render('default/index.html.twig', [
             'title' => 'Accueil',
@@ -181,11 +227,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/nouveau", name="nouveau")
      */
-    public function nouveau()
+    public function nouveau(Request $request)
     {
         $ensembles = $this->ensemblesRepository->getNouveau();
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Accueil',
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
 
         return $this->render('default/index.html.twig', [
             'title' => 'Accueil',
@@ -196,11 +254,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/homme", name="homme")
      */
-    public function indexHomme(GenreRepository $genreRepository)
+    public function indexHomme(GenreRepository $genreRepository,Request $request)
     {
         $ensembles = $this->ensemblesRepository->getGender("HOMME",$genreRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Homme',
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
         return $this->render('default/index.html.twig', [
             'title' => 'Homme',
             'ensembles' => $chekedEnsembles,
@@ -210,12 +280,24 @@ class HomeController extends AbstractController
      /**
      * @Route("/homme/{id}", name="hommeStyle")
      */
-    public function hommeStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository)
+    public function hommeStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository,Request $request)
     {
         $styleId = $style->getId();
         $ensembles = $this->ensemblesRepository->getStyleGender('homme',$styleId,$genreRepository,$stylesRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Homme'.' '.$style->getNom(),
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
         return $this->render('default/index.html.twig', [
             'title' => 'Homme'.' '.$style->getNom(),
             'ensembles' => $chekedEnsembles,
@@ -233,6 +315,7 @@ class HomeController extends AbstractController
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
 
+
         return $this->render('default/index.html.twig', [
             'title' => 'Homme'.' '. $Type->getDescription(),
             'ensembles' => $chekedEnsembles,
@@ -244,11 +327,23 @@ class HomeController extends AbstractController
      /**
      * @Route("/femme", name="femme")
      */
-    public function indexFemme(GenreRepository $genreRepository)
+    public function indexFemme(GenreRepository $genreRepository,Request $request)
     {
         $ensembles = $this->ensemblesRepository->getGender("Femme",$genreRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Femme',
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
         
         return $this->render('default/index.html.twig', [
             'title' => 'Femme',
@@ -259,12 +354,24 @@ class HomeController extends AbstractController
     /**
      * @Route("/femme/{id}", name="femmeStyle")
      */
-    public function femmeStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository)
+    public function femmeStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository, Request $request)
     {
         $styleId = $style->getId();
         $ensembles = $this->ensemblesRepository->getStyleGender('femme',$styleId,$genreRepository,$stylesRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Femme'.' '.$style->getNom(),
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
         return $this->render('default/index.html.twig', [
             'title' => 'Femme'.' '.$style->getNom(),
             'ensembles' => $chekedEnsembles,
@@ -291,11 +398,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/enfants", name="enfants")
      */
-    public function indexEnfants(GenreRepository $genreRepository)
+    public function indexEnfants(GenreRepository $genreRepository,Request $request)
     {
         $ensembles = $this->ensemblesRepository->getGender("enfants",$genreRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Enfants',
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
         
         return $this->render('default/index.html.twig', [
             'title' => 'Enfants',
@@ -306,12 +425,24 @@ class HomeController extends AbstractController
    /**
      * @Route("/enfants/{id}", name="enfantsStyle")
      */
-    public function enfantsStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository)
+    public function enfantsStyles(Styles $style,GenreRepository $genreRepository, StylesRepository $stylesRepository,Request $request)
     {
         $styleId = $style->getId();
         $ensembles = $this->ensemblesRepository->getStyleGender('enfants',$styleId,$genreRepository,$stylesRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Enfants'.' '.$style->getNom(),
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
         return $this->render('default/index.html.twig', [
             'title' => 'Enfants'.' '.$style->getNom(),
             'ensembles' => $chekedEnsembles,
@@ -346,7 +477,7 @@ class HomeController extends AbstractController
         return $ensembles;
     }
 
-    private function filtrer(ParameterBag $form,array $ensembles,string $template){
+    private function filtrer(ParameterBag $form,array $ensembles){
         $newEnsembles=$ensembles;
             //montrer
             if($form->get("montrer")){
@@ -368,14 +499,90 @@ class HomeController extends AbstractController
             if($form->get("Saison")){
                 $newEnsembles=$this->filtreSaison($form->get("Saison"),$newEnsembles);
             }
+            return $newEnsembles;
 
-            return $this->render($template, [
-                'title' => 'Accueil',
-                'ensembles' => $newEnsembles,
-                'route'=>'styleDetails',
-            ]);
         
     }
+
+    private function filtrerProduits(ParameterBag $form,array $produits){
+        $newProduits=$produits;
+            //montrer
+            if($form->get("montrer")){
+                $newProduits=$this->filtreMontrerProduit($form->get("montrer"),$produits);
+            }
+            //budget
+            if($form->get("budget")){
+                dump($newProduits,$form->get("budget"));
+                $newProduits=$this->filtreBudgetProduit($form->get("budget"),$newProduits);
+            }
+            //taille 
+            if($form->get("taille")){
+                $newProduits=$this->filtreTailleProduit($form->get("taille"),$form->get("pointure"),$newProduits);
+            }
+            //pointure
+            if($form->get("pointure") && !$form->get("taille")){
+                $newProduits=$this->filtrePointureProduit($form->get("pointure"),$newProduits);
+            }
+            //saison
+            if($form->get("Saison")){
+                $newProduits=$this->filtreSaisonProduit($form->get("Saison"),$newProduits);
+            }
+            return $newProduits;
+
+        
+    }
+
+    private function filtreMontrerProduit(string $critére, array $produits){
+        if($critére === "TENUES POPULAIRES"){
+            //pour chaque produit il faut compter c'est lover et les classé par order desc
+            $mostLikedProductIds=array_keys ($this->produitsRepository->getMostLiked()); 
+            $Tabproduit=array();
+            foreach($produits as $produit){
+                if(in_array($produit->getId(), $mostLikedProductIds)){
+                    array_push($Tabproduit,$produit);
+                }
+            }
+            return $Tabproduit;
+        }
+        if($critére === "TOUTES LES TENUES"){
+            return $produits;
+        }
+        if($critére === "STYLES SUIVIS"){
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
+            $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
+            $Tabproduit=array();
+
+            foreach($produits as $produit){
+                if(in_array($style,$produit->getStyles())){
+                    array_push($Tabproduit,$produit);
+                }
+            }
+            return $Tabproduit;
+
+        }if($critére === "TENUES POUR MOI"){
+            $user = $this->get('security.token_storage')->getToken()->getUser();
+            $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
+            $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
+            $genre=$utilisateur->getFavorisUtilisateurs()->getGenre();
+            $produitsFavStyle=array();
+
+            foreach($produits as $produit){
+                if(in_array($style,$produit->getStyles())){
+                    array_push($produitsFavStyle,$produit);
+                }
+            }
+            $Tabproduit=array();
+            foreach($produitsFavStyle as $produit){
+                if($genre==$produit->getGenre()){
+                    array_push($Tabproduit,$produit);
+                }
+            }
+            return $Tabproduit;
+
+        }
+    }
+
     private function filtreMontrer(string $critére, array $ensembles){
         if($critére === "TENUES POPULAIRES"){
             //pour chaque produit il faut compter c'est lover et les classé par order desc
@@ -455,6 +662,17 @@ class HomeController extends AbstractController
         }
     }
 
+    private function filtreBudgetProduit(int $critére, array $produits){
+        $budget=$this->budgetRepository->findOneBy(["id"=>$critére]);
+        $Tabproduit=array();
+        foreach($produits as $produit){
+            if($budget == $produit->getBudget()){
+                array_push($Tabproduit,$produit);
+            }
+        }
+        return $Tabproduit;
+    }
+
     private function filtreBudget(int $critére, array $ensembles){
         $budget=$this->budgetRepository->findOneBy(["id"=>$critére]);
         $Tabensemble=array();
@@ -464,6 +682,21 @@ class HomeController extends AbstractController
             }
         }
         return $Tabensemble;
+    }
+    private function filtreSaisonProduit(int $critére, array $produits){
+        $Saison=$this->saisonsRepository->findOneBy(["id"=>$critére]);
+        $Tabproduit=array();
+        $produitSaisons=array();
+        foreach($produits as $produit){
+            foreach($produit->getSaisons() as $produitSaison)
+            array_push($produitSaisons,$produitSaison);
+        };
+        foreach($produits as $produit){
+            if(in_array($Saison,$produitSaisons)){
+                array_push($Tabproduit,$produit);
+            }
+        }
+        return $Tabproduit;
     }
 
     private function filtreSaison(int $critére, array $ensembles){
@@ -479,6 +712,73 @@ class HomeController extends AbstractController
             }
         }
         return $Tabensemble;
+    }
+
+    private function filtreTailleProduit(string $critére, string $pointure, array $produits){
+        if($critére == "XS/S"){
+            $Taille1=$this->tailleRepository->findOneBy(["valeur"=>"XS"]);
+            $Taille2=$this->tailleRepository->findOneBy(["valeur"=>"s"]);
+
+            $produitsTaille=array();
+            $Tabproduit=array();
+                foreach($produits as $produit){
+                    array_push($produitsTaille,$produit->getTaille());
+                }
+                foreach($produits as $produit){
+                    if(in_array($Taille1,$produitsTaille) || in_array($Taille2,$produitsTaille) || in_array($this->tailleRepository->findOneBy(["valeur"=>$pointure]),$produitsTaille) ){
+                        array_push($Tabproduit,$produit);
+                    }
+                }
+            return $Tabproduit;
+        }
+        if($critére == "M/L"){
+            $Taille1=$this->tailleRepository->findOneBy(["valeur"=>"M"]);
+            $Taille2=$this->tailleRepository->findOneBy(["valeur"=>"L"]);
+
+            $produitsTaille=array();
+            $Tabproduit=array();
+                foreach($produits as $produit){
+                    array_push($produitsTaille,$produit->getTaille());
+                }
+                foreach($produits as $produit){
+                    if(in_array($Taille1,$produitsTaille) || in_array($Taille2,$produitsTaille) || in_array($this->tailleRepository->findOneBy(["valeur"=>$pointure]),$produitsTaille) ){
+                        array_push($Tabproduit,$produit);
+                    }
+                }
+            return $Tabproduit;
+        }
+        if($critére == "XL/XXL"){
+            $Taille1=$this->tailleRepository->findOneBy(["valeur"=>"XL"]);
+            $Taille2=$this->tailleRepository->findOneBy(["valeur"=>"XXL"]);
+
+            $produitsTaille=array();
+            $Tabproduit=array();
+                foreach($produits as $produit){
+                    array_push($produitsTaille,$produit->getTaille());
+                }
+                foreach($produits as $produit){
+                    if(in_array($Taille1,$produitsTaille) || in_array($Taille2,$produitsTaille) || in_array($this->tailleRepository->findOneBy(["valeur"=>$pointure]),$produitsTaille) ){
+                        array_push($Tabproduit,$produit);
+                    }
+                }
+            return $Tabproduit;
+        }
+        if($critére == "XXL/XXXL"){
+            $Taille1=$this->tailleRepository->findOneBy(["valeur"=>"XXL"]);
+            $Taille2=$this->tailleRepository->findOneBy(["valeur"=>"XXXL"]);
+
+            $produitsTaille=array();
+            $Tabproduit=array();
+                foreach($produits as $produit){
+                    array_push($produitsTaille,$produit->getTaille());
+                }
+                foreach($produits as $produit){
+                    if(in_array($Taille1,$produitsTaille) || in_array($Taille2,$produitsTaille) || in_array($this->tailleRepository->findOneBy(["valeur"=>$pointure]),$produitsTaille) ){
+                        array_push($Tabproduit,$produit);
+                    }
+                }
+            return $Tabproduit;
+        }
     }
 
     private function filtreTaille(string $critére, string $pointure, array $ensembles){
@@ -550,6 +850,19 @@ class HomeController extends AbstractController
             }
             return $Tabensemble;
         }
+    }
+    private function filtrePointureProduit(string $pointure, array $produits){
+        $Tabproduit=array();
+        $produitsTaille=array();
+        foreach($produits as $produit){
+            array_push($produitsTaille,$produit->getTaille());
+        }
+        foreach($produits as $produit){
+            if(in_array($this->tailleRepository->findOneBy(["valeur"=>$pointure]),$produitsTaille) ){
+                array_push($Tabproduit,$produit);
+            }
+        }
+         return $Tabproduit;
     }
     private function filtrePointure(string $pointure, array $ensembles){
         $Tabensemble=array();

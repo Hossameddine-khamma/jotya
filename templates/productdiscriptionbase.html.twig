@@ -16,22 +16,119 @@
         </div>  
 </div>
 
-<div class="container grid grid-cols-1 md:grid-cols-2 justify-items-center">
+<div  class="container grid grid-cols-1 md:grid-cols-2 justify-items-center">
 {% block products%}
 
 {% endblock %}
 </div>
 
 <div class="flex border justify-center ">
-  <button class="flex w-8/12 xsm:w-6/12 sm:w-5/12 md:w-4/12 xl:w-3/12 m-4 focus:outline-none" >
+  <button id="btnFilter" class="flex w-8/12 xsm:w-6/12 sm:w-5/12 md:w-4/12 xl:w-3/12 m-4 focus:outline-none" >
     <img class="w-1/12 h-4/6 mt-1 mx-4" src="{{ asset('build/img/setings.png') }}">
     <a >FILTRER LES TENUES</a>
-    <img class="w-2/12 lg:w-1/12 h-3/6 mt-2 mx-2 px-2" src="{{ asset('build/img/dropdown.png') }}">  
+    <img id="SvgFiltre" class="w-2/12 lg:w-1/12 h-3/6 mt-2 mx-2 px-2" src="{{ asset('build/img/dropdown.png') }}">  
   </button>
 </div>
 
+<div id="filter" class="w-full hidden">
+  <form method="post">
+  <div class="border flex-row flex-nowrap overscroll-none ">
+    <div >
+      <h1 class="m-2 text-xs text-black font-bold">MONTRER</h1>
+    </div>
+    <div class="flex overflow-x-auto w-11/12 md:justify-center">
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden firstligne" type="checkbox" id="TENUES POPULAIRES" name="montrer" value="TENUES POPULAIRES">
+        <label class="cursor-pointer" for="TENUES POPULAIRES">TENUES POPULAIRES</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden firstligne" type="checkbox" id="TENUES POUR MOI" name="montrer" value="TENUES POUR MOI">
+        <label class="cursor-pointer" for="TENUES POUR MOI">TENUES POUR MOI</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden firstligne" type="checkbox" id="TOUTES LES TENUES" name="montrer" value="TOUTES LES TENUES">
+        <label class="cursor-pointer" for="TOUTES LES TENUES">TOUTES LES TENUES</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4  borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden firstligne" type="checkbox" id="STYLES SUIVIS" name="montrer" value="STYLES SUIVIS">
+        <label class="cursor-pointer" for="STYLES SUIVIS">STYLES SUIVIS</label>
+      </div>
+    </div>
+  </div>
 
-<div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
+  <div class="border flex-row flex-nowrap overscroll-none ">
+    <div >
+      <h1 class="m-2 text-xs text-black font-bold">BUDGET</h1>
+    </div>
+    <div class="flex overflow-x-auto w-11/12 md:justify-center">
+      {% for budget in init.initBudgets %}
+        <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+          <input class="hidden secondligne" type="checkbox" id="{{budget.nom}}" name="budget" value="{{budget.id}}">
+          <label class="cursor-pointer" for="{{budget.nom}}">{{budget.nom}}</label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="border flex-row flex-nowrap overscroll-none">
+    <div >
+      <h1 class="m-2 text-xs text-black font-bold">Taille</h1>
+    </div>
+    <div class="flex overflow-x-auto w-11/12 md:justify-center">
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center checked:bg-blue-600" href="">
+        <input class="hidden thirdligne" type="checkbox" id="XS/S" name="taille" value="XS/S">
+        <label class="cursor-pointer" for="XS/S">XS/S</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden thirdligne" type="checkbox" id="M/L" name="taille" value="M/L">
+        <label class="cursor-pointer" for="M/L">M/L</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden thirdligne" type="checkbox" id="XL/XXL" name="taille" value="XL/XXL">
+        <label class="cursor-pointer" for="XL/XXL">XL/XXL</label>
+      </div>
+      <div class="mt-2 mb-4 mx-4  borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+        <input class="hidden thirdligne" type="checkbox" id="XXL/XXXL" name="taille" value="XXL/XXXL">
+        <label class="cursor-pointer" for="XXL/XXXL">XXL/XXXL</label>
+      </div>
+    </div>
+    <div class="flex overflow-x-auto w-11/12">
+      <div class="flex flex-row flex-nowrap w-full">
+        <div class="mx-6 mb-8 mt-8 w-full flex md:justify-center">
+          <div>
+          <p class=" my-1 text-sm text-cyan font-normal text-center">Pointure  : <span id="sliderValue"></span></p>
+          </div>
+          <div class="w-6/12 mx-6">
+          <input id="slider" class="pl-4" type="number" name="pointure">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border flex-row flex-nowrap overscroll-none ">
+    <div >
+      <h1 class="m-2 text-xs text-black font-bold">SAISON</h1>
+    </div>
+    <div class="flex overflow-x-auto w-11/12 md:justify-center">
+      {% for saison in init.initSaisons %}
+        <div class="mt-2 mb-4 mx-4 borer-2 border border-cyan px-4 py-1 bg-white w-48 h-16 text-sm text-cyan font-normal text-center items-center flex justify-center " href="">
+          <input class="hidden fourthligne" type="checkbox" id="{{saison.nom}}" name="Saison" value="{{saison.id}}">
+          <label class="cursor-pointer" for="{{saison.nom}}">{{saison.Nom}}</label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="flex justify-center bg-gray-200 sm:bg-white">
+    <button type="submit" class="my-6 text-lg font-semibold bg-cyan text-white rounded-lg px-6 py-3 block shadow-xl mr-3">
+      Appliquer les filters    
+    </button>
+  </div>
+  </form>
+</div>
+
+
+<div id="articles" class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
 {% block articles%}
 
 {% endblock %}

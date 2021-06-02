@@ -41,14 +41,12 @@ class ProduitsRepository extends ServiceEntityRepository
                 $produitsSameGenre[]=$produitSameStyles;
             }
          }
-         dump($produitsSameGenre);
         $produitsSameType=Array();
         foreach($produitsSameGenre as $produitSameType){
             if($produitSameType->getType()->getId()== $produit->getType()->getId()){
                 $produitsSameType[]=$produitSameType;
             }
          }
-         dump($produitsSameType);
         return $produitsSameType
         ;
     }
