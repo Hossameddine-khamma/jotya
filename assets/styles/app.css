@@ -6,6 +6,10 @@
     --tw-bg-opacity: 1;
     background-color: rgba(77, 200, 200, var(--tw-bg-opacity));
   }
+.text-cyan {
+  --tw-text-opacity: 1;
+  color: rgba(77, 200, 200, var(--tw-text-opacity));
+}
 
 #slider{  
   -webkit-appearance: none;

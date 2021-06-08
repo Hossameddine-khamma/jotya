@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Banniere;
 use App\Entity\Ensembles;
 use App\Entity\Produits;
+use App\Form\BanniereType;
 use App\Form\EnsemblesType;
 use App\Form\ProduitsType;
+use App\Form\StylesType;
+use App\Repository\BanniereRepository;
 use App\Repository\ProduitsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
@@ -31,27 +35,62 @@ class AdminController extends AbstractController
         ]);
     }
     /**
-     * @Route("/produits/new", name="add_new_product")
+     * @Route("/ensembles", name="ensembles")
      */
-    public function addProduct(Request $request): Response
+    public function ensembles(): Response
     {
-        
-        $produit = new Produits();
-        $form= $this->createForm(ProduitsType::class,$produit);
+        return $this->render('admin/ensembles.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
+
+    /**
+     * @Route("/messagerie", name="messagerie")
+     */
+    public function messagerie(): Response
+    {
+        return $this->render('admin/messagerie.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
+
+    /**
+     * @Route("/Parametrers", name="Parametrers")
+     */
+    public function Parametrers(): Response
+    {
+        return $this->render('admin/Parametres.html.twig', [
+            'controller_name' => 'AdminController',
+        ]);
+    }
+
+    /**
+     * @Route("/Styles/edit/{id}", name="editStyle")
+     */
+    public function editStyle($id): Response
+    {
+        $form=$this->createForm(StylesType::class);
+        return $this->render('admin/parametersForms.html.twig', [
+            'form'=>$form->createView()
+        ]);
+    }
+
+     /**
+     * @Route("/Banniere", name="Banniere")
+     */
+    public function Banniere(Request $request,EntityManagerInterface $em, BanniereRepository $banniereRepo): Response
+    {
+        $banniere= $banniereRepo->findOneBy(['id'=>1]);
+        $form= $this->createForm(BanniereType::class,$banniere);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($produit);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('admin');
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($banniere);
+            $em->flush($banniere);
         }
-
-        return $this->render('admin/newProduct.html.twig',[
-            'produit'=>$produit,
-            'formProduits' => $form->createView(),
-            'button_label'=>'Ajouter'
+        return $this->render('admin/banniere.html.twig', [
+            'banniere'=>$banniere,
+            'form' => $form->createView(),
         ]);
     }
 

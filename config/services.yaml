@@ -6,6 +6,7 @@
 parameters:
     images_products: '/build/img/products'
     images_ensembles: '/build/img/ensembles'
+    images_banniere: '/build/img/banniere'
 services:
     # default configuration for services in *this* file
     _defaults:

@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Banniere;
 use App\Entity\Budget;
 use App\Entity\Ensembles;
 use App\Entity\Produits;
 use App\Entity\Saisons;
 use App\Entity\Styles;
+use App\Entity\Taille;
 use App\Entity\Type;
 use App\Repository\BudgetRepository;
 use App\Repository\EnsemblesRepository;
@@ -73,6 +75,14 @@ class HomeController extends AbstractController
         $this->saisonsRepository = $saisonsRepository;
         $this->tailleRepository = $tailleRepository;
     }
+    public function initBanniere()
+    {
+        $BanniereRepository =$this->getDoctrine()->getManager()->getRepository(Banniere::class);
+        $Banniere=$BanniereRepository->findOneBy(['id'=>1]);
+        
+        return $Banniere;
+    }
+
     public function initStyles()
     {
         $stylesRepository =$this->getDoctrine()->getManager()->getRepository(Styles::class);
@@ -97,6 +107,15 @@ class HomeController extends AbstractController
         
         return $Budgets;
     }
+    public function initTailles()
+    {
+        $tailleRepository =$this->getDoctrine()->getManager()->getRepository(Taille::class);
+        $tailles=$tailleRepository->findAll();
+
+        
+        return $tailles;
+    }
+
     public function initSaisons()
     {
         $SaisonsRepository =$this->getDoctrine()->getManager()->getRepository(Saisons::class);
@@ -120,6 +139,12 @@ class HomeController extends AbstractController
         if($request->isMethod('POST')){
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
             
 
             return $this->render('default/index.html.twig', [
@@ -153,6 +178,13 @@ class HomeController extends AbstractController
         if($request->isMethod('POST')){
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
             
 
             return $this->render('default/styleDetails.html.twig', [
@@ -184,6 +216,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newProduits=$this->filtrerProduits($form,$produits);
             
+            if($newProduits=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newProduits=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
 
             return $this->render('default/productdiscription.html.twig', [
                 'title' => 'produit',
@@ -210,7 +248,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
             
-
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
             return $this->render('default/index.html.twig', [
                 'title' => 'Accueil',
                 'ensembles' => $newEnsembles,
@@ -237,7 +280,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
             
-
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
             return $this->render('default/index.html.twig', [
                 'title' => 'Accueil',
                 'ensembles' => $newEnsembles,
@@ -264,7 +312,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
             
-
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
             return $this->render('default/index.html.twig', [
                 'title' => 'Homme',
                 'ensembles' => $newEnsembles,
@@ -291,6 +344,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
             
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
 
             return $this->render('default/index.html.twig', [
                 'title' => 'Homme'.' '.$style->getNom(),
@@ -308,12 +367,29 @@ class HomeController extends AbstractController
      /**
      * @Route("/homme/produits/{id}", name="hommeProduits")
      */
-    public function hommeProduits(Type $Type,GenreRepository $genreRepository)
+    public function hommeProduits(Type $Type,GenreRepository $genreRepository,Request $request)
     {
         $TypeId = $Type->getId();
         $ensembles = $this->ensemblesRepository->getproduitsGender('homme',$TypeId,$genreRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Homme'.' '. $Type->getDescription(),
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
 
 
         return $this->render('default/index.html.twig', [
@@ -337,6 +413,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
             
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
 
             return $this->render('default/index.html.twig', [
                 'title' => 'Femme',
@@ -365,6 +447,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
             
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
 
             return $this->render('default/index.html.twig', [
                 'title' => 'Femme'.' '.$style->getNom(),
@@ -382,15 +470,34 @@ class HomeController extends AbstractController
     /**
      * @Route("/femme/produits/{id}", name="femmeProduits")
      */
-    public function femmeProduits(Type $Type,GenreRepository $genreRepository)
+    public function femmeProduits(Type $Type,GenreRepository $genreRepository,Request $request)
     {
         $TypeId = $Type->getId();
         $ensembles = $this->ensemblesRepository->getproduitsGender('femme',$TypeId,$genreRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
 
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Femme'.' '. $Type->getDescription(),
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
+
         return $this->render('default/index.html.twig', [
-            'title' => 'Homme'.' '. $Type->getDescription(),
+            'title' => 'Femme'.' '. $Type->getDescription(),
             'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
@@ -408,6 +515,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
             
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
 
             return $this->render('default/index.html.twig', [
                 'title' => 'Enfants',
@@ -436,6 +549,12 @@ class HomeController extends AbstractController
             $form=$request->request;
             $newEnsembles=$this->filtrer($form,$chekedEnsembles);
             
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
 
             return $this->render('default/index.html.twig', [
                 'title' => 'Enfants'.' '.$style->getNom(),
@@ -453,15 +572,35 @@ class HomeController extends AbstractController
     /**
      * @Route("/enfants/produits/{id}", name="enfantsProduits")
      */
-    public function enfantsProduits(Type $Type,GenreRepository $genreRepository)
+    public function enfantsProduits(Type $Type,GenreRepository $genreRepository,Request $request)
     {
         $TypeId = $Type->getId();
         $ensembles = $this->ensemblesRepository->getproduitsGender('enfants',$TypeId,$genreRepository);
 
         $chekedEnsembles= $this->checkEnsemble($ensembles);
 
+        $chekedEnsembles= $this->checkEnsemble($ensembles);
+
+        if($request->isMethod('POST')){
+            $form=$request->request;
+            $newEnsembles=$this->filtrer($form,$chekedEnsembles);
+            
+            if($newEnsembles=="pas de favoris"){
+                return $this->redirectToRoute('compte');
+            }
+            if($newEnsembles=="utilisateur non connecté"){
+                return $this->redirectToRoute('app_login');
+            }
+
+            return $this->render('default/index.html.twig', [
+                'title' => 'Enfants'.' '. $Type->getDescription(),
+                'ensembles' => $newEnsembles,
+                'route'=>'styleDetails',
+            ]);
+        }
+
         return $this->render('default/index.html.twig', [
-            'title' => 'Homme'.' '. $Type->getDescription(),
+            'title' => 'Enfants'.' '. $Type->getDescription(),
             'ensembles' => $chekedEnsembles,
             'route'=>'styleDetails',
         ]);
@@ -482,6 +621,12 @@ class HomeController extends AbstractController
             //montrer
             if($form->get("montrer")){
                 $newEnsembles=$this->filtreMontrer($form->get("montrer"),$ensembles);
+                if($newEnsembles=="pas de favoris"){
+                    return $newEnsembles;
+                }
+                if($newEnsembles=="utilisateur non connecté"){
+                    return $newEnsembles;
+                }
             }
             //budget
             if($form->get("budget")){
@@ -549,37 +694,70 @@ class HomeController extends AbstractController
         }
         if($critére === "STYLES SUIVIS"){
             $user = $this->get('security.token_storage')->getToken()->getUser();
-            $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
-            $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
-            $Tabproduit=array();
-
-            foreach($produits as $produit){
-                if(in_array($style,$produit->getStyles())){
-                    array_push($Tabproduit,$produit);
+            if($user!="anon."){
+                $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
+                if($user->getFavorisUtilisateurs()){
+                    $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
+                    if($style){
+                        $Tabproduit=array();
+                        
+                        foreach($produits as $produit){
+                            if(in_array($style,$produit->getStyles())){
+                                array_push($Tabproduit,$produit);
+                            }
+                        }
+                        return $Tabproduit;
+                    }
+                    else{
+                        return "pas de favoris";
+                    }
+                }
+                else{
+                    return "pas de favoris";
                 }
             }
-            return $Tabproduit;
+            else{
+                return "utilisateur non connecté";
+            }
 
         }if($critére === "TENUES POUR MOI"){
             $user = $this->get('security.token_storage')->getToken()->getUser();
-            $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
-            $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
-            $genre=$utilisateur->getFavorisUtilisateurs()->getGenre();
-            $produitsFavStyle=array();
-
-            foreach($produits as $produit){
-                if(in_array($style,$produit->getStyles())){
-                    array_push($produitsFavStyle,$produit);
+            if($user!="anon."){
+                $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
+                if($user->getFavorisUtilisateurs()){
+                    $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
+                    if($style){
+                        $genre=$utilisateur->getFavorisUtilisateurs()->getGenre();
+                        if($genre){
+                            $produitsFavStyle=array();
+                            foreach($produits as $produit){
+                                if(in_array($style,$produit->getStyles())){
+                                    array_push($produitsFavStyle,$produit);
+                                }
+                            }
+                            $Tabproduit=array();
+                            foreach($produitsFavStyle as $produit){
+                                if($genre==$produit->getGenre()){
+                                    array_push($Tabproduit,$produit);
+                                }
+                            }
+                            return $Tabproduit;
+                        }
+                        else{
+                            return "pas de favoris";
+                        }
+                    }
+                    else{
+                        return "pas de favoris";
+                    }
+                }
+                else{
+                    return "pas de favoris";
                 }
             }
-            $Tabproduit=array();
-            foreach($produitsFavStyle as $produit){
-                if($genre==$produit->getGenre()){
-                    array_push($Tabproduit,$produit);
-                }
+            else{
+                return "utilisateur non connecté";
             }
-            return $Tabproduit;
-
         }
     }
 
@@ -621,43 +799,80 @@ class HomeController extends AbstractController
         }
         if($critére === "STYLES SUIVIS"){
             $user = $this->get('security.token_storage')->getToken()->getUser();
-            $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
-            $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
-            $Tabensemble=array();
+            if($user!="anon."){
+                if($user->getFavorisUtilisateurs()){
+                    $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
+                    $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
+                    if($style){
+                        $Tabensemble=array();
 
-            foreach($ensembles as $ensemble){
-                $ensembleStyles=array();
-                foreach($ensemble->getStyles() as $ensembleStyle){
-                    array_push($ensembleStyles,$ensembleStyle);
-                };
-                if(in_array($style,$ensembleStyles)){
-                    array_push($Tabensemble,$ensemble);
+                        foreach($ensembles as $ensemble){
+                            $ensembleStyles=array();
+                            foreach($ensemble->getStyles() as $ensembleStyle){
+                                array_push($ensembleStyles,$ensembleStyle);
+                            };
+                            if(in_array($style,$ensembleStyles)){
+                                array_push($Tabensemble,$ensemble);
+                            }
+                        }
+                        return $Tabensemble;
+                    }
+                    else{
+                        return "pas de favoris";
+                    }
+                }
+                else{
+                    return "pas de favoris";
                 }
             }
-            return $Tabensemble;
+            else{
+                return "utilisateur non connecté";
+            }
+            
         }if($critére === "TENUES POUR MOI"){
             $user = $this->get('security.token_storage')->getToken()->getUser();
-            $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
-            $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
-            $genre=$utilisateur->getFavorisUtilisateurs()->getGenre();
-            $ensembleFavStyle=array();
+            if($user!="anon."){
+                $utilisateur=$this->utilisateursRepository->findOneBy(["email"=>$user->getUsername()]);
+                if($user->getFavorisUtilisateurs()){
+                    $style=$utilisateur->getFavorisUtilisateurs()->getStyle();
+                    if($style){
+                        $genre=$utilisateur->getFavorisUtilisateurs()->getGenre();
+                            if($genre){
+                                    $ensembleFavStyle=array();
 
-            foreach($ensembles as $ensemble){
-                $ensembleStyles=array();
-                foreach($ensemble->getStyles() as $ensembleStyle){
-                    array_push($ensembleStyles,$ensembleStyle);
-                };
-                if(in_array($style,$ensembleStyles)){
-                    array_push($ensembleFavStyle,$ensemble);
+                                    foreach($ensembles as $ensemble){
+                                        $ensembleStyles=array();
+                                        foreach($ensemble->getStyles() as $ensembleStyle){
+                                            array_push($ensembleStyles,$ensembleStyle);
+                                        };
+                                        if(in_array($style,$ensembleStyles)){
+                                            array_push($ensembleFavStyle,$ensemble);
+                                        }
+                                    }
+                                    $Tabensemble=array();
+                                    foreach($ensembleFavStyle as $ensemble){
+                                        if($genre==$ensemble->getGenre()){
+                                            array_push($Tabensemble,$ensemble);
+                                        }
+                                    }
+                                    return $Tabensemble;
+                                
+                            }
+                            else{
+                                return "pas de favoris";
+                            }
+                    }
+                    else{
+                        return "pas de favoris";
+                    }
+                }
+                else{
+                    return "pas de favoris";
                 }
             }
-            $Tabensemble=array();
-            foreach($ensembleFavStyle as $ensemble){
-                if($genre==$ensemble->getGenre()){
-                    array_push($Tabensemble,$ensemble);
-                }
+            else{
+                return "utilisateur non connecté";
             }
-            return $Tabensemble;
 
         }
     }

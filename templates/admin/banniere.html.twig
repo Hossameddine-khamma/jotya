@@ -1,0 +1,15 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<div class="h-auto text-white py-24 px-10 object-fill" style="background-image: url({{ vich_uploader_asset(banniere,'imageFile')}}); background-size: 100% 100%; ">
+       <div class="md:w-1/2">
+        <p class="font-bold text-sm uppercase">{{banniere.tag}}</p>
+        <p class="text-3xl font-bold">{{banniere.titre}}</p>
+        <p class="text-2xl mb-10 leading-none">{{banniere.sousTitre}}</p>
+        <a href="#" class="bg-cyan py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Découvrire</a>
+        </div>  
+</div>
+{{form(form)}}
+{% endblock %}

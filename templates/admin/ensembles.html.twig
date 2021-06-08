@@ -1,0 +1,105 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<div class="flex border justify-center ">
+  <button id="btnFilter" class="flex w-8/12 xsm:w-6/12 sm:w-5/12 md:w-4/12 xl:w-3/12 m-4 ml-auto focus:outline-none" >
+    <img class="w-1/12 h-4/6 mt-1 mx-4" src="{{ asset('build/img/setings.png') }}">
+    <a >FILTRER LES TENUES</a>
+    <img id="SvgFiltre" class="w-2/12 lg:w-1/12 h-3/6 mt-2 mx-2 px-2" src="{{ asset('build/img/dropdown.png') }}">  
+  </button>
+  <a href="{{path('add_new_ensemble')}}" class="ml-auto  my-auto mr-8">
+  <button class="bg-green-400 border  bg-opacity-40 text-black  rounded-full  w-10 h-10 text-3xl font-bold ">
+  +
+  </button>
+  </a>
+</div>
+
+<div id="articles" class="container grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 justify-items-center">
+<div>
+    <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+        <div class="px-4 py-2 flex justify-center">
+          <h1 class="text-gray-900 font-bold text-sm uppercase">#Tendance</h1>
+        </div>
+        <img class="h-full w-full object-cover mt-2" src="{{ asset('build/img/exemple.PNG') }}" alt="NIKE AIR">
+        <div class="flex items-center justify-between px-4 py-2 bg-gray-200">
+          <button class="px-4 py-1 bg-blue-500 text-sm text-white font-semibold  rounded-full"><a href="#"> modifier </a></button>
+          <button class="px-4 py-1 bg-red-600 text-sm text-white font-semibold  rounded-full"><a href="#"> supprimer</a></button>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+        <div class="px-4 py-2 flex justify-center">
+          <h1 class="text-gray-900 font-bold text-sm uppercase">#Tendance</h1>
+        </div>
+        <img class="h-full w-full object-cover mt-2" src="{{ asset('build/img/exemple.PNG') }}" alt="NIKE AIR">
+        <div class="flex items-center justify-between px-4 py-2 bg-gray-200">
+          <button class="px-4 py-1 bg-blue-500 text-sm text-white font-semibold  rounded-full"><a href="#"> modifier </a></button>
+          <button class="px-4 py-1 bg-red-600 text-sm text-white font-semibold  rounded-full"><a href="#"> supprimer</a></button>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+        <div class="px-4 py-2 flex justify-center">
+          <h1 class="text-gray-900 font-bold text-sm uppercase">#Tendance</h1>
+        </div>
+        <img class="h-full w-full object-cover mt-2" src="{{ asset('build/img/exemple.PNG') }}" alt="NIKE AIR">
+        <div class="flex items-center justify-between px-4 py-2 bg-gray-200">
+          <button class="px-4 py-1 bg-blue-500 text-sm text-white font-semibold  rounded-full"><a href="#"> modifier </a></button>
+          <button class="px-4 py-1 bg-red-600 text-sm text-white font-semibold  rounded-full"><a href="#"> supprimer</a></button>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+        <div class="px-4 py-2 flex justify-center">
+          <h1 class="text-gray-900 font-bold text-sm uppercase">#Tendance</h1>
+        </div>
+        <img class="h-full w-full object-cover mt-2" src="{{ asset('build/img/exemple.PNG') }}" alt="NIKE AIR">
+        <div class="flex items-center justify-between px-4 py-2 bg-gray-200">
+          <button class="px-4 py-1 bg-blue-500 text-sm text-white font-semibold  rounded-full"><a href="#"> modifier </a></button>
+          <button class="px-4 py-1 bg-red-600 text-sm text-white font-semibold  rounded-full"><a href="#"> supprimer</a></button>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+        <div class="px-4 py-2 flex justify-center">
+          <h1 class="text-gray-900 font-bold text-sm uppercase">#Tendance</h1>
+        </div>
+        <img class="h-full w-full object-cover mt-2" src="{{ asset('build/img/exemple.PNG') }}" alt="NIKE AIR">
+        <div class="flex items-center justify-between px-4 py-2 bg-gray-200">
+          <button class="px-4 py-1 bg-blue-500 text-sm text-white font-semibold  rounded-full"><a href="#"> modifier </a></button>
+          <button class="px-4 py-1 bg-red-600 text-sm text-white font-semibold  rounded-full"><a href="#"> supprimer</a></button>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+        <div class="px-4 py-2 flex justify-center">
+          <h1 class="text-gray-900 font-bold text-sm uppercase">#Tendance</h1>
+        </div>
+        <img class="h-full w-full object-cover mt-2" src="{{ asset('build/img/exemple.PNG') }}" alt="NIKE AIR">
+        <div class="flex items-center justify-between px-4 py-2 bg-gray-200">
+          <button class="px-4 py-1 bg-blue-500 text-sm text-white font-semibold  rounded-full"><a href="#"> modifier </a></button>
+          <button class="px-4 py-1 bg-red-600 text-sm text-white font-semibold  rounded-full"><a href="#"> supprimer</a></button>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="max-w-xs bg-white shadow-lg rounded-lg overflow-hidden my-10">
+        <div class="px-4 py-2 flex justify-center">
+          <h1 class="text-gray-900 font-bold text-sm uppercase">#Tendance</h1>
+        </div>
+        <img class="h-full w-full object-cover mt-2" src="{{ asset('build/img/exemple.PNG') }}" alt="NIKE AIR">
+        <div class="flex items-center justify-between px-4 py-2 bg-gray-200">
+          <button class="px-4 py-1 bg-blue-500 text-sm text-white font-semibold  rounded-full"><a href="#"> modifier </a></button>
+          <button class="px-4 py-1 bg-red-600 text-sm text-white font-semibold  rounded-full"><a href="#"> supprimer</a></button>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
