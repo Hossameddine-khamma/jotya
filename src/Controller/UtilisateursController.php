@@ -146,7 +146,7 @@ class UtilisateursController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact(Request $request,Security $security, MessagesRepository $messagesRepo)
+    public function contact(Request $request,Security $security, MessagesRepository $messagesRepo, UtilisateursRepository $utilisateursRepo)
     {
         $user=$security->getUser();
         $message=new Messages();
@@ -156,14 +156,23 @@ class UtilisateursController extends AbstractController
         $messagesRecu= $messagesRepo->findMessagesRecu($user);
 
         if($request->isMethod('POST')){
-            dump('test');
             $message->setExpiditeur($user);
+            $utilisateurs=$utilisateursRepo->findAll();
+            foreach($utilisateurs as $admin){
+                $roles=$admin->getRoles();
+                if(in_array("ROLE_ADMIN",$roles)){
+                $message->setDestinataire($admin);
+                }
+            }
             $message->setMessage($request->request->get('message'));
             $message->setDate(new DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($message);
             $entityManager->flush($message);
+
+            $messagesEnvoyer= $messagesRepo->findMessagesEnvoyer($user);
+            $messagesRecu= $messagesRepo->findMessagesRecu($user);
 
             return $this->render('utilisateurs/contact.html.twig',[
                 'messagesEnvoyer' => $messagesEnvoyer,
@@ -188,7 +197,12 @@ class UtilisateursController extends AbstractController
         $commande= $commandesRepo->findOneBy(['utilisateurs'=>$user])->getProduits();
         $prixTotal=0;
         foreach($commande as $ligne){
-            $prixTotal+=$ligne->getPrix();
+            if(!$ligne->getPromotion()){
+                $prixTotal+=$ligne->getPrix();
+            }
+            if($ligne->getPromotion()){
+                $prixTotal+=$ligne->getPrixPromotion();
+            }
         }
 
         return $this->render('utilisateurs/panier.html.twig',[

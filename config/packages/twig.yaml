@@ -3,3 +3,4 @@ twig:
     form_themes: ['form/base.html.twig']
     globals:
         init: '@App\Controller\HomeController'
+        admin: '@App\Controller\AdminController'

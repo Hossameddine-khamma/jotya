@@ -64,13 +64,13 @@ class EnsemblesType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message'=>'Veuillez choisir une valeur']),
                     new Count(
-                        $exactly=null,
-                        $min=1,
-                        $max=2,
+                        $exactly=1,
+                        $min=null,
+                        $max=null,
                         $divisibleBy = null,
-                        $exactMessage = null,
-                        $minMessage='Veuillez choisir au moins 1 valeur',
-                        $maxMessage='Vous pouvez pas choisir plus que 2 valeurs',
+                        $exactMessage = 'vous devez choisir une seul valeur',
+                        $minMessage=null,
+                        $maxMessage=null,
                         $divisibleByMessage = null,
                         $groups = null,
                         $payload = null
@@ -95,13 +95,13 @@ class EnsemblesType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message'=>'Veuillez choisir une valeur']),
                     new Count(
-                        $exactly=null,
-                        $min=1,
-                        $max=2,
+                        $exactly=1,
+                        $min=null,
+                        $max=null,
                         $divisibleBy = null,
-                        $exactMessage = null,
-                        $minMessage='Veuillez choisir au moins 1 valeur',
-                        $maxMessage='Vous pouvez pas choisir plus que 2 valeurs',
+                        $exactMessage = 'vous devez choisir une seul valeur',
+                        $minMessage=null,
+                        $maxMessage=null,
                         $divisibleByMessage = null,
                         $groups = null,
                         $payload = null

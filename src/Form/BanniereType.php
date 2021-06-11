@@ -14,7 +14,9 @@ class BanniereType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('imageFile',VichImageType::class)
+            ->add('imageFile',VichImageType::class,[
+                'allow_delete' => false,
+            ])
             ->add('tag')
             ->add('titre')
             ->add('sousTitre')

@@ -44,33 +44,44 @@
                </tr>
              </thead>
              <tbody>
-               {% for lingne in commande %}
-                 <tr>
-                   <td class="pb-4">
-                     <a href="#">
-                       <img src="{{ vich_uploader_asset(lingne,'imageFile')|imagine_filter('produits')}}" class="w-20 rounded" alt="Thumbnail">
-                     </a>
-                   </td>
-                   <td class="hidden md:table-cell">
-                     <a href="#">
-                       <p class="mb-2 md:ml-4">{{ lingne.type }} {{ lingne.Marque  }}</p>
+                {% if commande|length == 0 %}
+                <tr>
+                  <td colspan="5">
+                    <h1 class="w-full flex justify-center m-4 text-red-500">
+                    vous n'avez pas encore ajouter de produit à vos favoris
+                    </h1>
+                  </td>
+                </tr>
+                {% endif %}
+                {% if commande|length > 0 %}
+                  {% for lingne in commande %}
+                    <tr>
+                      <td class="pb-4">
+                        <a href="{{path('productDiscription',{'id' : lingne.Id})}}">
+                          <img src="{{ vich_uploader_asset(lingne,'imageFile')|imagine_filter('produits')}}" class="w-20 rounded" alt="Thumbnail">
+                        </a>
+                      </td>
+                      <td class="hidden md:table-cell">
+                        <a href="#">
+                          <p class="mb-2 md:ml-4">{{ lingne.type }} {{ lingne.Marque  }}</p>
 
-                     </a>
-                   </td>
-                   <td >
-                       <a href="{{ path('favorisRemove', { 'id':lingne.id }) }}">
-                         <button type="submit" class="text-gray-700 md:ml-4">
-                           <small>(Remove item)</small>
-                         </button>
-                       </a>
-                   </td>
-                   <td class="text-right">
-                     <span class="text-sm lg:text-base font-medium">
-                       {{ lingne.getStringPrix }}
-                     </span>
-                   </td>
-                 </tr> 
-               {% endfor %}
+                        </a>
+                      </td>
+                      <td >
+                          <a href="{{ path('favorisRemove', { 'id':lingne.id }) }}">
+                            <button type="submit" class="text-gray-700 md:ml-4">
+                              <small>(Remove item)</small>
+                            </button>
+                          </a>
+                      </td>
+                      <td class="text-right">
+                        <span class="text-sm lg:text-base font-medium">
+                          {{ lingne.getStringPrix }}
+                        </span>
+                      </td>
+                    </tr> 
+                  {% endfor %}
+                {% endif %}
              </tbody>
            </table>
          </div>

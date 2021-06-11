@@ -8,9 +8,9 @@
         <div class="flex justify-center space-x-4">
            <div class="flex flex-col justify-center leading-tight">
               <div class="text-2xl mt-1 flex items-center">
-                 <span class="text-gray-700 mx-auto">Anderson Vanhron</span>
+                 <span class="text-gray-700 mx-auto">Jotya Shop</span>
               </div>
-              <span class="text-lg text-gray-600 mx-auto">Junior Developer</span>
+              <span class="text-lg text-gray-600 mx-auto">Administrateur</span>
            </div>
         </div> 
     </div>
@@ -24,7 +24,7 @@
                 {% if i < messagesEnvoyer|length - 1 and j < messagesRecu|length - 1 %}
                     {% if messagesEnvoyer[i].Date < messagesRecu[j].Date %}
                         <div class="chat-message">
-                            <div class="flex items-end justify-end">
+                            <div class="flex flex-col items-end justify-end">
                                 <div class="flex flex-col space-y-2 text-xs max-w-xs mr-2 ml-auto order-1 items-end">
                                     <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-cyan text-white ">
                                     {{messagesEnvoyer[i].message}}
@@ -38,13 +38,13 @@
                         {% set i = i + 1 %}
                     {% elseif messagesEnvoyer[i].Date > messagesRecu[j].Date %}
                         <div class="chat-message">
-                            <div class="flex items-end">
-                                <div class="flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
+                            <div class="flex flex-col items-start justify-start">
+                                <div class="order-1 flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
                                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
                                    {{messagesRecu[j].message}}
                                    </span></div>
                                 </div>
-                                <span class="text-xs text-gray-500 order-1 ml-2">
+                                <span class="order-2 text-xs text-gray-500 order-1 ml-2">
                                 {{messagesRecu[j].Date|format_datetime('short', 'short', locale='fr') }}
                                 </span>
                             </div>
@@ -54,7 +54,7 @@
                 {% elseif  i < messagesEnvoyer|length - 1 and j == messagesRecu|length - 1 %}
                     {% if messagesEnvoyer[i].Date < messagesRecu[j].date %}
                         <div class="chat-message">
-                            <div class="flex items-end justify-end">
+                            <div class="flex flex-col items-end justify-end">
                                 <div class="flex flex-col space-y-2 text-xs max-w-xs mr-2 ml-auto order-1 items-end">
                                     <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-cyan text-white ">
                                     {{messagesEnvoyer[i].message}}
@@ -68,13 +68,13 @@
                         {% set i = i + 1 %}
                     {% elseif messagesEnvoyer[i].Date > messagesRecu[j].date %}
                         <div class="chat-message">
-                            <div class="flex items-end">
-                                <div class="flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
+                            <div class="flex flex-col items-start justify-start">
+                                <div class="order-1 flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
                                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
                                    {{messagesRecu[j].message}}
                                    </span></div>
                                 </div>
-                                <span class="text-xs text-gray-500 order-1 ml-2">
+                                <span class="order-2 text-xs text-gray-500 order-1 ml-2">
                                 {{messagesRecu[j].Date|format_datetime('short', 'short', locale='fr') }}
                                 </span>
                             </div>
@@ -83,7 +83,7 @@
                     {% endif %}
                 {% elseif  i < messagesEnvoyer|length - 1 and j > messagesRecu|length - 1 %}
                     <div class="chat-message">
-                        <div class="flex items-end justify-end">
+                        <div class="flex flex-col items-end justify-end">
                             <div class="flex flex-col space-y-2 text-xs max-w-xs mr-2 ml-auto order-1 items-end">
                                 <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-cyan text-white ">
                                 {{messagesEnvoyer[i].message}}
@@ -97,13 +97,13 @@
                     {% set i = i + 1 %}
                 {% elseif i > messagesEnvoyer|length - 1 and j < messagesRecu|length - 1 %}
                     <div class="chat-message">
-                        <div class="flex items-end">
-                            <div class="flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
+                        <div class="flex flex-col items-start justify-start">
+                            <div class="order-1 flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
                                {{messagesRecu[j].message}}
                                </span></div>
                             </div>
-                            <span class="text-xs text-gray-500 order-1 ml-2">
+                            <span class="order-2 text-xs text-gray-500 order-1 ml-2">
                             {{messagesRecu[j].Date|format_datetime('short', 'short', locale='fr') }}
                             </span>
                         </div>
@@ -111,13 +111,13 @@
                     {% set j = j + 1 %}
                 {% elseif i > messagesEnvoyer|length - 1 and  j == messagesRecu|length - 1 %}
                     <div class="chat-message">
-                        <div class="flex items-end">
-                            <div class="flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
+                        <div class="flex flex-col items-start justify-start">
+                            <div class="order-1 flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
                                <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
                                {{messagesRecu[j].message}}
                                </span></div>
                             </div>
-                            <span class="text-xs text-gray-500 order-1 ml-2">
+                            <span class="order-2 text-xs text-gray-500 order-1 ml-2">
                             {{messagesRecu[j].Date|format_datetime('short', 'short', locale='fr') }}
                             </span>
                         </div>
@@ -126,7 +126,7 @@
                 {% elseif i == messagesEnvoyer|length - 1 and j == messagesRecu|length - 1 %}
                     {% if messagesEnvoyer[i].Date < messagesRecu[j].date %}
                         <div class="chat-message">
-                            <div class="flex items-end justify-end">
+                            <div class="flex flex-col items-end justify-end">
                                 <div class="flex flex-col space-y-2 text-xs max-w-xs mr-2 ml-auto order-1 items-end">
                                     <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-cyan text-white ">
                                     {{messagesEnvoyer[i].message}}
@@ -138,13 +138,13 @@
                             </div>
                         </div>
                         <div class="chat-message">
-                            <div class="flex items-end">
-                                <div class="flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
+                            <div class="flex flex-col items-start justify-start">
+                                <div class="order-1 flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
                                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
                                    {{messagesRecu[j].message}}
                                    </span></div>
                                 </div>
-                                <span class="text-xs text-gray-500 order-1 ml-2">
+                                <span class="order-2 text-xs text-gray-500 order-1 ml-2">
                                 {{messagesRecu[j].Date|format_datetime('short', 'short', locale='fr') }}
                                 </span>
                             </div>
@@ -153,19 +153,19 @@
                         {% set i = i + 1 %}
                     {% elseif messagesEnvoyer[i].Date > messagesRecu[j].date %}
                         <div class="chat-message">
-                            <div class="flex items-end">
-                                <div class="flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
+                            <div class="flex flex-col items-start justify-start">
+                                <div class="order-1 flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
                                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
                                    {{messagesRecu[j].message}}
                                    </span></div>
                                 </div>
-                                <span class="text-xs text-gray-500 order-1 ml-2">
+                                <span class="order-2 text-xs text-gray-500 order-1 ml-2">
                                 {{messagesRecu[j].Date|format_datetime('short', 'short', locale='fr') }}
                                 </span>
                             </div>
                         </div>
                         <div class="chat-message">
-                            <div class="flex items-end justify-end">
+                            <div class="flex flex-col items-end justify-end">
                                 <div class="flex flex-col space-y-2 text-xs max-w-xs mr-2 ml-auto order-1 items-end">
                                     <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-cyan text-white ">
                                     {{messagesEnvoyer[i].message}}
@@ -182,7 +182,7 @@
                 {% elseif i == messagesEnvoyer|length - 1 and j < messagesRecu|length - 1 %}
                     {% if messagesEnvoyer[i].Date < messagesRecu[j].date %}
                         <div class="chat-message">
-                            <div class="flex items-end justify-end">
+                            <div class="flex flex-col items-end justify-end">
                                 <div class="flex flex-col space-y-2 text-xs max-w-xs mr-2 ml-auto order-1 items-end">
                                     <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-cyan text-white ">
                                     {{messagesEnvoyer[i].message}}
@@ -196,13 +196,13 @@
                         {% set i = i + 1 %}
                     {% elseif messagesEnvoyer[i].Date > messagesRecu[j].date %}
                         <div class="chat-message">
-                            <div class="flex items-end">
-                                <div class="flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
+                            <div class="flex flex-col items-start justify-start">
+                                <div class="order-1 flex flex-col space-y-2 text-xs max-w-xs ml-2 mr-auto order-2 items-start">
                                    <div><span class="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
                                    {{messagesRecu[j].message}}
                                    </span></div>
                                 </div>
-                                <span class="text-xs text-gray-500 order-1 ml-2">
+                                <span class="order-2 text-xs text-gray-500 order-1 ml-2">
                                 {{messagesRecu[j].Date|format_datetime('short', 'short', locale='fr') }}
                                 </span>
                             </div>
@@ -211,7 +211,7 @@
                     {% endif %}
                 {% elseif i == messagesEnvoyer|length - 1 and j > messagesRecu|length - 1 %}
                     <div class="chat-message">
-                        <div class="flex items-end justify-end">
+                        <div class="flex flex-col items-end justify-end">
                             <div class="flex flex-col space-y-2 text-xs max-w-xs mr-2 ml-auto order-1 items-end">
                                 <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-cyan text-white ">
                                 {{messagesEnvoyer[i].message}}

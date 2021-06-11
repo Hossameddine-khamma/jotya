@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Messages;
+use App\Entity\Utilisateurs;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,6 +48,36 @@ class MessagesRepository extends ServiceEntityRepository
         ;
     }
 
+    /**
+    * @return Messages[] Returns an array of Messages objects
+    */
+    public function messagesParUtilisateur($admin){
+        $messagesRecu=$this->findMessagesRecu($admin);
+
+        $utilisateurs=$this->getEntityManager()->getRepository(Utilisateurs::class)->findAll();
+
+        $messagesParUtilisateur=array();
+
+        foreach($utilisateurs as $utilisateur){
+            
+            $messagesEnvoyer=$this->findMessagesRecu($utilisateur);
+            $messagesUtilisateur= array();
+            $messagesRecuDeUtilisateur= array();
+            $id=$utilisateur->getId();
+            foreach($messagesRecu as $messageRecu){
+                if($messageRecu->getExpiditeur()->getId() == $id){
+                    array_push($messagesRecuDeUtilisateur,$messageRecu);
+                }
+            }
+            $messagesUtilisateur["recu"]=$messagesRecuDeUtilisateur;
+            $messagesUtilisateur["envoyer"]=$messagesEnvoyer;
+            if($messagesUtilisateur["recu"] && $messagesUtilisateur["envoyer"]){
+                array_push($messagesParUtilisateur,$messagesUtilisateur);
+            }
+        }
+
+        return $messagesParUtilisateur;
+    }
     /*
     public function findOneBySomeField($value): ?Messages
     {
