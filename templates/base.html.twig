@@ -507,19 +507,19 @@
 <!--searchComptePanier-->
         <div id="searchComptePanier" class="containersearchComptePanier">
              <div class="containerBtnsSearchComptePanier">
-             <button id="btnSearch" type="button" class="BtnSearch">
+             <button id="btnSearch" type="button" class="BtnSearch hidden">
               <a>
                 <img src="{{ asset('build/img/search.png') }}" alt="">
               </a>
              </button>
              <button type="button" class="BtnCompte">
                 <a href="{{path('compte')}}">
-                  <img src="{{ asset('build/img/compte.png') }}" alt="">
+                  <img  class="md:w-6/12" src="{{ asset('build/img/compte.png') }}" alt="">
                 </a>
              </button>
              <button type="button" class="BtnPanier">
                 <a href="{{path('panier')}}">
-                  <img src="{{ asset('build/img/panier.png') }}" alt="">
+                  <img class="md:w-6/12" src="{{ asset('build/img/panier.png') }}" alt="">
                 </a>
              </button>
              </div>
