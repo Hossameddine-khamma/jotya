@@ -4,6 +4,7 @@ namespace App\Security;
 
 use App\Entity\Utilisateurs;
 use Doctrine\ORM\EntityManagerInterface;
+use Monolog\Handler\ElasticaHandler;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -95,8 +96,14 @@ class UtilisateursAuthenticator extends AbstractFormLoginAuthenticator implement
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
-        return new RedirectResponse($this->urlGenerator->generate('compte'));
+        $credentials=$this->getCredentials($request);
+        $user = $this->entityManager->getRepository(Utilisateurs::class)->findOneBy(['email' => $credentials['email']]);
+        $roles=$user->getRoles();
+        if(in_array("ROLE_ADMIN",$roles)){
+            return new RedirectResponse($this->urlGenerator->generate('admin'));
+        }else{
+            return new RedirectResponse($this->urlGenerator->generate('compte'));
+        }
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

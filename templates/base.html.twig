@@ -513,7 +513,12 @@
               </a>
              </button>
              <button type="button" class="BtnCompte">
-                <a href="{{path('compte')}}">
+                <a href="{% if app.user %}
+                            {{path('compte')}}
+                          {% else %}
+                            {{path('app_login')}}
+                          {% endif %}
+                        ">
                   <img  class="md:w-6/12" src="{{ asset('build/img/compte.png') }}" alt="">
                 </a>
              </button>

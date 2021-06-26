@@ -25,6 +25,7 @@ class Utilisateurs implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Regex(pattern = "/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/", match = true, message = "veuillez saisir une adresse mail correcte")
      */
     private $email;
 
@@ -36,6 +37,9 @@ class Utilisateurs implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Regex(pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/",
+     *                   match = true,
+     *                  message = "Un mot de passe valide aura: de 8 à 15 caractères, au moins une lettre minuscule, au moins une lettre majuscule, au moins un chiffre et au moins un caractère spécial")
      */
     private $password;
 

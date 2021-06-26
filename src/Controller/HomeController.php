@@ -10,6 +10,8 @@ use App\Entity\Saisons;
 use App\Entity\Styles;
 use App\Entity\Taille;
 use App\Entity\Type;
+use App\Entity\Utilisateurs;
+use App\Form\UtilisateursType;
 use App\Repository\BudgetRepository;
 use App\Repository\EnsemblesRepository;
 use App\Repository\GenreRepository;
@@ -24,6 +26,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Twig\Loader\LoaderInterface;
 
 class HomeController extends AbstractController
@@ -124,6 +127,35 @@ class HomeController extends AbstractController
         
         return $Saisons;
     }
+
+    /**
+     * @Route("/inscription", name="inscription")
+     */
+    public function inscription(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        $utilisateur=new Utilisateurs();
+
+        $form=$this->createForm(UtilisateursType::class,$utilisateur);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $pass=$passwordEncoder->encodePassword($utilisateur,$utilisateur->getPassword());
+            $utilisateur->setPassword($pass);
+
+            $manager=$this->getDoctrine()->getManager();
+            $manager->persist($utilisateur);
+            $manager->flush($utilisateur);
+
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('utilisateurs/nouveau.html.twig', [
+            'controller_name' => 'UtilisateursController',
+            'form'=>$form->createView()
+        ]);
+    }
+
     /**
      * @Route("/", name="home")
      */

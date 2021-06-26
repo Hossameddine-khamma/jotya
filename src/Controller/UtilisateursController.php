@@ -20,7 +20,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Message;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -29,33 +28,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 */
 class UtilisateursController extends AbstractController
 {
-    /**
-     * @Route("/inscription", name="inscription")
-     */
-    public function nouveau(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
-    {
-        $utilisateur=new Utilisateurs();
-
-        $form=$this->createForm(UtilisateursType::class,$utilisateur);
-
-        $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-            $pass=$passwordEncoder->encodePassword($utilisateur,$utilisateur->getPassword());
-            $utilisateur->setPassword($pass);
-
-            $manager=$this->getDoctrine()->getManager();
-            $manager->persist($utilisateur);
-            $manager->flush($utilisateur);
-
-            return $this->redirectToRoute('app_login');
-        }
-
-        return $this->render('utilisateurs/nouveau.html.twig', [
-            'controller_name' => 'UtilisateursController',
-            'form'=>$form->createView()
-        ]);
-    }
+    
 
     /**
      * @Route("/compte", name="compte")

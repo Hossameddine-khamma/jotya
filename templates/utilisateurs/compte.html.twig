@@ -5,10 +5,6 @@
 {% block body %}
 <div class=" w-full">
   <ul class="list-reset flex border-b-2 justify-center">
-    
-    <li class="mr-1">
-      <a class="bg-white inline-block py-2 px-4 cursor-pointer" ><img class="w-6"src="{{ asset('build/img/localisationVert.png')}}" alt=""></a>
-    </li>
     <li class="mr-1">
       <a id="user" class="pt-3 bg-white inline-block py-2 px-4  border-l-2 border-r-2  cursor-pointer"><img class="w-6"src="{{ asset('build/img/userVert.png')}}" alt=""></a>
     </li>
@@ -18,8 +14,12 @@
     <li class="mr-1">
       <a id="favoris" class="bg-white inline-block py-2 px-4 cursor-pointer" ><img class="w-6"src="{{ asset('build/img/favorisVert.png')}}" alt=""></a>
     </li>
+    <li class="mr-1">
+      <a href="{{path('app_logout')}}" class="bg-white inline-block py-2 px-4 cursor-pointer" ><img class="w-6"src="{{ asset('build/img/logout.png')}}" alt=""></a>
+    </li>
   </ul>
-</div>
+</div><h1 class="text-red-500 font-bold my-4 justify-items-center grid">{{er}}</h1>
+
 <div id="userData">
 {{form(utilisateursCompteForm)}}
 </div>
