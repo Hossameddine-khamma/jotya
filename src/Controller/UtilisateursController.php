@@ -22,6 +22,9 @@ use Symfony\Component\Mime\Message;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Stripe\Stripe;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
 * @Route("/utilisateurs")
@@ -29,6 +32,62 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class UtilisateursController extends AbstractController
 {
     
+
+    /**
+     * @Route("/create-checkout-session", name="checkout")
+     */
+    public function checkout(UserInterface $user, CommandesRepository $commandesRepo)
+    {
+        $commande= $commandesRepo->findOneBy(['utilisateurs'=>$user])->getProduits();
+        $prixTotal=0;
+        foreach($commande as $ligne){
+            if(!$ligne->getPromotion()){
+                $prixTotal+=$ligne->getPrix();
+            }
+            if($ligne->getPromotion()){
+                $prixTotal+=$ligne->getPrixPromotion();
+            }
+        }
+    
+        \Stripe\Stripe::setApiKey(
+
+            'sk_test_51J6heRK3syLjY4l2NQrdKOCDcZb9DQ5563LRjZydWFVdZ6JWSkaR29bUoqfrlOEcBZ03dnG2c83fJIHiiLWqCnPU00WCxeSHJE'
+            );
+
+        $session = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+              'price_data' => [
+                'currency' => 'eur',
+                'product_data' => [
+                  'name' => 'Jotya.shop',
+                ],
+                'unit_amount' => $prixTotal*100,
+              ],
+              'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => $this->generateUrl('succes',[],UrlGeneratorInterface::ABSOLUTE_URL),
+            'cancel_url' => $this->generateUrl('cancel',[],UrlGeneratorInterface::ABSOLUTE_URL),
+          ]);
+          return new JsonResponse([ 'id' => $session->id ]);
+    }
+
+    /**
+     * @Route("/succes", name="succes")
+     */
+    public function succes()
+    {
+        return $this->render('utilisateurs/succes.html.twig');
+    }
+
+    /**
+     * @Route("/cancel", name="cancel")
+     */
+    public function cancel()
+    {
+        return $this->render('utilisateurs/cancel.html.twig');
+    }
 
     /**
      * @Route("/compte", name="compte")
